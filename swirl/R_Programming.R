@@ -45,3 +45,12 @@ swirl()
 > xor(5 == 6, !FALSE)
 # [1] TRUE
 
+
+
+> ints <- sample(10)
+# to find the indices of ints that are greater than 7
+> which(ints > 7)
+
+
+
+
