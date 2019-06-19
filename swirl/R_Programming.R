@@ -31,3 +31,11 @@ swirl()
 > isTRUE(6 > 4)
 # [1] TRUE
 
+
+
+
+# identical() will return TRUE if the two R objects passed to it as arguments are identical.
+> identical('twins', 'twins')
+# [1] TRUE
+
+
