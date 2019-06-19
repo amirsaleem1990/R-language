@@ -65,3 +65,7 @@ swirl()
 
 
 9: Functions
+telegram <- function(...){
+  paste("START", ..., "STOP")
+}
+
