@@ -65,7 +65,10 @@ swirl()
 
 
 9: Functions
+
 telegram <- function(...){
   paste("START", ..., "STOP")
 }
+> telegram("Good", "morning")
+# [1] "START Good morning STOP"
 
