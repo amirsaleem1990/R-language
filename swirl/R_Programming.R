@@ -39,3 +39,9 @@ swirl()
 # [1] TRUE
 
 
+
+
+# You should also be aware of the xor() function, which takes two arguments. The xor() function stands for exclusive OR. If one argument evaluates to TRUE and one argument evaluates to FALSE, then this function will return TRUE, otherwise it will return FALSE.
+> xor(5 == 6, !FALSE)
+# [1] TRUE
+
