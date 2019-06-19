@@ -27,3 +27,7 @@ swirl()
 
 
 
+# The function isTRUE() takes one argument. If that argument evaluates to TRUE, the function will return TRUE. Otherwise, the function will return FALSE.
+> isTRUE(6 > 4)
+# [1] TRUE
+
