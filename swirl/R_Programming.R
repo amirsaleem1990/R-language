@@ -22,3 +22,8 @@ swirl()
 
 
 # As you may recall, arithmetic has an order of operations and so do logical expressions. All AND operators are evaluated before OR operators. Let's look at an example of an ambiguous case
+> 5 > 8 || 6 != 8 && 4 > 3.9
+# [1] TRUE
+
+
+
