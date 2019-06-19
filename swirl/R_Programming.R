@@ -72,3 +72,17 @@ telegram <- function(...){
 > telegram("Good", "morning")
 # [1] "START Good morning STOP"
 
+
+
+# unpack arguments
+
+mad_libs <- function(...){
+  args <- list(...)
+  place <- args[["place"]]
+  adjective <- args[["adjective"]]
+  noun <- args[["noun"]]
+  paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
+}
+
+
+
