@@ -11,3 +11,14 @@ swirl()
 # [1] TRUE
 
 
+> TRUE | c(TRUE,FALSE, FALSE)
+# [1] TRUE TRUE TRUE
+
+
+
+> TRUE || c(TRUE, FALSE, FALSE)
+# [1] TRUE
+
+
+
+As you may recall, arithmetic has an order of operations and so do logical expressions. All AND operators are evaluated before OR operators. Let's look at an example of an ambiguous case
