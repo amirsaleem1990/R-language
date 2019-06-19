@@ -53,7 +53,8 @@ swirl()
 [1] 1 4 7 # the <ints> created randomely, so probeably you get diffrent indices
 
 
-
-
+# any() and all() take logical vectors as their argument. The any() function will return TRUE if one or more of the elements in the logical vector is TRUE. The all() function will return TRUE if every element in the logical vector is TRUE.
+> any(ints < 0)
+[1] FALSE
 
 
