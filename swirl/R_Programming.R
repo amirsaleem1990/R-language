@@ -62,3 +62,6 @@ swirl()
 # [1] TRUE
 
 
+
+
+9: Functions
