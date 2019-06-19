@@ -83,3 +83,8 @@ mad_libs <- function(...){
   noun <- args[3]
   paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
 }
+
+> mad_libs("AAAAAAAA", "BBBBBBB", "CCCCCCCCCC")
+# [1] "News from AAAAAAAA today where BBBBBBB students took to the streets in protest of the new CCCCCCCCCC being installed on campus."
+
+
