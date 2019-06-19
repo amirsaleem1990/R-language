@@ -50,6 +50,9 @@ swirl()
 > ints <- sample(10)
 # to find the indices of ints that are greater than 7
 > which(ints > 7)
+[1] 1 4 7 # the <ints> created randomely, so probeably you get diffrent indices
+
+
 
 
 
