@@ -173,40 +173,57 @@ t1 <- Sys.time() # current date and time
 # The printed format of t2 is identical to that of t1. Now unclass() t2 to see how it is different internally.
 
 > unclass(t2)
-$sec
-[1] 49.83735
+# $sec
+# [1] 49.83735
 
-$min
-[1] 27
+# $min
+# [1] 27
 
-$hour
-[1] 11
+# $hour
+# [1] 11
 
-$mday
-[1] 20
+# $mday
+# [1] 20
 
-$mon
-[1] 5
+# $mon
+# [1] 5
 
-$year
-[1] 119
+# $year
+# [1] 119
 
-$wday
-[1] 4
+# $wday
+# [1] 4
 
-$yday
-[1] 170
+# $yday
+# [1] 170
 
-$isdst
-[1] 0
+# $isdst
+# [1] 0
 
-$zone
-[1] "PKT"
+# $zone
+# [1] "PKT"
 
-$gmtoff
-[1] 18000
+# $gmtoff
+# [1] 18000
 
-attr(,"tzone")
-[1] ""    "PKT" "PKT"
+# attr(,"tzone")
+# [1] ""    "PKT" "PKT"
+
+
+> str(unclass(t2))
+# List of 11
+#  $ sec   : num 49.8
+#  $ min   : int 27
+#  $ hour  : int 11
+#  $ mday  : int 20
+#  $ mon   : int 5
+#  $ year  : int 119
+#  $ wday  : int 4
+#  $ yday  : int 170
+#  $ isdst : int 0
+#  $ zone  : chr "PKT"
+#  $ gmtoff: int 18000
+#  - attr(*, "tzone")= chr [1:3] "" "PKT" "PKT"
+
 
 
