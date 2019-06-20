@@ -155,3 +155,6 @@ t1 <- Sys.time() # current date and time
 > class(t1)
 # [1] "POSIXct" "POSIXt" 
 
+# As mentioned earlier, POSIXct is just one of two ways that R represents time information. (You can ignore the second value above, POSIXt, which just functions as a common language between POSIXct and POSIXlt.)
+
+
