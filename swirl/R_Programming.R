@@ -237,5 +237,11 @@ t1 <- Sys.time() # current date and time
 # [1] "Thursday"
 
 
+> months(t1)
+# [1] "June"
+
+
+> quarters(t2)
+# [1] "Q2"
 
 
