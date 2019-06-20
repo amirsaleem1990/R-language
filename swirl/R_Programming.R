@@ -259,3 +259,5 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 # [1] "POSIXlt" "POSIXt"
 
 
+# t1 contains the time at which you created it (recall you used Sys.time())
+# compare it to the current time
