@@ -148,4 +148,10 @@ d2 <- as.Date("1969-01-01")
 # [1] -365 # since <1969-01-01> is exactly one calendar year (i.e. 365 days) BEFORE 1970-01-01.
 
 
+t1 <- Sys.time() # current date and time
+> t1
+# [1] "2019-06-20 11:10:42 PKT"
+
+> class(t1)
+# [1] "POSIXct" "POSIXt" 
 
