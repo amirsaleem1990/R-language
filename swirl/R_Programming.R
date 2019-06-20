@@ -261,3 +261,10 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 
 # t1 contains the time at which you created it (recall you used Sys.time())
 # compare it to the current time
+> Sys.time() > t1
+# [1] TRUE
+
+
+> Sys.time() - t1
+# Time difference of 38.02935 mins
+
