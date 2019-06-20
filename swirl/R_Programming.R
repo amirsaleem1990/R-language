@@ -241,7 +241,10 @@ t1 <- Sys.time() # current date and time
 # [1] "June"
 
 
+# quarters() returns the quarter of the year (Q1-Q4) from any date or time object
 > quarters(t2)
 # [1] "Q2"
+
+
 
 
