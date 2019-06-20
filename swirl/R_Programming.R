@@ -268,3 +268,8 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 > Sys.time() - t1
 # Time difference of 38.02935 mins
 
+
+> difftime(Sys.time(), t1, units = 'days')
+# Time difference of 0.02690689 days
+
+
