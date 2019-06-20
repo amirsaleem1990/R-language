@@ -250,3 +250,12 @@ t1 <- Sys.time() # current date and time
 
 t3 <- "October 17, 1986 08:24"
 t4 <- strptime(t3, "%B %d, %Y %H:%M")
+
+> t4
+# [1] "1986-10-17 08:24:00 PKT"
+
+
+> class(t4)
+# [1] "POSIXlt" "POSIXt"
+
+
