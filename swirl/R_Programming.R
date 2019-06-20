@@ -232,4 +232,10 @@ t1 <- Sys.time() # current date and time
 # [1] 27
 
 
+# day of week
+> weekdays(d1)
+# [1] "Thursday"
+
+
+
 
