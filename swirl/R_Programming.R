@@ -269,6 +269,7 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 # Time difference of 38.02935 mins
 
 
+# If you want more control over the units when finding the above difference in times, you can use difftime(), which allows you to specify a 'units' parameter.
 > difftime(Sys.time(), t1, units = 'days')
 # Time difference of 0.02690689 days
 
