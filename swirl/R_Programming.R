@@ -139,3 +139,6 @@ d1 <- Sys.Date() # get the current date
 > unclass(d1)
 # [1] 18067 # the exact number of days since 1970-01-01!
 
+> print(d1)
+# [1] "2019-06-20"
+
