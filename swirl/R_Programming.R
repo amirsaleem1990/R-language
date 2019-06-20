@@ -248,3 +248,5 @@ t1 <- Sys.time() # current date and time
 
 # Often, the dates and times in a dataset will be in a format that R does not recognize. The strptime() function can be helpful in this situation, strptime() converts character vectors to POSIXlt. In that sense, it is similar to as.POSIXlt(), except that the input doesn't have to be in a particular format (YYYY-MM-DD).
 
+t3 <- "October 17, 1986 08:24"
+t4 <- strptime(t3, "%B %d, %Y %H:%M")
