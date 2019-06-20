@@ -162,3 +162,8 @@ t1 <- Sys.time() # current date and time
 # [1] 1561011043 # number of seconds since the beginning of 1970.
 
 # By default, Sys.time() returns an object of class POSIXct, but we can coerce the result to POSIXlt with as.POSIXlt(Sys.time())
+
+> t2 <- as.POSIXlt(Sys.time())
+> class(t2)
+# [1] "POSIXlt" "POSIXt"
+
