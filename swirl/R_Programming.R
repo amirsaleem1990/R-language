@@ -135,3 +135,7 @@ d1 <- Sys.Date() # get the current date
 > class(d1)
 # [1] "Date"
 
+# We can use the unclass() function to see what d1 looks like internally.
+> unclass(d1)
+# [1] 18067 # the exact number of days since 1970-01-01!
+
