@@ -142,5 +142,8 @@ d1 <- Sys.Date() # get the current date
 > d1
 # [1] "2019-06-20"
 
-
+# What if we need to reference a date prior to 1970-01-01?
+d2 <- as.Date("1969-01-01")
+> unclass(d2)
+# [1] -365
 
