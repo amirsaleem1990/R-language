@@ -167,3 +167,8 @@ t1 <- Sys.time() # current date and time
 > class(t2)
 # [1] "POSIXlt" "POSIXt"
 
+> t2
+# [1] "2019-06-20 11:27:49 PKT"
+
+# The printed format of t2 is identical to that of t1. Now unclass() t2 to see how it is different internally.
+
