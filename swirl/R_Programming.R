@@ -227,3 +227,9 @@ t1 <- Sys.time() # current date and time
 
 
 
+# If, for example, we want just the minutes from the time stored in t2, we can access them with t2$min
+> t2$min
+# [1] 27
+
+
+
