@@ -435,3 +435,5 @@ rbinom(1, size = 100, prob = 0.7)
 
 # Note that there are other ways to call the plot command, i.e., using the "formula" interface. For example, we get a similar plot to the above with plot(dist ~ speed, cars).
 
+# In fact, you can assume that the answers to the next few questions are all of the form plot(x = cars$speed, y = cars$dist, ...) but with various arguments used in place of the ...
+
