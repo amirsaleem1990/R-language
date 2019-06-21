@@ -440,3 +440,6 @@ rbinom(1, size = 100, prob = 0.7)
 > plot(x=cars$speed, y = cars$dist, xlab = "Speed")
 # scatter plot with label in x-axis
 
+
+# The reason that plots(cars) worked at the beginning of the lesson was that R was smart enough to know that the first element (i.e., the first column) in cars should be assigned to the x argument and the second element to the y argument.
+
