@@ -323,3 +323,11 @@ rbinom(1, size = 100, prob = 0.7)
 # [1] 75
 
 
+# Equivalently, if we want to see all of the 0s and 1s, we can request 100 observations, each of size 1, with success probability of 0.7.
+> flips2 <- rbinom(n = 100, size = 1, prob = 0.7)
+> flips2
+# [1] 1 1 0 1 1 0 1 0 1 0 1 1 1 1 1 1 1 0 1 0 0 0 0 1 0 1 1 0 1 1 1 1 1 1 1 1 1 0 1
+# [40] 0 1 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 1 1 1 0 1 1 0 1 0 1 1 1 0 1 1 1 1 1
+# [79] 0 1 1 0 1 1 1 1 1 0 1 1 0 1 0 1 1 1 1 1 1 0
+
+
