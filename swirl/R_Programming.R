@@ -465,3 +465,5 @@ plot(cars, xlim = c(10, 15))
 
 # boxplot(), like many R functions, also takes a "formula" argument, generally an expression with a tilde ("~") which indicates the relationship between the input variables. This allows you to enter something like mpg ~ cyl to plot the relationship between cyl (number of cylinders) on the x-axis and mpg (miles per gallon) on the y-axis.
 
+> boxplot(formula = mpg ~ cyl, data = mtcars)
+
