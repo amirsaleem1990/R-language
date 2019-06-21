@@ -431,3 +431,7 @@ rbinom(1, size = 100, prob = 0.7)
 > plot(x=cars$speed, y=cars$dist)
 # scatter plot
 
+# Note that this produces a slightly different answer than plot(cars). In this case, R is not sure what you want to use as the labels on the axes, so it just uses the arguments which you pass in, data frame name and dollar signs included.
+
+# Note that there are other ways to call the plot command, i.e., using the "formula" interface. For example, we get a similar plot to the above with plot(dist ~ speed, cars).
+
