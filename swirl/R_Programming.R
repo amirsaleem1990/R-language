@@ -287,3 +287,4 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 # 686080 bytes
 
 
+13: Simulation
