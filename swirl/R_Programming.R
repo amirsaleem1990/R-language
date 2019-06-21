@@ -428,3 +428,6 @@ rbinom(1, size = 100, prob = 0.7)
 # Note that 'plot' is short for scatterplot.
 
 
+> plot(x=cars$speed, y=cars$dist)
+# scatter plot
+
