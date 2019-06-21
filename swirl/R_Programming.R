@@ -303,4 +303,11 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 # This is identical to taking a sample of size 26 from LETTERS, without replacement. When the 'size' argument to sample() is not specified, R takes a sample equal in size to the vector from which you are sampling.
 
 
+# Let the value 0 represent tails and the value 1 represent heads. Use sample() to draw a sample of size 100 from the vector c(0,1), with replacement. Since the coin is unfair, we must attach specific probabilities to the values 0 (tails) and 1 (heads) with a fourth argument, prob = c(0.3, 0.7)
+flips <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))
+> flips
+# [1] 0 1 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 1 1 1 1 1 1 1 0 1 1
+# [40] 0 1 1 1 0 1 1 1 0 0 1 1 1 1 0 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1
+# [79] 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 0 0 0 1 0 1 
 
+0
