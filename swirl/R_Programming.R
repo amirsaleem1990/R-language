@@ -446,3 +446,7 @@ rbinom(1, size = 100, prob = 0.7)
 # The plot help page (?plot) only covers a small number of the many arguments that can be passed in to plot() and to other graphical functions. To begin to explore the many other options, look at ?par. Let's look at some of the more commonly used ones.
 
 
+# Plot cars so that the plotted points are colored red
+plot(cars, col = 2)
+
+
