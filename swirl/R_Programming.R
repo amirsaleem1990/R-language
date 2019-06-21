@@ -277,3 +277,4 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 
 
 
+12: Looking at Data 
