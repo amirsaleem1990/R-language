@@ -288,3 +288,7 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 
 
 13: Simulation
+
+> sample(1:6, 4, replace = TRUE)
+# [1] 5 4 1 6
+
