@@ -278,3 +278,12 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 
 
 12: Looking at Data 
+
+
+> class(plants)
+# [1] "data.frame"
+
+> object.size(plants)
+# 686080 bytes
+
+
