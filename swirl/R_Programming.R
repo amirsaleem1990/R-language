@@ -450,3 +450,7 @@ rbinom(1, size = 100, prob = 0.7)
 plot(cars, col = 2)
 
 
+# Plot cars while limiting the x-axis to 10 through 15.
+plot(cars, xlim = c(10, 15))
+
+
