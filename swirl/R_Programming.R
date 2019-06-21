@@ -423,5 +423,8 @@ rbinom(1, size = 100, prob = 0.7)
 # scatter plot
 
 # As always, R tries very hard to give you something sensible given the information that you have provided to it. First, R notes that the data frame you have given it has just two columns, so it assumes that you want to plot one column versus the other.
+# Second, since we do not provide labels for either axis, R uses the names of the columns. Third, it creates axis tick marks at nice round numbers and labels them accordingly. Fourth, it uses the other defaults supplied in plot().
+
+# Note that 'plot' is short for scatterplot.
 
 
