@@ -405,3 +405,8 @@ rbinom(1, size = 100, prob = 0.7)
 
 # replicate() created a matrix, each column of which contains 5 random numbers generated from a Poisson distribution with mean 10. Now we can find the mean of each column in my_pois using the colMeans() function.
 
+> cm <- colMeans(my_pois)
+> hist(cm)
+# graph
+
+
