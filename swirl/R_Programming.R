@@ -410,3 +410,6 @@ rbinom(1, size = 100, prob = 0.7)
 # graph
 
 
+# All of the standard probability distributions are built into R, including exponential (rexp()), chi-squared (rchisq()), gamma (rgamma()), ....
+
+
