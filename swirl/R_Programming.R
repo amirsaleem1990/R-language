@@ -344,3 +344,8 @@ rbinom(1, size = 100, prob = 0.7)
  # [1] 124.26952  89.64703  88.48218  84.26289 119.05530  59.78415 135.10221  57.20809
  # [9] 104.75601  15.06424
 
+
+# Generate 5 random values from a Poisson distribution with mean 10.
+> rpois(5, lambda=10)
+# [1]  8 11 10 12  4
+
