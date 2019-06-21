@@ -300,5 +300,7 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 > sample(LETTERS)
 # [1] "W" "K" "D" "E" "Z" "Q" "T" "C" "Y" "N" "F" "P" "J" "G" "X" "A" "M" "V" "L" "S"
 # [21] "H" "O" "U" "R" "B" "I"
+# This is identical to taking a sample of size 26 from LETTERS, without replacement. When the 'size' argument to sample() is not specified, R takes a sample equal in size to the vector from which you are sampling.
+
 
 
