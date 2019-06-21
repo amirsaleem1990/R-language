@@ -318,3 +318,5 @@ flips <- sample(c(0,1), 100, replace = TRUE, prob = c(0.3, 0.7))
 
 
 
+# A binomial random variable represents the number of 'successes' (heads) in a given number of independent 'trials' (coin flips). Therefore, we can generate a single random variable that represents the number of heads in 100 flips of our unfair coin using rbinom(1, size = 100, prob = 0.7). Note that you only specify the probability of 'success' (heads) and NOT the probability of 'failure' (tails)
+
