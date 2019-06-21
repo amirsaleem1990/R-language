@@ -293,3 +293,7 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 > sample(1:6, 4, replace = TRUE)
 # [1] 5 4 1 6
 
+> LETTERS
+# [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T"
+# [21] "U" "V" "W" "X" "Y" "Z"
+
