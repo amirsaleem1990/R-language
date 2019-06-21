@@ -332,3 +332,14 @@ rbinom(1, size = 100, prob = 0.7)
 
 
 # Similar to rbinom(), we can use R to simulate random numbers from many other probability distributions.
+
+
+# The standard normal distribution has mean 0 and standard deviation 1. As you can see under the 'Usage' section in the documentation, the default values for the 'mean' and 'sd' arguments to rnorm() are 0 and 1, respectively. Thus, rnorm(10) will generate 10 random numbers from a standard normal distribution
+
+> rnorm(10)
+ # [1] -1.03353596  1.86457251  0.65192281  0.22148648  1.26247174 -1.50036922
+ # [7]  0.81787591  0.65912152  0.17858836 -0.08161591
+
+
+
+ 
