@@ -458,3 +458,6 @@ plot(cars, xlim = c(10, 15))
 # Plot cars using triangles.
 > plot(cars, pch = 2)
 
+
+> data(mtcars)
+
