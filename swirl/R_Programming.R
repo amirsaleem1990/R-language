@@ -417,3 +417,11 @@ rbinom(1, size = 100, prob = 0.7)
 15: Base Graphics
 
 > data(cars)
+
+
+> plot(cars)
+# scatter plot
+
+# As always, R tries very hard to give you something sensible given the information that you have provided to it. First, R notes that the data frame you have given it has just two columns, so it assumes that you want to plot one column versus the other.
+
+
