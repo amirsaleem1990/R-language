@@ -454,3 +454,7 @@ plot(cars, col = 2)
 plot(cars, xlim = c(10, 15))
 
 
+# change the shape of the symbols in the plot. The help page for points (?points) provides the details.
+# Plot cars using triangles.
+> plot(cars, pch = 2)
+
