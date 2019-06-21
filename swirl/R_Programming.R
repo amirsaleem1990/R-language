@@ -461,3 +461,5 @@ plot(cars, xlim = c(10, 15))
 
 > data(mtcars)
 
+# Instead of adding data columns directly as input arguments, as we did with plot(), it is often handy to pass in the entire data frame. This is what the "data" argument in boxplot() allows.
+
