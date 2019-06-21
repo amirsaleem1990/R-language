@@ -1,2 +1,2 @@
 import clipboard
-clipboard.copy(clipboard.paste().replace('|', '').replace("\n", ''))
+clipboard.copy("# " + clipboard.paste().replace('|', '').replace("\n", ''))
