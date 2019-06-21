@@ -331,3 +331,4 @@ rbinom(1, size = 100, prob = 0.7)
 # [79] 0 1 1 0 1 1 1 1 1 0 1 1 0 1 0 1 1 1 1 1 1 0
 
 
+# Similar to rbinom(), we can use R to simulate random numbers from many other probability distributions.
