@@ -416,3 +416,4 @@ rbinom(1, size = 100, prob = 0.7)
 
 15: Base Graphics
 
+> data(cars)
