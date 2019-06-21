@@ -437,3 +437,6 @@ rbinom(1, size = 100, prob = 0.7)
 
 # In fact, you can assume that the answers to the next few questions are all of the form plot(x = cars$speed, y = cars$dist, ...) but with various arguments used in place of the ...
 
+> plot(x=cars$speed, y = cars$dist, xlab = "Speed")
+# scatter plot with label in x-axis
+
