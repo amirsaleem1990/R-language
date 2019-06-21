@@ -274,3 +274,6 @@ t4 <- strptime(t3, "%B %d, %Y %H:%M")
 # Time difference of 0.02690689 days
 
 
+
+
+
