@@ -62,3 +62,8 @@ lapply(unique_vals, function(elem) elem[2]) # return a list containing the secon
 # 0   1 
 # 155  39 
 
+# to apply the mean function to the 'animate' variable separately for each of the six landmass groups, thus giving us the proportion of flags containing an animate image WITHIN each landmass group.
+> tapply(flags$animate, flags$landmass, mean)
+# 1         2         3         4         5         6 
+# 0.4193548 0.1764706 0.1142857 0.1346154 0.1538462 0.3000000 
+
