@@ -166,6 +166,29 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 flag_colors <- flags[, 11:17]# extract the columns containing the color data
 
 # To get a list containing the sum of each column of flag_colors:
+lapply(flag_colors, sum)
+# $red
+# [1] 153
+# 
+# $green
+# [1] 91
+# 
+# $blue
+# [1] 99
+# 
+# $gold
+# [1] 91
+# 
+# $white
+# [1] 146
+# 
+# $black
+# [1] 52
+# 
+# $orange
+# [1] 26
+
+
 
 
 
