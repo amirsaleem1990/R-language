@@ -163,8 +163,9 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 # Columns 11 through 17 of our dataset are indicator variables, each representing a different color. The value of the  indicator variable is 1 if the color is present in a country's flag and 0 otherwise.
 
 
+flag_colors <- flags[, 11:17]# extract the columns containing the color data
 
-
+# To get a list containing the sum of each column of flag_colors:
 
 
 
