@@ -25,3 +25,12 @@ lapply(unique_vals, function(elem) elem[2]) # return a list containing the secon
 # When working interactively (at the prompt), this is not much of a problem, since you see the result immediately and will quickly recognize your mistake. However, when working non-interactively (e.g. writing your own functions), a misunderstanding may go undetected and cause incorrect results later on. Therefore, you may wish to be more careful and that's where vapply() is useful
 # Whereas sapply() tries to 'guess' the correct format of the result, vapply() allows you to specify it explicitly. If the result doesn't match the format you specify, vapply() will throw an error, causing the operation to stop. This can prevent significant problems in your code that might be caused by getting unexpected return values from sapply().
 # vapply(flags, unique, numeric(1)), which says that you expect each element of the result to be a numeric vector of length 1. Since this is NOT actually the case, YOU WILL GET AN ERROR. Once you get the error
+# Recall from the previous lesson that sapply(flags, class) will return a character vector containing the class of each column in the dataset.
+> sapply(flags, class)
+# name   landmass       zone       area population   language   religion       bars    stripes    colours        red      green 
+# "factor"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer" 
+# blue       gold      white      black     orange    mainhue    circles    crosses   saltires   quarters   sunstars   crescent 
+# "integer"  "integer"  "integer"  "integer"  "integer"   "factor"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer" 
+# triangle       icon    animate       text    topleft   botright 
+# "integer"  "integer"  "integer"  "integer"   "factor"   "factor" 
+
