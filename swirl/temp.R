@@ -49,3 +49,5 @@ lapply(unique_vals, function(elem) elem[2]) # return a list containing the secon
 # since our expectation was correct (i.e. character(1)), the vapply() result is identical to the sapply() result
 
 # You might think of vapply() as being 'safer' than sapply(), since it requires you to specify the format of the output in advance, instead of just allowing R to 'guess' what you wanted. In addition, vapply() may perform faster than sapply() for large datasets. However, when doing data analysis interactively (at the prompt), sapply() saves you some typing and will often be good enough.
+
+# As a data analyst, you'll often wish to split your data up into groups based on the value of some variable, then apply a function to the members of each group. The next function we'll look at, tapply(), does exactly that.
