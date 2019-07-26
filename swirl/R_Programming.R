@@ -160,6 +160,23 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 
 # In general, if the result is a list where every element is of length one, then sapply() returns a vector. If the result is a list where every element is a vector of the same length (> 1), sapply() returns a matrix. If sapply() can't figure things out, then it just returns a list, no different from what lapply() would give you.
 
+# Columns 11 through 17 of our dataset are indicator variables, each representing a different color. The value of the  indicator variable is 1 if the color is present in a country's flag and 0 otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 14: Dates and Times
 Dates are represented by the 'Date' class and times are represented by the 'POSIXct' and 'POSIXlt' classes. Internally, dates are stored as the number of days since 1970-01-01 and times are stored as either the number of seconds since 1970-01-01 (for 'POSIXct') or a list of seconds, minutes, hours, etc. (for 'POSIXlt').
