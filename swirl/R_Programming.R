@@ -134,6 +134,17 @@ mad_libs <- function(...){
 cls_list <- lapply(flags, class) # apply the class() function to each column of the flags dataset
 # The 'l' in 'lapply' stands for 'list', lapply always return a list.
 
+> cls_list
+# $name
+# [1] "factor"
+# 
+# $landmass
+# [1] "integer"
+# 
+# $zone
+# [1] "integer"
+# ...
+
 
 
 
