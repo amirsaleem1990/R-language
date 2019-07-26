@@ -67,3 +67,12 @@ lapply(unique_vals, function(elem) elem[2]) # return a list containing the secon
 # 1         2         3         4         5         6 
 # 0.4193548 0.1764706 0.1142857 0.1346154 0.1538462 0.3000000 
 
+# we can look at a summary of population values (in round millions) for countries with and without the color red on their flag
+> tapply(flags$population, flags$red, summary)
+# $`0`
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.00    0.00    3.00   27.63    9.00  684.00 
+# 
+# $`1`
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0     0.0     4.0    22.1    15.0  1008.0 
