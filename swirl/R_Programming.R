@@ -203,6 +203,10 @@ lapply(flag_colors, sum)
 # In the examples we've looked at so far, sapply() has been able to simplify the result to vector. That's because each element of the list returned by lapply() was a vector of length one. Recall that sapply() instead returns a matrix when each element of the list returned by lapply() is a vector of the same length (> 1).
 
 > flag_shapes <- flags[, 19:23]
+# Each of these columns (i.e. variables) represents the number of times a particular shape or design appears on a country's flag. We are interested in the minimum and maximum number of times each shape or design appears.
+
+
+
 
 
 
