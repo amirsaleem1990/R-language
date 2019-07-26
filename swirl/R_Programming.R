@@ -158,7 +158,7 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 > class(cls_vect)
 # [1] "character"
 
-
+# In general, if the result is a list where every element is of length one, then sapply() returns a vector. If the result is a list where every element is a vector of the same length (> 1), sapply() returns a matrix. If sapply() can't figure things out, then it just returns a list, no different from what lapply() would give you.
 
 
 14: Dates and Times
