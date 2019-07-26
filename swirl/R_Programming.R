@@ -153,10 +153,10 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 
 
 # sapply() allows you to automate this process by calling lapply() behind the scenes, but then attempting to simplify  (hence the 's' in 'sapply') the result for you.
+> cls_vect <- sapply(flags, class)
 
-
-
-
+> class(cls_vect)
+# [1] "character"
 
 
 
