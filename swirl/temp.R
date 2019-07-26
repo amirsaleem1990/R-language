@@ -16,3 +16,8 @@
 # Occasionally, you may need to apply a function that is not yet defined, thus requiring you to write your own.
 lapply(unique_vals, function(elem) elem[2]) # return a list containing the second item from each element of the unique_vals list.
 
+
+
+11: vapply and tapply
+# In the last lesson, you learned about the two most fundamental members of R's *apply family of functions: lapply() and sapply(). Both take a list as input, apply a function to each element of the list, then combine and return the result. lapply() always returns a list, whereas sapply() attempts to simplify the result.
+
