@@ -126,6 +126,22 @@ mad_libs <- function(...){
 # [1] "I love R!"
 
 
+# 10- lapply and sapply
+# To open a more complete description of the dataset in a separate text file, type viewinfo()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 14: Dates and Times
 Dates are represented by the 'Date' class and times are represented by the 'POSIXct' and 'POSIXlt' classes. Internally, dates are stored as the number of days since 1970-01-01 and times are stored as either the number of seconds since 1970-01-01 (for 'POSIXct') or a list of seconds, minutes, hours, etc. (for 'POSIXlt').
