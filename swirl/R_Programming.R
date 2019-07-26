@@ -145,11 +145,11 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 # [1] "integer"
 # ...
 
-
-# > as.character(cls_list)
-[1] "factor"  "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer"
-[12] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "integer" "integer" "integer" "integer"
-[23] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "factor"
+# since every element of the list returned by lapply() is a character vector of length one (i.e. "integer" and "vector"), cls_list can be simplified to a character vector. To do this manually:
+ > as.character(cls_list)
+# [1] "factor"  "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer"
+# [12] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "integer" "integer" "integer" "integer"
+# [23] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "factor"
 
 
 
