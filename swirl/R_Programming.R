@@ -208,6 +208,29 @@ lapply(flag_colors, sum)
 
 
 
+# The range() function returns the minimum and maximum of its first argument, which should be a numeric vector. Use lapply() to apply the range function to each column of flag_shapes.
+> lapply(flag_shapes, range)
+# [1] 0 4
+# 
+# $crosses
+# [1] 0 2
+# 
+# $saltires
+# [1] 0 1
+# 
+# $quarters
+# [1] 0 4
+# 
+# $sunstars
+# [1]  0 50
+
+
+
+
+
+
+
+
 
 
 
