@@ -146,6 +146,10 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 # ...
 
 
+# > as.character(cls_list)
+[1] "factor"  "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer"
+[12] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "integer" "integer" "integer" "integer"
+[23] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "factor"
 
 
 
