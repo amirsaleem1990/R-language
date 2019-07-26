@@ -57,3 +57,8 @@ lapply(unique_vals, function(elem) elem[2]) # return a list containing the secon
 # 1  2  3  4  5  6 
 # 31 17 35 52 39 20 
 
+# The 'animate' variable in our dataset takes the value 1 if a country's flag contains an animate image (e.g. an eagle, a tree, a human hand) and 0 otherwise.
+> table(flags$animate)
+# 0   1 
+# 155  39 
+
