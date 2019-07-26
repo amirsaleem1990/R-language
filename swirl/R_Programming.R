@@ -152,7 +152,7 @@ cls_list <- lapply(flags, class) # apply the class() function to each column of 
 # [23] "integer" "integer" "integer" "integer" "integer" "integer" "factor"  "factor"
 
 
-
+# sapply() allows you to automate this process by calling lapply() behind the scenes, but then attempting to simplify  (hence the 's' in 'sapply') the result for you.
 
 
 
