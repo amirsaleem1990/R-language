@@ -202,6 +202,7 @@ lapply(flag_colors, sum)
 
 # In the examples we've looked at so far, sapply() has been able to simplify the result to vector. That's because each element of the list returned by lapply() was a vector of length one. Recall that sapply() instead returns a matrix when each element of the list returned by lapply() is a vector of the same length (> 1).
 
+> flag_shapes <- flags[, 19:23]
 
 
 
