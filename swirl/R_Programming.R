@@ -131,6 +131,8 @@ mad_libs <- function(...){
 
 # The lapply() function takes a list as input, applies a function to each element of the list, then returns a list of the same length as the original one.
 
+cls_list <- lapply(flags, class) # apply the class() function to each column of the flags dataset
+
 
 
 
