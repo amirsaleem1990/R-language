@@ -195,7 +195,10 @@ lapply(flag_colors, sum)
 # 153     91     99     91    146     52     26 
 
 
-
+# Since each column is just a bunch of 1s and 0s, the arithmetic mean of each column will give us the proportion of 1s
+> sapply(flag_colors, mean)
+# red     green      blue      gold     white     black    orange 
+# 0.7886598 0.4690722 0.5103093 0.4690722 0.7525773 0.2680412 0.1340206 
 
 
 
