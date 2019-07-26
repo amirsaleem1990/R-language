@@ -188,8 +188,11 @@ lapply(flag_colors, sum)
 # $orange
 # [1] 26
 
+# Each element of this list is of length one, so the result can be simplified to a vector by calling sapply() instead of lapply()
 
-
+> sapply(flag_colors, sum)
+# red  green   blue   gold  white  black orange 
+# 153     91     99     91    146     52     26 
 
 
 
