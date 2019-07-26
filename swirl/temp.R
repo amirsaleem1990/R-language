@@ -33,4 +33,4 @@ lapply(unique_vals, function(elem) elem[2]) # return a list containing the secon
 # "integer"  "integer"  "integer"  "integer"  "integer"   "factor"  "integer"  "integer"  "integer"  "integer"  "integer"  "integer" 
 # triangle       icon    animate       text    topleft   botright 
 # "integer"  "integer"  "integer"  "integer"   "factor"   "factor" 
-
+# If we wish to be explicit about the format of the result we expect, we can use vapply(flags, class, character(1)). The 'character(1)' argument tells R that we expect the class function to return a character vector of length 1 when applied to EACH column of the flags dataset.
