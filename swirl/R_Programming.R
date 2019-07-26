@@ -200,7 +200,7 @@ lapply(flag_colors, sum)
 # red     green      blue      gold     white     black    orange 
 # 0.7886598 0.4690722 0.5103093 0.4690722 0.7525773 0.2680412 0.1340206 
 
-
+# In the examples we've looked at so far, sapply() has been able to simplify the result to vector. That's because each element of the list returned by lapply() was a vector of length one. Recall that sapply() instead returns a matrix when each element of the list returned by lapply() is a vector of the same length (> 1).
 
 
 
