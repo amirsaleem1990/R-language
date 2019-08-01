@@ -526,4 +526,6 @@ g <- ggplot(mpg, aes(displ, hwy))
 
 > g + geom_point(size = 4, alpha = 1/2, aes(color = drv))
 # Note that you MUST use the function aes since the color of the points is data dependent and not a constant as it was in the previous example.
+# Notice the helpful legend on the right decoding the relationship between color and drv.
 
+# Now we'll practice modifying labels.
