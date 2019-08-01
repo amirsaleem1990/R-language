@@ -513,4 +513,6 @@ g <- ggplot(mpg, aes(displ, hwy))
 # The gray shadow around the blue line is the confidence band. See how wide it is at the right? Let's try a different smoothing function.
 > g + geom_point() + geom_smooth(method = "lm")
 # By changing the smoothing function to "lm" (linear model) ggplot2 generated a regression line through the data.
+
 > g + geom_point() + geom_smooth(method = "lm") + facet_grid(. ~ drv)
+# Notice how each panel is labeled with the appropriate factor. All the data associated with 4-wheel drive cars is in the leftmost panel, front-wheel drive data is shown in the middle panel, and rear-wheel drive data in the rightmost. Notice that this is similar to the plot you created at the start of the lesson using qplot. (We used a different smoothing function than previously.)
