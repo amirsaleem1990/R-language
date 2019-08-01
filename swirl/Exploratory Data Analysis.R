@@ -505,3 +505,4 @@ g <- ggplot(mpg, aes(displ, hwy))
 # vars: function
 # super:  <ggproto object: Class FacetNull, Facet, gg>
 
+# So g contains the mpg data with all its named components in a 234 by 11 matrix. It also contains a mapping, x (displ) and y (hwy) which you specified, and no faceting.
