@@ -506,3 +506,5 @@ g <- ggplot(mpg, aes(displ, hwy))
 # super:  <ggproto object: Class FacetNull, Facet, gg>
 
 # So g contains the mpg data with all its named components in a 234 by 11 matrix. It also contains a mapping, x (displ) and y (hwy) which you specified, and no faceting.
+# Note that if you tried to print g with the expressions g or print(g) you'd get an error! Even though it's a great package, ggplot doesn't know how to display the data yet since you didn't specify how you wanted to see it. Now type g+geom_point()
+> g + geom_point()
