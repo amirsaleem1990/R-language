@@ -401,3 +401,70 @@ p1 <- colorRampPalette(c("red", "blue"))
 # [1] "#0000FFFF" "#003FBFFF" "#007F7FFF" "#00BF3FFF" "#00FF00FF"
 # We see that in the 5-long vector that the call returned, each element has 32 bits, 4 groups of 8 bits each. The last 8 bits represent the value of alpha. Since it was NOT ZERO in the call to colorRampPalette, it gets the maximum FF value. (The same result would happen if alpha had been set to TRUE.) When it was 0 or FALSE (as in previous calls to colorRampPalette) it was given the value 00 and wasn't shown. The leftmost 24 bits of each element are the same RGB encoding we previously saw.
 # So what is alpha? Alpha represents an opacity level, that is, how transparent should the colors be. We can add color transparency with the alpha parameter to calls to rgb. We haven't seen any examples of this yet, but we will now.
+
+
+> plot(x,y, pch = 19, col = rgb(0, 0.5, 0.5))
+# Well this picture is okay for a scatterplot, a nice mix of blue and green, but it really doesn't tell us too much information in the center portion, since the points are so thick there. We see there are a lot of points, but is one area more filled than another? We can't really discriminate between different point densities. This is where the alpha argument can help us. Recall your plot command (use the up arrow) and add a 4th argument, .3, to the call to rgb. This will be our value for alpha.
+
+> plot(x,y, pch = 19, col = rgb(0, 0.5, 0.5, 0.3))
+
+
+
+# Our last topic for this lesson is the RColorBrewer Package, available on CRAN, that contains interesting and useful color palettes, of which there are 3 types, sequential, divergent, and qualitative. Which one you would choose to use depends on your data.
+
+
+# These colorBrewer palettes can be used in conjunction with the colorRamp() and colorRampPalette() functions. You would use colors from a colorBrewer palette as your base palette,i.e., as arguments to colorRamp or colorRampPalette which would interpolate them to create new colors.
+
+# As an example of this, create a new object, cols by calling the function brewer.pal with 2 arguments, 3 and "BuGn". The string "BuGn" is the second last palette in the sequential display. The 3 tells the function how many different colors we want.
+> cols <- brewer.pal(3, "BuGn")
+# We see 3 colors, mixes of blue and green. Now create the variable pal by calling colorRampPalette with cols as its argument.
+> pal <- colorRampPalette(cols)
+# The call showMe(pal(3)) would be identical to the showMe(cols) call.
+# Now we can use the colors in pal(20) to display topographic information on Auckland's Maunga Whau Volcano. R provides this information in a matrix called volcano which is included in the package datasets.  Call the R function image with volcano as its first argument and col set equal to pal(20) as its second.
+> image(volcano, col = pal(20))
+# We see that the colors here of the sequential palette clue us in on the topography. The darker colors are more concentrated than the lighter ones. 
+
+8: GGPlot2 Part1
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/ggplot2
+#  In this lesson we'll focus on the third and newest plotting system in R, ggplot2.  As we did with the other two systems, we'll focus on creating graphics on the screen device rather than another graphics device.
+# A grammar of graphics represents an abstraction of graphics, that is, a theory of graphics which conceptualizes basic pieces from which you can build new graphics and graphical objects. The goal of the grammar is to “Shorten the distance from mind to page”. From Hadley Wickham's book we learn that
+# The ggplot2 package "is composed of a set of independent components that can be composed in many different ways. ... you can create new graphics that are precisely tailored for your problem." These components include aesthetics which are attributes such as colour, shape, and size, and geometric objects or geoms such as points, lines, and bars.# Yes, ggplot2 combines the best of base and lattice. It allows for multipanel (conditioning) plots (as lattice does) but also post facto annotation (as base does), so you can add titles and labels. It uses the low-level grid package (which comes with R) to draw the graphics. As part of its grammar philosophy, ggplot2 plots are composed of aesthetics (attributes such as size, shape, color) and geoms (points, lines, and bars), the geometric objects you see on the plot.
+# The ggplot2 package has 2 workhorse functions. The more basic workhorse function is qplot, (think quick plot), which works like the plot function in the base graphics system. It can produce many types of plots (scatter, histograms, box and whisker) while hiding tedious details from the user. Similar to lattice functions, it looks for data in a data frame or parent environment.
+# The more advanced workhorse function in the package is ggplot, which is more flexible and can be customized for doing things qplot cannot do. In this lesson we'll focus on qplot.
+
+# see if there's a correlation between engine displacement (displ) and highway miles per gallon (hwy).
+> qplot(displ, hwy, data = mpg)
+
+# Now we want to do the same plot but this time use different colors to distinguish between the 3 factors (subsets) of different types of drive (drv) in the data (front-wheel, rear-wheel, and 4-wheel).
+qplot(displ, hwy, data = mpg, color = drv)
+# Pretty cool, right? See the legend to the right which qplot helpfully supplied? The colors were automatically assigned by qplot so the legend decodes the colors for you. Notice that qplot automatically used dots or points to indicate the data. These points are geoms (geometric objects). We could have used a different aesthetic, for instance shape instead of color, to distinguish between the drive types.
+
+# Now add a second geom to the default points. How about some smoothing function to produce trend lines, one for each color?
+> qplot(displ, hwy, data = mpg, color = drv, geom = c("point", "smooth"))
+# Notice the gray areas surrounding each trend lines. These indicate the 95% confidence intervals for the lines.
+
+
+> qplot(y=hwy, data = mpg, color=drv)
+# What's this plot showing? We see the x-axis ranges from 0 to 250 and we remember that we had 234 data points in our set, so we can infer that each point in the plot represents one of the hwy values (indicated by the y-axis).
+# Comparing the values of mpg$hwy with the plot, we see the first entries in the vector (29, 29, 31, 30,...) correspond to the leftmost points in the the plot (in order), and the last entries in myhigh (28, 29, 26, 26, 26) correspond to the rightmost plotted points. So, specifying the y parameter only, without an x argument, plots the values of the y argument in the order in which they occur in the data.
+
+
+# The all-purpose qplot can also create box and whisker plots. Call qplot now with 4 arguments. First specify the variable by which you'll split the data, in this case drv, then specify the variable which you want to examine, in this case hwy. The third argument is data (set equal to mpg), and the fourth, the geom, set equal to the string "boxplot"
+qplot(drv, hwy, data = mpg, geom = "boxplot")
+# We see 3 boxes, one for each drive.
+
+
+qplot(drv, hwy, data = mpg, geom = "boxplot", color = manufacture)
+# It's a little squished but we just wanted to illustrate qplot's capabilities. Notice that there are still 3 regions of the plot (determined by the factor drv). Each is subdivided into several boxes depicting different manufacturers.
+
+
+
+# Now, on to histograms
+> qplot(hwy, data = mpg, fill = drv)
+# See how qplot consistently uses the colors. Red (if 4-wheel drv is in the bin) is at the bottom of the bin, then green on top of it (if present), followed by blue (rear wheel drv). The color lets us see right away that 4-wheel drive vehicles in this dataset don't have gas mileages exceeding 30 miles per gallon.
+# It's cool that qplot can do this so easily, but some people may find this multi-color histogram hard to interpret. Instead of using colors to distinguish between the drive factors let's use facets or panels. (That's what lattice called them.) This just means we'll split the data into 3 subsets (according to drive) and make 3 smaller individual plots of each subset in one plot (and with one call to qplot).
+> qplot(displ, hwy, data = mpg, facets = . ~ drv)
+# The fourth is the argument facets which will be set equal to the expression . ~ drv which is ggplot2's shorthand for number of rows (to the left of the ~) and number of columns (to the right of the ~). Here the . indicates a single row and drv implies 3, since there are 3 distinct drive factors.
+# The result is a 1 by 3 array of plots. Note how each is labeled at the top with the factor label (4,f, or r). This shows us more detailed information than the histogram. We see the relationship between displacement and highway mileage for each of the 3 drive factors.
+
+> qplot(hwy, data = mpg, facets = drv ~ ., binwidth = 2)
