@@ -510,3 +510,5 @@ g <- ggplot(mpg, aes(displ, hwy))
 > g + geom_point()
 # By calling the function geom_point you added a layer. By not assigning the expression to a variable you displayed a plot. Notice that you didn't have to pass any arguments to the function geom_point. That's because the object g has all the data stored in it. (Remember you saw that when you ran summary on g before.) Now use the expression you just typed (g + geom_point()) and add to it another layer, a call to geom_smooth(). Notice the red message R gives you.
 > g + geom_point() + geom_smooth()
+# The gray shadow around the blue line is the confidence band. See how wide it is at the right? Let's try a different smoothing function.
+> g + geom_point() + geom_smooth(method = "lm")
