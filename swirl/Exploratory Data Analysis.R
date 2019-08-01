@@ -484,3 +484,24 @@ qplot(drv, hwy, data = mpg, geom = "boxplot", color = manufacture)
 # We see a 3 facet plot, one for each drive type (4, f, and r). Now we'll see how ggplot works. We'll build up a similar plot using the basic components of the package. We'll do this in a series of steps.
 g <- ggplot(mpg, aes(displ, hwy))
 # Notice that nothing happened? As in the lattice system, ggplot created a graphical object which we assigned to the variable g.
+> summary(g)
+# data: manufacturer, model, displ, year, cyl, trans, drv, cty,
+# hwy, fl, class [234x11]
+# mapping:  x = ~displ, y = ~hwy
+# faceting: <ggproto object: Class FacetNull, Facet, gg>
+#   compute_layout: function
+# draw_back: function
+# draw_front: function
+# draw_labels: function
+# draw_panels: function
+# finish_data: function
+# init_scales: function
+# map_data: function
+# params: list
+# setup_data: function
+# setup_params: function
+# shrink: TRUE
+# train_scales: function
+# vars: function
+# super:  <ggproto object: Class FacetNull, Facet, gg>
+
