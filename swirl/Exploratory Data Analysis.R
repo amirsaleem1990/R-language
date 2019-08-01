@@ -468,3 +468,9 @@ qplot(drv, hwy, data = mpg, geom = "boxplot", color = manufacture)
 # The result is a 1 by 3 array of plots. Note how each is labeled at the top with the factor label (4,f, or r). This shows us more detailed information than the histogram. We see the relationship between displacement and highway mileage for each of the 3 drive factors.
 
 > qplot(hwy, data = mpg, facets = drv ~ ., binwidth = 2)
+
+
+
+
+9: GGPlot2 Part2
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/ggplot2
