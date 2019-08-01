@@ -243,3 +243,161 @@ plot(airquality$Temp, airquality$Ozone, main = "Ozone and Temperature")
 # Now we'll put in a title.
 mtext("Ozone and Weather in New York City", outer = TRUE)
 
+##############################################################################################
+6: Lattice Plotting System                                                                   #
+##############################################################################################
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/PlottingLattice
+# The lattice plotting system is completely separate and independent of the base plotting system. It's an add-on package so it has to be explicitly loaded with a call to the R function library. We've done this for you. The R Documentation tells us that lattice "is an implementation of Trellis graphics for R. It is a powerful and elegant high-level data visualization system with an emphasis on multivariate data."
+# Lattice is implemented using two packages. The first is called, not surprisingly, lattice, and it contains code for producing Trellis graphics. Some of the functions in this package are the higher level functions which you, the user, would call. These include xyplot, bwplot, and levelplot.
+# The second package in the lattice system is grid which contains the low-level functions upon which the lattice package is built. You, the user, seldom call functions from the grid package directly.
+# Unlike base plotting, the lattice system does not have a "two-phase" aspect with separate plotting and annotation. Instead all plotting and annotation is done at once with a single function call.
+# The lattice system, as the base does, provides several different plotting functions. These include xyplot for creating scatterplots, bwplot for box-and-whiskers plots or boxplots, and histogram for histograms. There are several others (stripplot, dotplot, splom and levelplot), which we won't cover here.
+# Lattice functions generally take a formula for their first argument, usually of the form y ~ x. This indicates that y depends on x, so in a scatterplot y would be plotted on the y-axis and x on the x-axis.
+# Here's an example of typical lattice plot call, xyplot(y ~ x  f * g, data). The f and g represent the optional conditioning variables. The * represents interaction between them. Remember when we said that lattice is good for plotting multivariate data? That's where these conditioning variables come into play.
+# The second argument is the data frame or list from which the variables in the formula should be looked up.  If no data frame or list is passed, then the parent frame is used. If no other arguments are passed, the default values are used.
+> xyplot(Ozone ~ Wind, data = airquality)
+#  Look vaguely familiar? The dots are blue, instead of black, but lattice labeled the axes for you. You can use some of the same graphical parameters (e.g., pch and col) that you used in the base package in calls to lattice functions.
+
+> xyplot(Ozone ~ Wind, data = airquality, pch=8, col="red", main="Big Apple Data")
+
+
+> xyplot(Ozone ~ Wind | as.factor(Month), data = airquality, layout = c(5,1))
+# here xyplot Displayed and labeled each subplot with the month's integer
+# Since Month is a named column of the airquality dataframe we had to tell R to treat it as a factor.
+
+# Lattice functions behave differently from base graphics functions in one critical way. Recall that base graphics functions plot data directly to the graphics device (e.g., screen, or file such as a PDF file). In contrast, lattice graphics functions return an object of class trellis.
+# The print methods for lattice functions actually do the work of plotting the data on the graphics device. They return "plot objects" that can be stored (but it’s usually better to just save the code and data). On the command line, trellis objects are auto-printed so that it appears the function is plotting the data.
+> p <- xyplot(Ozone ~ Wind, data=airquality)
+> p # for print the plot
+
+> names(p)
+# [1] "formula"           "as.table"          "aspect.fill"       "legend"           
+# [5] "panel"             "page"              "layout"            "skip"             
+# [9] "strip"             "strip.left"        "xscale.components" "yscale.components"
+# [13] "axis"              "xlab"              "ylab"              "xlab.default"     
+# [17] "ylab.default"      "xlab.top"          "ylab.right"        "main"             
+# [21] "sub"               "x.between"         "y.between"         "par.settings"     
+# [25] "plot.args"         "lattice.options"   "par.strip.text"    "index.cond"       
+# [29] "perm.cond"         "condlevels"        "call"              "x.scales"         
+# [33] "y.scales"          "panel.args.common" "panel.args"        "packet.sizes"     
+# [37] "x.limits"          "y.limits"          "x.used.at"         "y.used.at"        
+# [41] "x.num.limit"       "y.num.limit"       "aspect.ratio"      "prepanel.default" 
+# [45] "prepanel"   
+
+> p[["formula"]]
+# Ozone ~ Wind
+
+> p[["x.limits"]]
+# [1]  0.37 22.03
+
+# let's talk about lattice's panel functions which control what happens inside each panel of the plot. The ease of making multi-panel plots makes lattice very appealing. The lattice package comes with default panel functions, but you can customize what happens in each panel.
+# Panel functions receive the x and y coordinates of the data points in their panel (along with any optional arguments).
+
+
+
+
+
+
+
+7: Working with Colors
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/Colors
+# This lesson is about using colors in R.
+
+# these(white, red, green) are the first 3 default color values. If you were plotting and just specified col=c(1:3) as one of your arguments, these are colors you'd get.
+# we'll first discuss some functions that the grDevices package offers. The function colors() lists the names of 657 predefined colors you can use in any plotting function.  These names are returned as strings.
+
+> sample(colors(), 10)
+# [1] "sienna4"     "grey59"      "skyblue"     "gray76"     
+# [5] "darkorchid3" "darkcyan"    "grey94"      "gray40"     
+# [9] "chocolate3"  "chartreuse" 
+
+# two additional functions from grDevices, colorRamp and colorRampPalette, give you more options. Both of these take color names as arguments and use them as "palettes", that is, these argument colors are blended in different proportions to form new colors.
+# The first, colorRamp, takes a palette of colors (the arguments) and returns a function that takes values between 0 and 1 as arguments. The 0 and 1 correspond to the extremes of the color palette. Arguments between 0 and 1 return blends of these extremes.
+> pal <- colorRamp(c("red", "blue"))
+# We don't see any output, but R has created the function pal which we can call with a single argument between 0 and 1.
+> pal(0)
+# [,1] [,2] [,3]
+# [1,]  255    0    0
+
+# We see a 1 by 3 array with 255 as the first entry and 0 in the other 2. This 3 long vector corresponds to red, green, blue (RGB) color encoding commonly used in televisions and monitors. In R, 24 bits are used to represent colors. Think of these 24 bits as 3 sets of 8 bits, each of which represents an intensity for one of the colors red, green, and blue.
+# The 255 returned from the pal(0) call corresponds to the largest possible number represented with 8 bits, so the vector (255,0,0) contains only red (no green or blue), and moreover, it's the highest possible value of red.
+
+> pal(1)
+# [,1] [,2] [,3]
+# [1,]    0    0  255
+
+# You see the vector (0,0,255) which represents the highest intensity of blue.
+
+> pal(0.5)
+# [,1] [,2] [,3]
+# [1,]    127.5    0  127.5
+
+# The function pal can take more than one argument. It returns one 3-long (or 4-long, but more about this later) vector for each argument.
+> pal(seq(0,1,len=6))
+# [,1] [,2] [,3]
+# [1,]  255    0    0
+# [2,]  204    0   51
+# [3,]  153    0  102
+# [4,]  102    0  153
+# [5,]   51    0  204
+# [6,]    0    0  255
+# Six vectors (each of length 3) are returned. The i-th vector is identical to output that would be returned by the call pal(i/5) for i=0,...5. We see that the i-th row (for i=1,...6) differs from the (i-1)-st row in the following way. Its red entry is 51 = 255/5 points lower and its blue entry is 51 points higher.
+
+# So pal creates colors using the palette we specified when we called colorRamp. In this example none of pal's outputs will ever contain green since it wasn't in our initial palette.
+
+
+
+# We'll turn now to colorRampPalette, a function similar to colorRamp. It also takes a palette of colors and returns a function. This function, however, takes integer arguments (instead of numbers between 0 and 1) and returns a vector of colors each of which is a blend of colors of the original palette.
+# The argument you pass to the returned function specifies the number of colors you want returned. Each element of the returned vector is a 24 bit number, represented as 6 hexadecimal characters, which range from 0 to F. This set of 6 hex characters represents the intensities of red, green, and blue, 2 characters for each color.
+
+p1 <- colorRampPalette(c("red", "blue"))
+> p1(2)
+# [1] "#FF0000" "#0000FF"
+# We see a 2-long vector is returned. The first entry FF0000 represents red. The FF is hexadecimal for 255, the same value returned by our call pal(0). The second entry 0000FF represents blue, also with intensity 255.
+
+> p1(6)
+# [1] "#FF0000" "#CC0033" "#990066" "#650099" "#3200CC" "#0000FF"
+# Now we get the 6-long vector (FF0000, CC0033, 990066, 650099, 3200CC, 0000FF). We see the two ends (FF0000 and 0000FF) are consistent with the colors red and blue. How about CC0033? Type 0xcc or 0xCC at the command line to see the decimal equivalent of this hex number. You must include the 0 before the x to specify that you're entering a hexadecimal number.
+> 0xcc
+# [1] 204
+# So 0xCC equals 204 and we can easily convert hex 33 to decimal, as in 0x33=3*16+3=51. These were exactly the numbers we got in the second row returned from our call to pal(seq(0,1,len=6)). We see that 4 of the 6 numbers agree with our earlier call to pal. Two of the 6 differ slightly.
+
+
+# We can also form palettes using colors other than red, green and blue.
+> p2 <- colorRampPalette(c("red", "yellow"))
+> p2(2)
+# [1] "#FF0000" "#FFFF00"
+# This will show us the two extremes of the blends of colors we'll get.
+# Not surprisingly the first color we see is FF0000, which we know represents red. The second color returned, FFFF00, must represent yellow
+
+
+# Let's now call p2 with the argument 10. This will show us how the two extremes, red and yellow, are blended together.
+> p2(10)
+# [1] "#FF0000" "#FF1C00" "#FF3800" "#FF5500" "#FF7100" "#FF8D00"
+# [7] "#FFAA00" "#FFC600" "#FFE200" "#FFFF00"
+# So we see the 10-long vector. For each element, the red component is fixed at FF, and the green component grows from 00 (at the first element) to FF (at the last).
+
+# We mentioned before that colorRamp (and colorRampPalette) could return a 3 or 4 long vector of colors. We saw 3-long vectors returned indicating red, green, and blue intensities. What would the 4th entry be?
+> p1
+# function (n) 
+# {
+#   x <- ramp(seq.int(0, 1, length.out = n))
+#   if (ncol(x) == 4L) 
+#     rgb(x[, 1L], x[, 2L], x[, 3L], x[, 4L], maxColorValue = 255)
+#   else rgb(x[, 1L], x[, 2L], x[, 3L], maxColorValue = 255)
+# }
+# <bytecode: 0x5625dc121ad8>
+#   <environment: 0x5625d491dc00>
+
+# We see that p1 is a short function with one argument, n. The argument n is used as the length in a call to the function seq.int, itself an argument to the function ramp. We can infer that ramp is just going to divide the interval from 0 to 1 into n pieces.
+
+> ?rgb
+...
+# We see that rgb is a color specification function that can be used to produce any color with red, green, blue proportions. We see the maxColorValue is 1 by default, so if we called rgb with values for red, green and blue, we would specify numbers at most 1 (assuming we didn't change the default for maxColorValue).
+# So the fourth argument is alpha which can be a logical, i.e., either TRUE or FALSE, or a numerical value.
+
+> p3 <- colorRampPalette(c("blue", "green"), alpha = 0.5)
+> p3(5)
+# [1] "#0000FFFF" "#003FBFFF" "#007F7FFF" "#00BF3FFF" "#00FF00FF"
+# We see that in the 5-long vector that the call returned, each element has 32 bits, 4 groups of 8 bits each. The last 8 bits represent the value of alpha. Since it was NOT ZERO in the call to colorRampPalette, it gets the maximum FF value. (The same result would happen if alpha had been set to TRUE.) When it was 0 or FALSE (as in previous calls to colorRampPalette) it was given the value 00 and wasn't shown. The leftmost 24 bits of each element are the same RGB encoding we previously saw.
+# So what is alpha? Alpha represents an opacity level, that is, how transparent should the colors be. We can add color transparency with the alpha parameter to calls to rgb. We haven't seen any examples of this yet, but we will now.
