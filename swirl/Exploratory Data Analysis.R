@@ -513,3 +513,4 @@ g <- ggplot(mpg, aes(displ, hwy))
 # The gray shadow around the blue line is the confidence band. See how wide it is at the right? Let's try a different smoothing function.
 > g + geom_point() + geom_smooth(method = "lm")
 # By changing the smoothing function to "lm" (linear model) ggplot2 generated a regression line through the data.
+> g + geom_point() + geom_smooth(method = "lm") + facet_grid(. ~ drv)
