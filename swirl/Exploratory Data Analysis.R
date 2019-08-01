@@ -508,3 +508,4 @@ g <- ggplot(mpg, aes(displ, hwy))
 # So g contains the mpg data with all its named components in a 234 by 11 matrix. It also contains a mapping, x (displ) and y (hwy) which you specified, and no faceting.
 # Note that if you tried to print g with the expressions g or print(g) you'd get an error! Even though it's a great package, ggplot doesn't know how to display the data yet since you didn't specify how you wanted to see it. Now type g+geom_point()
 > g + geom_point()
+# By calling the function geom_point you added a layer. By not assigning the expression to a variable you displayed a plot. Notice that you didn't have to pass any arguments to the function geom_point. That's because the object g has all the data stored in it. (Remember you saw that when you ran summary on g before.) Now use the expression you just typed (g + geom_point()) and add to it another layer, a call to geom_smooth(). Notice the red message R gives you.
