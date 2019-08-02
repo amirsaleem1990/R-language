@@ -1,0 +1,1 @@
+Exploratory Data Analysis me jab 12-K Means Clustering end kya to aakhir me jab coursera ki email or token enter karny ka waqt aata h to R error aa gya, or swirl exit ho gya, me ny swirl ko load kya, phir jab ye course select kara to error aa gya, bohot koshish kar li magar nahi hwa, windows par R (not Rstudio) par chalaya to chal gya. Alhamdulillah
