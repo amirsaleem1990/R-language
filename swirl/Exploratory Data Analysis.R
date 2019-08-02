@@ -529,3 +529,142 @@ g <- ggplot(mpg, aes(displ, hwy))
 # Notice the helpful legend on the right decoding the relationship between color and drv.
 
 # Now we'll practice modifying labels.
+g + geom_point(aes(color = drv)) + labs(title = "Swirl Rules!") + labs (x = "Displacement", y = "Hwy Mileage")
+# Note that you could have combined the two calls to the function labs in the previous example.
+
+# Now we'll practice customizing the geom_smooth calls.
+g + geom_point(aes(color = drv), size = 2, alpha = 1/2) + geom_smooth(size = 4, linetype = 3, method = "lm", se = FALSE)
+# What did these arguments do? The method specified a linear regression (note the negative slope indicating that the bigger the displacement the lower the gas mileage), the linetype specified that it should be dashed (not continuous), the size made the dashes big, and the se flag told ggplot to turn off the gray shadows indicating standard errors (confidence intervals).
+
+# Finally, let's do a simple plot using the black and white theme, theme_bw.
+g + geom_point(aes(color = drv)) + theme_bw(base_family =  "Times")
+# No more gray background! Also, if you have good eyesight, you'll notice that the font in the labels changed.
+
+# One final note before we go through a more complicated, layered ggplot example, and this concerns the limits of the axes. We're pointing this out to emphasize a subtle difference between ggplot and the base plotting function plot.
+> plot(myx, myy, type="l", ylim=c(-3, 3))
+# The type="l" tells plot you want to display the data as a line instead of as a scatterplot.
+
+# Notice how plot plotted the points in the (-3,3) range for y-values. The outlier at (50,100) is NOT shown on the line plot. Now we'll plot the same data with ggplot.
+> g <- ggplot(testdat, aes(x = myx, y = myy))
+> g + geom_line()
+# Notice how ggplot DID display the outlier point at (50,100). As a result the rest of the data is smashed down so you don't get to see what the bulk of it looks like. The single outlier probably isn't important enough to dominate the graph. How do we get ggplot to behave more like plot in a situation like this?
+> g + geom_line() + ylim(-3, 3)
+# Notice that by doing this, ggplot simply ignored the outlier point at (50,100). There's a break in the line which isn't very noticeable. Now recall that at the beginning of the lesson we mentioned 7 components of a ggplot plot, one of which was a coordinate system. This is a situation where using a coordinate system would be helpful. Instead of adding ylim(-3,3) to the expression g+geom_line(), add a call to the function coord_cartesian with the argument ylim set equal to c(-3,3).
+> g + geom_line() + coord_cartesian(ylim = c(-3, 3))
+# See the difference? This looks more like the plot produced by the base plot function. The outlier y value at x=50 is not shown, but the plot indicates that it is larger than 3.
+
+# We'll close with a more complicated example to show you the full power of ggplot and the entire ggplot2 package.
+> g <- ggplot(mpg, aes(x = displ, y = hwy, color = factor(year)))
+> g + geom_point()
+
+# Let's make our display a 2 dimensional multi-panel plot.
+> g + geom_point() + facet_grid(drv ~ cyl, margins = TRUE)
+# A 4 by 5 plot, huh? The margins argument tells ggplot to display the marginal totals over each row and column, so instead of seeing 3 rows (the number of drv factors) and 4 columns (the number of cyl factors) we see a 4 by 5 display. Note that the panel in position (4,5) is a tiny version of the scatterplot of the entire dataset.
+
+> g + geom_point() + facet_grid(drv ~ cyl, margins = TRUE) + geom_smooth(method = "lm", se = FALSE, size = 2, color = "black")
+
+> g + geom_point() + facet_grid(drv ~ cyl, margins = TRUE) + geom_smooth(method = "lm", se = FALSE, size = 2, color = "black") + labs(x = "Displacement", y = "Highway Mileage", title = "Swirl Rules!")
+# You could have done these labels with separate calls to labs but we thought you'd be sick of this by now.
+
+
+
+##############################################################################
+# 10: GGPlot2 Extras                                                         #
+##############################################################################
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/ggplot2
+# In this lesson we'll go through a few more qplot examples using diamond data which comes with the ggplot2 package
+
+> qplot(price, data = diamonds)
+# Not only do you get a histogram, but you also get a message about the binwidth defaulting to range/30. Recall that range refers to the spread or dispersion of the data, in this case price of diamonds.
+> max(diamonds$price) - min(diamonds$price)
+# [1] 18497
+
+> qplot(price, data = diamonds, binwidth = 18497/30)
+# No more messages in red, but a histogram almost identical to the previous one! If you typed 18497/30 at the command line you would get the result 616.5667. This means that the height of each bin tells you how many diamonds have a price between x and x+617 where x is the left edge of the bin.
+
+# We've created a vector containing integers that are multiples of 617 for you. It's called brk.
+> brk
+# [1]     0   617  1234  1851  2468  3085  3702  4319  4936  5553  6170
+# [12]  6787  7404  8021  8638  9255  9872 10489 11106 11723 12340 12957
+# [23] 13574 14191 14808 15425 16042 16659 17276 17893 18510 19127
+
+# We've also created a vector containing the number of diamonds with prices between each pair of adjacent entries of brk. For instance, the first count is the number of diamonds with prices between 0 and $617, and the second is the number of diamonds with prices between $617 and $1234.
+> counts
+# [1]  4611 13255  5230  4262  3362  2567  2831  2841  2203  1666  1445
+# [12]  1112   987   766   796   655   606   553   540   427   429   376
+# [23]   348   338   298   305   269   287   227   251    97
+
+> qplot(price, data = diamonds, binwidth = 18497/30, fill = cut)
+# The shape of the histogram will be familiar, but it will be more colorful.
+# This shows how the counts within each price grouping (bin) are distributed among the different cuts of diamonds. Notice how qplot displays these distributions relative to the cut legend on the right. The fair cut diamonds are at the bottom of each bin, the good cuts are above them, then the very good above them, until the ideal cuts are at the top of each bin. You can quickly see from this display that there are very few fair cut diamonds priced above $5000.
+
+# Now we'll replot the histogram as a density function which will show the proportion of diamonds in each bin. This means that the shape will be similar but the scale on the y-axis will be different since, by definition, the density function is nonnegative everywhere, and the area under the curve is one.
+> qplot(price, data = diamonds, geom = "density")
+# Notice that the shape is similar to that of the histogram we saw previously. The highest peak is close to 0 on the x-axis meaning that most of the diamonds in the dataset were inexpensive. In general, as prices increase (move right along the x-axis) the number of diamonds (at those prices) decrease. The exception to this is when the price is around $4000; there's a slight increase in frequency. Let's see if cut is responsible for this increase.
+> qplot(price, data = diamonds, geom = "density", color = cut)
+# See how easily qplot did this? Four of the five cuts have 2 peaks, one at price $1000 and the other between $4000 and $5000. The exception is the Fair cut which has a single peak at $2500. This gives us a little more understanding of the histogram we saw before.
+
+# Let's move on to scatterplots.
+> qplot(carat, price, data = diamonds)
+# We see the positive trend here
+
+> qplot(carat, price, data = diamonds, shape = cut)
+# The same scatterplot appears, except the cuts of the diamonds are distinguished by different symbols. The legend at the right tells you which symbol is associated with each cut. These are small and hard to read, so rerun the same command, except this time instead of setting the argument shape equal to cut, set the argument color equal to cut.
+
+> qplot(carat, price, data = diamonds, color = cut)
+
+> qplot(carat, price, data = diamonds, color = cut) +  geom_smooth (method = "lm")
+# Again, we see the same scatterplot, but slightly more compressed and showing 5 regression lines, one for each cut of diamonds. It might be hard to see, but around each line is a shadow showing the 95% confidence interval. We see, unsurprisingly, that the better the cut, the steeper (more positive) the slope of the lines.
+
+> qplot(carat, price, data = diamonds, color = cut, facets = . ~ cut) +  geom_smooth (method = "lm") 
+# Recall that the facets argument indicates we want a multi-panel plot. The symbol to the left of the tilde indicates rows (in this case just one) and the symbol to the right of the tilde indicates columns (in this five, the number of cuts).
+
+
+
+# Now for some ggplots.
+> g <- ggplot(diamonds, aes(depth, price))
+
+#  we want to see a scatterplot of the relationship.
+> g + geom_point(alpha = 1/3)
+
+# That's somewhat interesting. We see that depth ranges from 43 to 79, but the densest distribution is around 60 to 65. Suppose we want to see if this relationship (between depth and price) is affected by cut or carat. We know cut is a factor with 5 levels (Fair, Good, Very Good, Premium, and Ideal). But carat is numeric and not a discrete factor. Can we do this?
+# Of course! That's why we asked. R has a handy command, cut, which allows you to divide your data into sets and label each entry as belonging to one of the sets, in effect creating a new factor. First, we'll have to decide where to cut the data.
+# et's divide the data into 3 pockets, so 1/3 of the data falls into each. We'll use the R command quantile to do this.
+> cutpoints <- quantile(diamonds$carat, seq(0,1, length = 4), na.rm=TRUE)
+> cutpoints
+# 0% 33.33333% 66.66667%      100% 
+#   0.20      0.50      1.00      5.01 
+
+# We see a 4-long vector (explaining why length was set equal to 4). We also see that .2 is the smallest carat size in the dataset and 5.01 is the largest. One third of the diamonds are between .2 and .5 carats and another third are between .5 and 1 carat in size. The remaining third are between 1 and 5.01 carats. Now we can use the R command cut to label each of the 53940 diamonds in the dataset as belonging to one of these 3 factors.
+> diamonds$car2 <- cut(diamonds$carat, cutpoints)
+
+# Now we can continue with our multi-facet plot. First we have to reset g since we changed the dataset (diamonds) it contained (by adding a new column).
+> g <- ggplot(diamonds, aes(depth, price))
+> g + geom_point(alpha = 1/3) + facet_grid(cut ~ car2)
+
+# We see a multi-facet plot with 5 rows, each corresponding to a cut factor. Not surprising. What is surprising is the number of columns. We were expecting 3 and got 4. Why?
+# he first 3 columns are labeled with the cutpoint boundaries. The fourth is labeled NA and shows us where the data points with missing data (NA or Not Available) occurred. We see that there were only a handful (12 in fact) and they occurred in Very Good, Premium, and Ideal cuts. We created a vector, myd, containing the indices of these datapoints. Look at these entries in diamonds by typing the expression diamonds[myd,]. The myd tells R what rows to show and the empty column entry says to print all the columns.
+> diamonds[myd,]
+# # A tibble: 12 x 11
+# carat cut      color clarity depth table price     x     y     z car2 
+# <dbl> <ord>    <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl> <fct>
+#   1   0.2 Premium  E     SI2      60.2    62   345  3.79  3.75  2.27 NA   
+# 2   0.2 Premium  E     VS2      59.8    62   367  3.79  3.77  2.26 NA   
+# 3   0.2 Premium  E     VS2      59      60   367  3.81  3.78  2.24 NA   
+# 4   0.2 Premium  E     VS2      61.1    59   367  3.81  3.78  2.32 NA   
+# 5   0.2 Premium  E     VS2      59.7    62   367  3.84  3.8   2.28 NA   
+# 6   0.2 Ideal    E     VS2      59.7    55   367  3.86  3.84  2.3  NA   
+# 7   0.2 Premium  F     VS2      62.6    59   367  3.73  3.71  2.33 NA   
+# 8   0.2 Ideal    D     VS2      61.5    57   367  3.81  3.77  2.33 NA   
+# 9   0.2 Very Go… E     VS2      63.4    59   367  3.74  3.71  2.36 NA   
+# 10   0.2 Ideal    E     VS2      62.2    57   367  3.76  3.73  2.33 NA   
+# 11   0.2 Premium  D     VS2      62.3    60   367  3.73  3.68  2.31 NA   
+# 12   0.2 Premium  D     VS2      61.7    60   367  3.77  3.72  2.31 NA  
+
+# We see these entries match the plots. Whew - that's a relief. The car2 field is, in fact, NA for these entries, but the carat field shows they each had a carat size of .2. What's going on here?
+# Actually our plot answers this question. The boundaries for each column appear in the gray labels at the top of each column, and we see that the first column is labeled (0.2,0.5]. This indicates that this column contains data greater than .2 and less than or equal to .5. So diamonds with carat size .2 were excluded from the car2 field.
+
+> g + geom_point(alpha = 1/3) + facet_grid(cut ~ car2) + geom_smooth(method = "lm", size = 3, color = "pink")
+# Nice thick regression lines which are somewhat interesting. You can add labels to the plot if you want
+
+> ggplot(diamonds, aes(carat, price)) + geom_boxplot() + facet_grid(. ~ cut)
