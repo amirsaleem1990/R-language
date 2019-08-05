@@ -698,5 +698,6 @@ for(i in 1:40){
 
 # whether or not a row gets modified by a pattern is determined by a coin flip.
 # So in rows affected by the coin flip, the 5 left columns will still have a mean of 0 but the right 5 columns will have a mean closer to 3.
+# Here's the image of the altered dataMatrix after the pattern has been added. The pattern is clearly visible in the columns of the matrix. The right half is yellower or hotter, indicating higher values in the matrix.
 
 
