@@ -1007,3 +1007,5 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 > maxCon <- which.max(svd1$v[,2])
 > mdist <- dist(sub1[,c(10:12,maxCon)])
 > hclustering <- hclust(mdist)
+> myplclust(hclustering, lab.col = unclass(sub1$activity))
+# see image-20.png
