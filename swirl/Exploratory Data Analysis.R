@@ -977,3 +977,4 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
   plot( hclust, labels=FALSE, hang=hang, ... )
   text( x=x, y=y[hclust$order]-(max(hclust$height)*hang), labels=lab[hclust$order], col=lab.col[hclust$order], srt=90, adj=c(1,0.5), xpd=NA, ... )}
 
+> myplclust(hclustering, lab.col = unclass(sub1$activity))
