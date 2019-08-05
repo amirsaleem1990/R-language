@@ -732,3 +732,11 @@ for(i in 1:40){
 # [2,] -0.5614308  0.5928424
 # [3,] -0.7941320 -0.1897921
 
+diag <- svd(mat)$d
+matu <- svd(mat)$u
+matv <- svd(mat)$v
+
+all(matu %*% diag %*% t(matv) == mat)
+
+
+# So we did in fact get mat back. That's a relief! Note that this type of decomposition is NOT unique.
