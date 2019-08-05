@@ -740,3 +740,4 @@ all(matu %*% diag %*% t(matv) == mat)
 
 
 # So we did in fact get mat back. That's a relief! Note that this type of decomposition is NOT unique.
+# Now we'll talk a little about PCA, Principal Component Analysis, "a simple, non-parametric method for extracting relevant information from confusing data sets." We're quoting here from a very nice concise paper on this subject which can be found at http://arxiv.org/pdf/1404.1100.pdf. The paper by Jonathon Shlens of Google Research is called, A Tutorial on Principal Component Analysis.
