@@ -668,3 +668,14 @@ g + geom_point(aes(color = drv)) + theme_bw(base_family =  "Times")
 # Nice thick regression lines which are somewhat interesting. You can add labels to the plot if you want
 
 > ggplot(diamonds, aes(carat, price)) + geom_boxplot() + facet_grid(. ~ cut)
+
+
+
+
+
+
+
+###########################################################################################################
+# 13: Dimension Reduction                                                                                 #
+###########################################################################################################
+
