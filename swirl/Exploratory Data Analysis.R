@@ -835,4 +835,4 @@ a <- matu %*% diag %*% t(matv)
 # Now look at the entries of the diagonal matrix d resulting from the svd.
 > svd2$d
 # [1] 14.189667  7.888446  6.479498  6.047231  5.557970  2.394670  2.218749  1.862250  1.223675  1.165844
-# We see that the first element, 14.55, dominates the others. Here's the plot of these diagonal elements of d. The left shows the numerical entries and the right show the percentage of variance each entry explains.
+# We see that the first element, 14.55, dominates the others. Here's the plot(image-8.png) of these diagonal elements of d. The left shows the numerical entries and the right show the percentage of variance each entry explains.
