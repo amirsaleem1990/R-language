@@ -918,3 +918,7 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # 347 341 302 325 308 281 316 323 328 366 368 360 408 321 372 409 392 376 382 344 383
 # So ssd contains only training data.
 # So we're looking at training data from a machine learning repository. We can infer that this data is supposed to train machines to recognize activity collected from the accelerometers and gyroscopes built into the smartphones that the subjects had strapped to their waists.
+> table(ssd$activity)
+# laying  sitting standing     walk walkdown   walkup 
+# 1407     1286     1374     1226      986     1073 
+
