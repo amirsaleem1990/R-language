@@ -891,3 +891,6 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # Q: A matrix X has the singular value decomposition UDV^t. The singular values of X are found where?
 # the diagonal elements of D
 
+# Q: True or False? PCA and SVD are totally unrelated.
+# FALSE
+
