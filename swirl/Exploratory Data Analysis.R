@@ -789,3 +789,6 @@ a <- matu %*% diag %*% t(matv)
 > svd1$d
 # [1] 12.458121  7.779798  6.732595  6.301878  5.860013  4.501826  3.921267  2.973909   2.401470  2.152848
 # Here's a display of these values (on the left). The first one (12.46) is significantly bigger than the others. Since we don't have any units specified, to the right we've plotted(image-4.png) the proportion of the variance each entry represents. We see that the first entry accounts for about 40% of the variance in the data. This explains why the first columns of the U and V matrices respectively showed the distinctive patterns in the row and column means so clearly.
+
+
+# Now we'll show you another simple example of how SVD explains variance. We've created a 40 by 10 matrix, constantMatrix.
