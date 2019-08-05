@@ -861,3 +861,9 @@ a <- matu %*% diag %*% t(matv)
 # Alas, that is how we do it in theory, but in R using only one element of d means it's a constant. So we have to do the matrix multiplication with the %*% operator and the multiplication by the constant (svd1$d[1]) with the regular multiplication operator *.
 a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # Now to look at it as an image. We wrote a function for you called myImage which takes a single argument, a matrix of data to display using the R function image. Run it now with a1 as its argument.
+> myImage
+# function(iname){
+#   par(mfrow=c(1,1))
+#   par(mar=c(4,5,4,5))
+#   image(t(iname)[,nrow(iname):1])
+# }
