@@ -852,3 +852,5 @@ a <- matu %*% diag %*% t(matv)
 
 # So it's not that big of a file but we want to show you how to use what you learned in this lesson. We've done the SVD and stored it in the object svd1 for you. Here's the plot(image-10.png) of the variance explained.
 > svd1 <- svd(faceData)
+# Q: According to the plot what percentage of the variance is explained by the first singular value?
+# 40%
