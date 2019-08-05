@@ -778,4 +778,6 @@ a <- matu %*% diag %*% t(matv)
 
 # To prove we're not making this up:
 > svd1 <- svd(dataMatrix)
-
+# look at the first column of V(from svd1) now
+> svd1$v[,1]
+# [1] -0.01269600  0.11959541  0.03336723  0.09405542 -0.12201820 -0.43175437 -0.44120227 -0.43732624 -0.44207248 -0.43924243
