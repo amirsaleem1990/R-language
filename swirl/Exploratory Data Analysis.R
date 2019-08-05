@@ -816,4 +816,18 @@ a <- matu %*% diag %*% t(matv)
 # So here's the image(image-6.png) of the scaled data matrix on the left. We can see both patterns, the clear difference between the left 5 and right 5 columns, but also, slightly less visible, the alternating pattern of the columns. The other plots show the true patterns that were added into the affected rows. The middle plot shows the true difference between the left and right columns, while the rightmost plot shows the true difference between the odd numbered and even-numbered columns.
 # The question is, "Can our analysis detect these patterns just from the data?" Let's see what SVD shows. Since we're interested in patterns on columns we'll look at the first two right singular vectors (columns of V) to see if they show any evidence of the patterns.
 # Here we see the 2 right singular vectors plotted next to the image(image-7.png) of the data matrix. The middle plot shows the first column of V and the rightmost plot the second. The middle plot does show that the last 5 columns have higher entries than the first 5. This picks up, or at least alludes to, the first pattern we added in which affected the last 5 columns of the matrix. The rightmost plot, showing the second column of V, looks more random. However, closer inspection shows that the entries alternate or bounce up and down as you move from left to right. This hints at the second pattern we added in which affected only even columns of selected rows.
+# To see this more closely, look at the first 2 columns of the v component.
+> svd2$v[,1:2]
+# [,1]         [,2]
+# [1,] -0.05530503  0.191200260
+# [2,] -0.31131137  0.418130076
+# [3,] -0.07115422  0.313155976
+# [4,] -0.31715870  0.467088925
+# [5,] -0.12000173 -0.374075558
+# [6,] -0.42667068  0.008249501
+# [7,] -0.35660145 -0.401967217
+# [8,] -0.42731921  0.052087413
+# [9,] -0.32368498 -0.408137473
+# [10,] -0.42823762 -0.038774409
+
 
