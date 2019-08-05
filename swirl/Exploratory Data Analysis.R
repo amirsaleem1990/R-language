@@ -770,3 +770,4 @@ a <- matu %*% diag %*% t(matv)
 # [2,] 0.5773503  0.7886751
 # [3,] 0.5773503 -0.2113249
 
+# Notice that the principal components of the scaled matrix, shown in the Rotation component of the prcomp output, ARE the columns of V, the right singular values. Thus, PCA of a scaled matrix yields the V matrix (right singular vectors) of the same scaled matrix.
