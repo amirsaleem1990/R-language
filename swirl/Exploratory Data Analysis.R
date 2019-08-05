@@ -1042,3 +1042,5 @@ laying sitting standing walk walkdown walkup
 # So the centers are a 6 by 561 array. Sometimes it's a good idea to look at the features (columns) of these centers to see if any dominate.
 > laying <- which(kClust$size == 29)
 > plot(kClust$centers[laying, 1:12], pch = 19, ylab = "Laying Cluster")
+# We see the first 3 columns dominate this cluster center.
+
