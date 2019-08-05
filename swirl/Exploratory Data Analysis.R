@@ -867,3 +867,4 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 #   par(mar=c(4,5,4,5))
 #   image(t(iname)[,nrow(iname):1])
 # }
+> myImage(a1)
