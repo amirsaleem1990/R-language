@@ -702,7 +702,7 @@ for(i in 1:40){
 
 > heatmap(dataMatrix)
 # Again we see the pattern in the columns of the matrix. As shown in the dendrogram at the top of the display, these split into 2 clusters, the lower numbered columns (1 through 5) and the higher numbered ones (6 through 10). Recall from the code that for rows selected by the coinflip the last 5 columns had 3 added to them. The rows still look random.
-# Now consider this picture(image-1.png). On the left is an image similar to the heatmap of dataMatix you just plotted. It is an image plot of the output of hclust(), a hierarchical clustering function applied to dataMatrix. Yellow indicates "hotter" or higher values than red. This is consistent with the pattern we applied to the data (increasing the values for some of the rightmost columns).
+# Now consider this picture(screenshot/Exploratory-Data-Analysis/image-1.png). On the left is an image similar to the heatmap of dataMatix you just plotted. It is an image plot of the output of hclust(), a hierarchical clustering function applied to dataMatrix. Yellow indicates "hotter" or higher values than red. This is consistent with the pattern we applied to the data (increasing the values for some of the rightmost columns).
 # The middle display shows the mean of each of the 40 rows (along the x-axis). The rows are shown in the same order as the rows of the heat matrix on the left. The rightmost display shows the mean of each of the 10 columns. Here the column numbers are along the x-axis and their means along the y.
 # We see immediately the connection between the yellow (hotter) portion of the cluster image and the higher row means, both in the upper right portion of the displays. Similarly, the higher valued column means are in the right half of that display and lower colummn means are in the left half.
 # Now we'll talk a little theory. Suppose you have 1000's of multivariate variables X_1, ... ,X_n. By multivariate we mean that each X_i contains many components, i.e., X_i = (X_{i1}, ... , X_{im}. However, these variables (observations) and their components might be correlated to one another.
@@ -774,7 +774,7 @@ a <- matu %*% diag %*% t(matv)
 
 
 # Now that we covered the theory let's return to our bigger matrix of random data into which we had added a fixed pattern for some rows selected by coinflips. The pattern effectively shifted the means of the rows and columns.
-# Here's a picture(image-2.png) showing the relationship between PCA and SVD for that bigger matrix.  We've plotted 10 points (5 are squished together in the bottom left corner). The x-coordinates are the elements of the first principal component (output from prcomp), and the y-coordinates are the elements of the first column of V, the first right singular vector (gotten from running svd). We see that the points all lie on the 45 degree line represented by the equation y=x.  So the first column of V IS the first principal component of our bigger data matrix.
+# Here's a picture(screenshot/Exploratory-Data-Analysis/image-2.png) showing the relationship between PCA and SVD for that bigger matrix.  We've plotted 10 points (5 are squished together in the bottom left corner). The x-coordinates are the elements of the first principal component (output from prcomp), and the y-coordinates are the elements of the first column of V, the first right singular vector (gotten from running svd). We see that the points all lie on the 45 degree line represented by the equation y=x.  So the first column of V IS the first principal component of our bigger data matrix.
 
 # To prove we're not making this up:
 > svd1 <- svd(dataMatrix)
@@ -782,13 +782,13 @@ a <- matu %*% diag %*% t(matv)
 > svd1$v[,1]
 # [1] -0.01269600  0.11959541  0.03336723  0.09405542 -0.12201820 -0.43175437 -0.44120227 -0.43732624 -0.44207248 -0.43924243
 
-# Here(image-3.png) we again show the clustered data matrix on the left. Next to it we've plotted the first column of the U matrix associated with the scaled data matrix. This is the first LEFT singular vector and it's associated with the ROW means of the clustered data. You can see the clear separation between the top 24 (around -0.2) row means and the bottom 16 (around 0.2). We don't show them but note that the other columns of U don't show this pattern so clearly.
+# Here(screenshot/Exploratory-Data-Analysis/image-3.png) we again show the clustered data matrix on the left. Next to it we've plotted the first column of the U matrix associated with the scaled data matrix. This is the first LEFT singular vector and it's associated with the ROW means of the clustered data. You can see the clear separation between the top 24 (around -0.2) row means and the bottom 16 (around 0.2). We don't show them but note that the other columns of U don't show this pattern so clearly.
 # The rightmost display shows the first column of the V matrix associated with the scaled and clustered data matrix. This is the first RIGHT singular vector and it's associated with the COLUMN means of the clustered data. You can see the clear separation between the left 5 column means (between -0.1 and 0.1) and the right 5 column means (all below -0.4). As with the left singular vectors, the other columns of V don't show this pattern as clearly as this first one does.
 # So the singular value decomposition automatically picked up these patterns, the differences in the row and column means.
 # Why were the first columns of both the U and V matrices so special?  Well as it happens, the D matrix of the SVD explains this phenomenon. It is an aspect of SVD called variance explained. Recall that D is the diagonal matrix sandwiched in between U and V^t in the SVD representation of the data matrix. The diagonal entries of D are like weights for the U and V columns accounting for the variation in the data. They're given in decreasing order from highest to lowest. Look at these diagonal entries now. Recall that they're stored in svd1$d.
 > svd1$d
 # [1] 12.458121  7.779798  6.732595  6.301878  5.860013  4.501826  3.921267  2.973909   2.401470  2.152848
-# Here's a display of these values (on the left). The first one (12.46) is significantly bigger than the others. Since we don't have any units specified, to the right we've plotted(image-4.png) the proportion of the variance each entry represents. We see that the first entry accounts for about 40% of the variance in the data. This explains why the first columns of the U and V matrices respectively showed the distinctive patterns in the row and column means so clearly.
+# Here's a display of these values (on the left). The first one (12.46) is significantly bigger than the others. Since we don't have any units specified, to the right we've plotted(screenshot/Exploratory-Data-Analysis/image-4.png) the proportion of the variance each entry represents. We see that the first entry accounts for about 40% of the variance in the data. This explains why the first columns of the U and V matrices respectively showed the distinctive patterns in the row and column means so clearly.
 
 
 # Now we'll show you another simple example of how SVD explains variance. We've created a 40 by 10 matrix, constantMatrix.
@@ -805,7 +805,7 @@ a <- matu %*% diag %*% t(matv)
 > svd2 <- svd(constantMatrix)
 > svd2$d
 # [1] 1.414214e+01 1.293147e-15 2.515225e-16 8.585184e-31 9.549693e-32 3.330034e-32 2.022600e-46 4.362170e-47 1.531252e-61 0.000000e+00
-# here the first entry by far dominates the others. Here the picture(image-5.png) on the left shows the heat map of constantMatrix. You can see how the left columns differ from the right ones. The middle plot shows the values of the singular values of the matrix, i.e., the diagonal elements which are the entries of svd2$d. Nine of these are 0 and the first is a little above 14. The third plot shows the proportion of the total each diagonal element represents.
+# here the first entry by far dominates the others. Here the picture(screenshot/Exploratory-Data-Analysis/image-5.png) on the left shows the heat map of constantMatrix. You can see how the left columns differ from the right ones. The middle plot shows the values of the singular values of the matrix, i.e., the diagonal elements which are the entries of svd2$d. Nine of these are 0 and the first is a little above 14. The third plot shows the proportion of the total each diagonal element represents.
 
 # Q: According to the plot, what percentage of the total variation does the first diagonal element account for?
 # 100%
@@ -813,9 +813,9 @@ a <- matu %*% diag %*% t(matv)
 
 
 # Now let's return to our random 40 by 10 dataMatrix and consider a slightly more complicated example in which we add 2 patterns to it. Again we'll choose which rows to tweak using coinflips. Specifically, for each of the 40 rows we'll flip 2 coins. If the first coinflip is heads, we'll add 5 to each entry in the right 5 columns of that row, and if the second coinflip is heads, we'll add 5 to just the even columns of that row.
-# So here's the image(image-6.png) of the scaled data matrix on the left. We can see both patterns, the clear difference between the left 5 and right 5 columns, but also, slightly less visible, the alternating pattern of the columns. The other plots show the true patterns that were added into the affected rows. The middle plot shows the true difference between the left and right columns, while the rightmost plot shows the true difference between the odd numbered and even-numbered columns.
+# So here's the image(screenshot/Exploratory-Data-Analysis/image-6.png) of the scaled data matrix on the left. We can see both patterns, the clear difference between the left 5 and right 5 columns, but also, slightly less visible, the alternating pattern of the columns. The other plots show the true patterns that were added into the affected rows. The middle plot shows the true difference between the left and right columns, while the rightmost plot shows the true difference between the odd numbered and even-numbered columns.
 # The question is, "Can our analysis detect these patterns just from the data?" Let's see what SVD shows. Since we're interested in patterns on columns we'll look at the first two right singular vectors (columns of V) to see if they show any evidence of the patterns.
-# Here we see the 2 right singular vectors plotted next to the image(image-7.png) of the data matrix. The middle plot shows the first column of V and the rightmost plot the second. The middle plot does show that the last 5 columns have higher entries than the first 5. This picks up, or at least alludes to, the first pattern we added in which affected the last 5 columns of the matrix. The rightmost plot, showing the second column of V, looks more random. However, closer inspection shows that the entries alternate or bounce up and down as you move from left to right. This hints at the second pattern we added in which affected only even columns of selected rows.
+# Here we see the 2 right singular vectors plotted next to the image(screenshot/Exploratory-Data-Analysis/image-7.png) of the data matrix. The middle plot shows the first column of V and the rightmost plot the second. The middle plot does show that the last 5 columns have higher entries than the first 5. This picks up, or at least alludes to, the first pattern we added in which affected the last 5 columns of the matrix. The rightmost plot, showing the second column of V, looks more random. However, closer inspection shows that the entries alternate or bounce up and down as you move from left to right. This hints at the second pattern we added in which affected only even columns of selected rows.
 # To see this more closely, look at the first 2 columns of the v component.
 > svd2$v[,1:2]
 # [,1]         [,2]
@@ -835,7 +835,7 @@ a <- matu %*% diag %*% t(matv)
 # Now look at the entries of the diagonal matrix d resulting from the svd.
 > svd2$d
 # [1] 14.189667  7.888446  6.479498  6.047231  5.557970  2.394670  2.218749  1.862250  1.223675  1.165844
-# We see that the first element, 14.55, dominates the others. Here's the plot(image-8.png) of these diagonal elements of d. The left shows the numerical entries and the right show the percentage of variance each entry explains.
+# We see that the first element, 14.55, dominates the others. Here's the plot(screenshot/Exploratory-Data-Analysis/image-8.png) of these diagonal elements of d. The left shows the numerical entries and the right show the percentage of variance each entry explains.
 
 # Q: According to the plot, how much of the variance does the second element account for?
 # 18%
@@ -845,12 +845,12 @@ a <- matu %*% diag %*% t(matv)
 # This uses the k nearest neighbors to calculate a values to use in place of the missing data. You may want to specify an integer k which indicates how many neighbors you want to average to create this replacement value. The bioconductor package (http://bioconductor.org) has an impute package which you can use to fill in missing data. One specific function in it is impute.knn.
 
 # We'll move on now to a final example of the power of singular value decomposition and principal component analysis and how they work as a data compression technique.
-# Consider this low resolution image(image-9.png) file showing a face. We'll use SVD and see how the first several components contain most of the information in the file so that storing a huge matrix might not be necessary.
+# Consider this low resolution image(screenshot/Exploratory-Data-Analysis/image-9.png) file showing a face. We'll use SVD and see how the first several components contain most of the information in the file so that storing a huge matrix might not be necessary.
 # The image data is stored in the matrix faceData.
 > dim(faceData)
 # [1] 32 32
 
-# So it's not that big of a file but we want to show you how to use what you learned in this lesson. We've done the SVD and stored it in the object svd1 for you. Here's the plot(image-10.png) of the variance explained.
+# So it's not that big of a file but we want to show you how to use what you learned in this lesson. We've done the SVD and stored it in the object svd1 for you. Here's the plot(screenshot/Exploratory-Data-Analysis/image-10.png) of the variance explained.
 > svd1 <- svd(faceData)
 # Q: According to the plot what percentage of the variance is explained by the first singular value?
 # 40%
@@ -868,13 +868,13 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 #   image(t(iname)[,nrow(iname):1])
 # }
 > myImage(a1)
-# see image-11.png
+# see screenshot/Exploratory-Data-Analysis/image-11.png
 
 # It might not look like much but it's a good start. Now we'll try the same experiment but this time we'll use 2 elements from each of the 3 SVD terms.
 # Create the matrix a2 as the product of the first 2 columns of svd1$u, a diagonal matrix using the first 2 elements of svd1$d, and the transpose of the first 2 columns of svd1$v. Since all of your multiplicands are matrices you have to use only the operator %*% AND you DON'T need parentheses. Also, you must use the R function diag with svd1$d[1:2] as its sole argument to create the proper diagonal matrix. Remember, matrix multiplication is NOT commutative so you have to put the multiplicands in the correct order. Please use the 1:2 notation and not the c(m:n), i.e., the concatenate function, when specifying the columns.
 > a2 <- svd1$u[,1:2] %*% diag(svd1$d[1:2]) %*% t(svd1$v[,1:2])
 > myImage(a2)
-# see image-12.png
+# see screenshot/Exploratory-Data-Analysis/image-12.png
 
 # We're starting to see slightly more detail, and maybe if you squint you see a grimacing mouth. Now let's see what image results using 5 components. From our plot of the variance explained 5 components covered a sizeable percentage of the variation.
 > myImage(svd1$u[,1:5] %*% diag(svd1$d[1:5]) %*% t(svd1$v[,1:5]))
@@ -945,10 +945,10 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # par(mfrow=c(1,1))
 
 
-# The plots(image-13.png) are a little squished, but we see that the active activities related to walking (shown in the two blues and magenta) show more variability than the passive activities (shown in black, red, and green), particularly in the X dimension.
+# The plots(screenshot/Exploratory-Data-Analysis/image-13.png) are a little squished, but we see that the active activities related to walking (shown in the two blues and magenta) show more variability than the passive activities (shown in black, red, and green), particularly in the X dimension.
 # The colors are a little hard to distinguish. Just for fun, call the function showMe (we used it in the Working_with_Colors lesson) which displays color vectors. Use the vector 1:6 as its argument, and hopefully this will clarify the colors you see in the XY comparison plot.
 > showMe(1:6)
-# see image-14.png
+# see screenshot/Exploratory-Data-Analysis/image-14.png
 
 # Nice! We just wanted to show you the beauty and difference in colors. The colors at the bottom, black, red and green, mark the passive activities, while the true blues and magenta near the top show the walking activities. Let's try clustering to see if we can distinguish the activities more.
 # We'll still focus on the 3 dimensions of mean acceleration. (The plot we just saw looked at the first 2 dimensions.) Create a distance matrix, mdist, of the first 3 columns of sub1, by using the R command dist. Use the x[,1:3] notation to specify the columns.
@@ -978,10 +978,10 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
   text( x=x, y=y[hclust$order]-(max(hclust$height)*hang), labels=lab[hclust$order], col=lab.col[hclust$order], srt=90, adj=c(1,0.5), xpd=NA, ... )}
 
 > myplclust(hclustering, lab.col = unclass(sub1$activity))
-# see image-15.png
+# see screenshot/Exploratory-Data-Analysis/image-15.png
 
 # Well that dendrogram doesn't look too helpful, does it? There's no clear grouping of colors, except that active colors (blues and magenta) are near each other as are the passive (black, red, and green). So average acceleration doesn't tell us much. How about maximum acceleration? Let's look at that for the first subject (in our array sub1) for the X and Y dimensions. These are in column 10 and 11.
-# Here (image-16.png) they are plotted side by side, X dimension on the left and Y on the right. The x-axis of each show the 300+ observations and the y-axis indicates the maximum acceleration.
+# Here (screenshot/Exploratory-Data-Analysis/image-16.png) they are plotted side by side, X dimension on the left and Y on the right. The x-axis of each show the 300+ observations and the y-axis indicates the maximum acceleration.
 
 # Q: From the 2 plots, what separation, if any, do you see?
 # passive activities mostly fall below the walking activities
@@ -990,7 +990,7 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 > mdist <- dist(sub1[,10:12])
 > hclustering <- hclust(mdist)
 > myplclust(hclustering, lab.col = unclass(sub1$activity))
-# see image-17.png
+# see screenshot/Exploratory-Data-Analysis/image-17.png
 # Now we see clearly that the data splits into 2 clusters, active and passive activities. Moreover, the light blue (walking down) is clearly distinct from the other walking activities. The dark blue (walking level) also seems to be somewhat clustered. The passive activities, however, seem all jumbled together with no clear pattern visible.
 svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain activity and subject information which we won't need.
 
@@ -1001,14 +1001,14 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 # [1] 347 347
 # We see that the u matrix is a 347 by 347 matrix. Each row in u corresponds to a row in the matrix sub1. Recall that in sub1 each row has an associated activity.
 
-# Here(image-18.png) we're looking at the 2 left singular vectors of svd1 (the first 2 columns of svd1$u). Each entry of the columns belongs to a particular row with one of the 6 activities assigned to it. We see the activities distinguished by color. Moving from left to right, the first section of rows are green (standing), the second red (sitting), the third black (laying), etc.  The first column of u shows separation of the nonmoving (black, red, and green) from the walking activities. The second column is harder to interpret. However, the magenta cluster, which represents walking up, seems separate from the others.
+# Here(screenshot/Exploratory-Data-Analysis/image-18.png) we're looking at the 2 left singular vectors of svd1 (the first 2 columns of svd1$u). Each entry of the columns belongs to a particular row with one of the 6 activities assigned to it. We see the activities distinguished by color. Moving from left to right, the first section of rows are green (standing), the second red (sitting), the third black (laying), etc.  The first column of u shows separation of the nonmoving (black, red, and green) from the walking activities. The second column is harder to interpret. However, the magenta cluster, which represents walking up, seems separate from the others.
 # We'll try to figure out why that is. To do that we'll have to find which of the 500+ measurements (represented by the columns of sub1) contributes to the variation of that component. Since we're interested in sub1 columns, we'll look at the RIGHT singular vectors (the columns of svd1$v), and in particular, the second one since the separation of the magenta cluster stood out in the second column of svd1$u.
-# Here's(image-19.png) a plot of the second column of svd1$v. We used transparency in our plotting but nothing clearly stands out here. Let's use clustering to find the feature (out of the 500+) which contributes the most to the variation of this second column of svd1$v.
+# Here's(screenshot/Exploratory-Data-Analysis/image-19.png) a plot of the second column of svd1$v. We used transparency in our plotting but nothing clearly stands out here. Let's use clustering to find the feature (out of the 500+) which contributes the most to the variation of this second column of svd1$v.
 > maxCon <- which.max(svd1$v[,2])
 > mdist <- dist(sub1[,c(10:12,maxCon)])
 > hclustering <- hclust(mdist)
 > myplclust(hclustering, lab.col = unclass(sub1$activity))
-# see image-20.png
+# see screenshot/Exploratory-Data-Analysis/image-20.png
 
 # Now we see some real separation. Magenta (walking up) is on the far left, and the two other walking activities, the two blues, are on the far right, but in separate clusters from one another. The nonmoving activities still are jumbled together.
 # see what measurement is associated with this maximum contributor.
@@ -1048,7 +1048,7 @@ laying sitting standing walk walkdown walkup
 
 > walkdown <- which(kClust$size == 49)
 > plot(kClust$centers[walkdown, 1:12], pch = 19, ylab = "Walkdown Cluster")
-# see image-22.png
+# see screenshot/Exploratory-Data-Analysis/image-22.png
 # We see an interesting pattern here. From left to right, looking at the 12 acceleration measurements in groups of 3, the points decrease in value. The X direction dominates, followed by Y then Z. This might tell us something more about the walking down activity.
 # We'll wrap up here and hope this example convinced you that real world analysis can be frustrating sometimes and not always obvious. You might have to try several techniques of exploratory data analysis before you hit one that pays off and leads you to the questioms that will be the most promising to explore.
 # We saw here that the sensor measurements were pretty good at discriminating between the 3 walking activities, but the passive activities were harder to distinguish from one another. These might require more analysis or an entirely different set of sensory measurements.
