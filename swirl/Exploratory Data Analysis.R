@@ -840,3 +840,4 @@ a <- matu %*% diag %*% t(matv)
 # Q: According to the plot, how much of the variance does the second element account for?
 # 18%
 
+# So the first element which showed the difference between the left and right halves of the matrix accounts for roughly 50% of the variation in the matrix, and the second element which picked up the alternating pattern accounts for 18% of the variance. The remaining elements account for smaller percentages of the variation. This indicates that the first pattern is much stronger than the second. Also the two patterns confound each other so they're harder to separate and see clearly. This is what often happens with real data.
