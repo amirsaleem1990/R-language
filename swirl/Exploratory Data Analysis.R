@@ -912,3 +912,8 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 > names(ssd[562:563])
 # [1] "subject"  "activity"
 
+# These last 2 columns contain subject and activity information. We saw above that the gathered data had "been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data."
+> table(ssd$subject)
+# 1   3   5   6   7   8  11  14  15  16  17  19  21  22  23  25  26  27  28  29  30
+# 347 341 302 325 308 281 316 323 328 366 368 360 408 321 372 409 392 376 382 344 383
+# So ssd contains only training data.
