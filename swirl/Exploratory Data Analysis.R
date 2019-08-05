@@ -854,3 +854,5 @@ a <- matu %*% diag %*% t(matv)
 > svd1 <- svd(faceData)
 # Q: According to the plot what percentage of the variance is explained by the first singular value?
 # 40%
+
+# So 40% of the variation in the data matrix is explained by the first component, 22% by the second, and so forth. It looks like most of the variation is contained in the first 10 components. How can we check this out? Can we try to create an approximate image using only a few components?
