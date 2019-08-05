@@ -894,3 +894,11 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # Q: True or False? PCA and SVD are totally unrelated.
 # FALSE
 
+# Q: True or False? D gives the singular values of a matrix in decreasing order of weight.
+# TRUE
+
+
+
+##########################################################################
+# 14: Clustering Example                                                 #
+##########################################################################
