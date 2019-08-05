@@ -845,3 +845,4 @@ a <- matu %*% diag %*% t(matv)
 # This uses the k nearest neighbors to calculate a values to use in place of the missing data. You may want to specify an integer k which indicates how many neighbors you want to average to create this replacement value. The bioconductor package (http://bioconductor.org) has an impute package which you can use to fill in missing data. One specific function in it is impute.knn.
 
 # We'll move on now to a final example of the power of singular value decomposition and principal component analysis and how they work as a data compression technique.
+# Consider this low resolution image(image-9.png) file showing a face. We'll use SVD and see how the first several components contain most of the information in the file so that storing a huge matrix might not be necessary.
