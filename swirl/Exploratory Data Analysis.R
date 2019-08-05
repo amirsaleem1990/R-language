@@ -801,3 +801,4 @@ a <- matu %*% diag %*% t(matv)
 # [5,]    0    0    0    0    0    1    1    1    1     1
 # [6,]    0    0    0    0    0    1    1    1    1     1
 
+# The rest of the rows look just like these. You can see that the left 5 columns are all 0's and the right 5 columns are all 1's
