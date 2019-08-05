@@ -945,3 +945,7 @@ points(cx, cy, col = c("red", "orange", "purple"), pch = 3, cex = 2, lwd = 2)
 # See how the clustering has changed? As the Teletubbies would say, "Again! Again!"
 > plot(x,y, col = kmeans(dataFrame, 6)$cluster, pch = 19, cex = 2)
 # So the clustering changes with different starts. Perhaps 6 is too many clusters?
+
+
+
+
