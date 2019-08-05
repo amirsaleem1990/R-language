@@ -774,3 +774,4 @@ a <- matu %*% diag %*% t(matv)
 
 
 # Now that we covered the theory let's return to our bigger matrix of random data into which we had added a fixed pattern for some rows selected by coinflips. The pattern effectively shifted the means of the rows and columns.
+# Here's a picture(image-2.png) showing the relationship between PCA and SVD for that bigger matrix.  We've plotted 10 points (5 are squished together in the bottom left corner). The x-coordinates are the elements of the first principal component (output from prcomp), and the y-coordinates are the elements of the first column of V, the first right singular vector (gotten from running svd). We see that the points all lie on the 45 degree line represented by the equation y=x.  So the first column of V IS the first principal component of our bigger data matrix.
