@@ -980,3 +980,4 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 > myplclust(hclustering, lab.col = unclass(sub1$activity))
 # see image-15.png
 
+# Well that dendrogram doesn't look too helpful, does it? There's no clear grouping of colors, except that active colors (blues and magenta) are near each other as are the passive (black, red, and green). So average acceleration doesn't tell us much. How about maximum acceleration? Let's look at that for the first subject (in our array sub1) for the X and Y dimensions. These are in column 10 and 11.
