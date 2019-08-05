@@ -741,3 +741,5 @@ all(matu %*% diag %*% t(matv) == mat)
 
 # So we did in fact get mat back. That's a relief! Note that this type of decomposition is NOT unique.
 # Now we'll talk a little about PCA, Principal Component Analysis, "a simple, non-parametric method for extracting relevant information from confusing data sets." We're quoting here from a very nice concise paper on this subject which can be found at http://arxiv.org/pdf/1404.1100.pdf. The paper by Jonathon Shlens of Google Research is called, A Tutorial on Principal Component Analysis.
+# Basically, PCA is a method to reduce a high-dimensional data set to its essential elements (not lose information) and explain the variability in the data. We won't go into the mathematical details here, (R has a function to perform PCA), but you should know that SVD and PCA are closely related.
+# We'll demonstrate this now.
