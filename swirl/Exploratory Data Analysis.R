@@ -951,4 +951,8 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # see image-14.png
 
 # Nice! We just wanted to show you the beauty and difference in colors. The colors at the bottom, black, red and green, mark the passive activities, while the true blues and magenta near the top show the walking activities. Let's try clustering to see if we can distinguish the activities more.
+# We'll still focus on the 3 dimensions of mean acceleration. (The plot we just saw looked at the first 2 dimensions.) Create a distance matrix, mdist, of the first 3 columns of sub1, by using the R command dist. Use the x[,1:3] notation to specify the columns.
 > mdist <- dist(sub1[,1:3])
+
+# Now create the hirarical clustring of mdist. Note: <hclust> use the Euclidean distance as its default metric.
+> hclustering <- hclust(mdist)
