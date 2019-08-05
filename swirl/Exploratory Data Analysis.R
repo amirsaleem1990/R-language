@@ -1006,3 +1006,4 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 # Here's(image-19.png) a plot of the second column of svd1$v. We used transparency in our plotting but nothing clearly stands out here. Let's use clustering to find the feature (out of the 500+) which contributes the most to the variation of this second column of svd1$v.
 > maxCon <- which.max(svd1$v[,2])
 > mdist <- dist(sub1[,c(10:12,maxCon)])
+> hclustering <- hclust(mdist)
