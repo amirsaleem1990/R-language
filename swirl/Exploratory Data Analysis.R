@@ -830,4 +830,5 @@ a <- matu %*% diag %*% t(matv)
 # [9,] -0.32368498 -0.408137473
 # [10,] -0.42823762 -0.038774409
 
+# Seeing the 2 columns side by side, we see that the values in both columns alternately increase and decrease. However, we knew to look for this pattern, so chances are, you might not have noticed this pattern if you hadn't known if was there. This example is meant to show you that it's hard to see patterns, even straightforward ones.
 
