@@ -1016,4 +1016,4 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 # [1] "fBodyAcc.meanFreq...Z"
 
 # So the mean body acceleration in the frequency domain in the Z direction is the main contributor to this clustering phenomenon we're seeing. Let's move on to k-means clustering to see if this technique can distinguish between the activities.
-> kClust <- kmeans(sub1[,-c(562, 563)], centers = 6)
+> kClust <- kmeans(sub1[,-c(562, 563)], centers = 6) # (Recall last 2 columns don't have pertinent information for clustering analysis.)
