@@ -1038,3 +1038,4 @@ laying sitting standing walk walkdown walkup
 [1]6  561
 
 # So the centers are a 6 by 561 array. Sometimes it's a good idea to look at the features (columns) of these centers to see if any dominate.
+> laying <- which(kClust$size == 29)
