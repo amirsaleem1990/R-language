@@ -888,3 +888,6 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # Q: A matrix X has the singular value decomposition UDV^t. The principal components of X are ?
 # the columns of V
 
+# Q: A matrix X has the singular value decomposition UDV^t. The singular values of X are found where?
+# the diagonal elements of D
+
