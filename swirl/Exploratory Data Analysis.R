@@ -1050,3 +1050,4 @@ laying sitting standing walk walkdown walkup
 
 > walkdown <- which(kClust$size == 49)
 > plot(kClust$centers[walkdown, 1:12], pch = 19, ylab = "Walkdown Cluster")
+# see image-22.png
