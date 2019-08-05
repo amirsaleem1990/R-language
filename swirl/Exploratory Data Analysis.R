@@ -805,3 +805,4 @@ a <- matu %*% diag %*% t(matv)
 > svd2 <- svd(constantMatrix)
 > svd2$d
 # [1] 1.414214e+01 1.293147e-15 2.515225e-16 8.585184e-31 9.549693e-32 3.330034e-32 2.022600e-46 4.362170e-47 1.531252e-61 0.000000e+00
+# here the first entry by far dominates the others. Here the picture(image-5.png) on the left shows the heat map of constantMatrix. You can see how the left columns differ from the right ones. The middle plot shows the values of the singular values of the matrix, i.e., the diagonal elements which are the entries of svd2$d. Nine of these are 0 and the first is a little above 14. The third plot shows the proportion of the total each diagonal element represents.
