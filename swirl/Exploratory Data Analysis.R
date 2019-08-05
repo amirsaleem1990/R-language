@@ -702,3 +702,5 @@ for(i in 1:40){
 
 > heatmap(dataMatrix)
 # Again we see the pattern in the columns of the matrix. As shown in the dendrogram at the top of the display, these split into 2 clusters, the lower numbered columns (1 through 5) and the higher numbered ones (6 through 10). Recall from the code that for rows selected by the coinflip the last 5 columns had 3 added to them. The rows still look random.
+# Now consider this picture(image-1.png). On the left is an image similar to the heatmap of dataMatix you just plotted. It is an image plot of the output of hclust(), a hierarchical clustering function applied to dataMatrix. Yellow indicates "hotter" or higher values than red. This is consistent with the pattern we applied to the data (increasing the values for some of the rightmost columns).
+# The middle display shows the mean of each of the 40 rows (along the x-axis). The rows are shown in the same order as the rows of the heat matrix on the left. The rightmost display shows the mean of each of the 10 columns. Here the column numbers are along the x-axis and their means along the y.
