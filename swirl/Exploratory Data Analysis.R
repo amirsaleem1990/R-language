@@ -999,3 +999,4 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 
 > dim(svd1$u)
 # [1] 347 347
+# We see that the u matrix is a 347 by 347 matrix. Each row in u corresponds to a row in the matrix sub1. Recall that in sub1 each row has an associated activity.
