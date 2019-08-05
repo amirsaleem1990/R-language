@@ -1044,3 +1044,7 @@ laying sitting standing walk walkdown walkup
 > plot(kClust$centers[laying, 1:12], pch = 19, ylab = "Laying Cluster")
 # We see the first 3 columns dominate this cluster center.
 
+> names(sub1[,1:3])
+# [1] "tBodyAcc.mean...X" "tBodyAcc.mean...Y" "tBodyAcc.mean...Z"
+# So the 3 directions of mean body acceleration seem to have the biggest effect on laying.
+
