@@ -1000,3 +1000,5 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 > dim(svd1$u)
 # [1] 347 347
 # We see that the u matrix is a 347 by 347 matrix. Each row in u corresponds to a row in the matrix sub1. Recall that in sub1 each row has an associated activity.
+
+# Here(image-18.png) we're looking at the 2 left singular vectors of svd1 (the first 2 columns of svd1$u). Each entry of the columns belongs to a particular row with one of the 6 activities assigned to it. We see the activities distinguished by color. Moving from left to right, the first section of rows are green (standing), the second red (sitting), the third black (laying), etc.  The first column of u shows separation of the nonmoving (black, red, and green) from the walking activities. The second column is harder to interpret. However, the magenta cluster, which represents walking up, seems separate from the others.
