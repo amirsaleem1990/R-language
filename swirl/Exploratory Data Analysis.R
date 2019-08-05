@@ -759,3 +759,14 @@ a <- matu %*% diag %*% t(matv)
 # [2,] 0.5773503  0.7886751
 # [3,] 0.5773503 -0.2113249
 
+# Now run the R program prcomp on scale(mat). This will give you the principal components of mat.
+> prcomp(scale(mat))
+# Standard deviations (1, .., p=2):
+#   [1] 1.732051 0.000000
+# 
+# Rotation (n x k) = (3 x 2):
+#   PC1        PC2
+# [1,] 0.5773503 -0.5773503
+# [2,] 0.5773503  0.7886751
+# [3,] 0.5773503 -0.2113249
+
