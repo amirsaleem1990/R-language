@@ -936,3 +936,10 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # [10] "tBodyAcc.max...X"  "tBodyAcc.max...Y"  "tBodyAcc.max...Z" 
 
 # We see X, Y, and Z (3 dimensions) of different aspects of body acceleration measurements, such as mean and standard deviation. Let's do some comparisons of activities now by looking at plots of mean body acceleration in the X and Y directions.
+
+# the code generating the plots:
+# par(mfrow=c(1, 2), mar = c(5, 4, 1, 1))
+# plot(sub1[, 1], col = sub1$activity, ylab = names(sub1)[1])
+# plot(sub1[, 2], col = sub1$activity, ylab = names(sub1)[2])
+# legend("bottomright",legend=unique(sub1$activity),col=unique(sub1$activity), pch = 1)
+# par(mfrow=c(1,1))
