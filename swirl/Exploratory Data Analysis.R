@@ -792,3 +792,12 @@ a <- matu %*% diag %*% t(matv)
 
 
 # Now we'll show you another simple example of how SVD explains variance. We've created a 40 by 10 matrix, constantMatrix.
+> head(constantMatrix)
+# [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+# [1,]    0    0    0    0    0    1    1    1    1     1
+# [2,]    0    0    0    0    0    1    1    1    1     1
+# [3,]    0    0    0    0    0    1    1    1    1     1
+# [4,]    0    0    0    0    0    1    1    1    1     1
+# [5,]    0    0    0    0    0    1    1    1    1     1
+# [6,]    0    0    0    0    0    1    1    1    1     1
+
