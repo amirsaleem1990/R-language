@@ -682,5 +682,21 @@ g + geom_point(aes(color = drv)) + theme_bw(base_family =  "Times")
 # In this lesson we'll discuss principal component analysis (PCA) and singular value decomposition (SVD), two important and related techniques of dimension reduction. This last entails processes which finding subsets of variables in datasets that contain their essences. PCA and SVD are used in both the exploratory phase and the more formal modelling stage of analysis. We'll focus on the exploratory phase and briefly touch on some of the underlying theory.
 
 # dataMatrix has 10 columns (and hence 40 rows) of random numbers. a matrix of 400 random normal numbers (mean 0 and standard deviation 1).
+> heatmap(dataMatrix)
+# We can see that even with the clustering that heatmap provides, permuting the rows (observations) and columns (variables) independently, the data still looks random.
+
+# Let's add a pattern to the data.
+set.seed(678910)
+for(i in 1:40){
+  # flip a coin
+  coinFlip <- rbinom(1,size=1,prob=0.5)
+  # if coin is heads add a common pattern to that row
+  if(coinFlip){
+    dataMatrix[i,] <- dataMatrix[i,] + rep(c(0,3),each=5)
+  }
+}
+
+# whether or not a row gets modified by a pattern is determined by a coin flip.
+# So in rows affected by the coin flip, the 5 left columns will still have a mean of 0 but the right 5 columns will have a mean closer to 3.
 
 
