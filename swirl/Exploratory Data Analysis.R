@@ -1009,3 +1009,5 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 > hclustering <- hclust(mdist)
 > myplclust(hclustering, lab.col = unclass(sub1$activity))
 # see image-20.png
+
+# Now we see some real separation. Magenta (walking up) is on the far left, and the two other walking activities, the two blues, are on the far right, but in separate clusters from one another. The nonmoving activities still are jumbled together.
