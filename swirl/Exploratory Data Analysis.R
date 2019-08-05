@@ -990,3 +990,5 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 > mdist <- dist(sub1[,10:12])
 > hclustering <- hclust(mdist)
 > myplclust(hclustering, lab.col = unclass(sub1$activity))
+# see image-17.png
+# Now we see clearly that the data splits into 2 clusters, active and passive activities. Moreover, the light blue (walking down) is clearly distinct from the other walking activities. The dark blue (walking level) also seems to be somewhat clustered. The passive activities, however, seem all jumbled together with no clear pattern visible.
