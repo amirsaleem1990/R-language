@@ -1052,3 +1052,4 @@ laying sitting standing walk walkdown walkup
 > plot(kClust$centers[walkdown, 1:12], pch = 19, ylab = "Walkdown Cluster")
 # see image-22.png
 # We see an interesting pattern here. From left to right, looking at the 12 acceleration measurements in groups of 3, the points decrease in value. The X direction dominates, followed by Y then Z. This might tell us something more about the walking down activity.
+# We'll wrap up here and hope this example convinced you that real world analysis can be frustrating sometimes and not always obvious. You might have to try several techniques of exploratory data analysis before you hit one that pays off and leads you to the questioms that will be the most promising to explore.
