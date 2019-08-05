@@ -943,3 +943,7 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # plot(sub1[, 2], col = sub1$activity, ylab = names(sub1)[2])
 # legend("bottomright",legend=unique(sub1$activity),col=unique(sub1$activity), pch = 1)
 # par(mfrow=c(1,1))
+
+
+# The plots(image-13.png) are a little squished, but we see that the active activities related to walking (shown in the two blues and magenta) show more variability than the passive activities (shown in black, red, and green), particularly in the X dimension.
+# The colors are a little hard to distinguish. Just for fun, call the function showMe (we used it in the Working_with_Colors lesson) which displays color vectors. Use the vector 1:6 as its argument, and hopefully this will clarify the colors you see in the XY comparison plot.
