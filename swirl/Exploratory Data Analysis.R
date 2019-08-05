@@ -1051,3 +1051,4 @@ laying sitting standing walk walkdown walkup
 > walkdown <- which(kClust$size == 49)
 > plot(kClust$centers[walkdown, 1:12], pch = 19, ylab = "Walkdown Cluster")
 # see image-22.png
+# We see an interesting pattern here. From left to right, looking at the 12 acceleration measurements in groups of 3, the points decrease in value. The X direction dominates, followed by Y then Z. This might tell us something more about the walking down activity.
