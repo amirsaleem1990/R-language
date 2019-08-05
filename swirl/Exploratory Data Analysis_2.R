@@ -949,3 +949,489 @@ points(cx, cy, col = c("red", "orange", "purple"), pch = 3, cex = 2, lwd = 2)
 
 
 
+###########################################################################################################
+# 13: Dimension Reduction                                                                                 #
+###########################################################################################################
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/dimensionReduction
+# In this lesson we'll discuss principal component analysis (PCA) and singular value decomposition (SVD), two important and related techniques of dimension reduction. This last entails processes which finding subsets of variables in datasets that contain their essences. PCA and SVD are used in both the exploratory phase and the more formal modelling stage of analysis. We'll focus on the exploratory phase and briefly touch on some of the underlying theory.
+
+# dataMatrix has 10 columns (and hence 40 rows) of random numbers. a matrix of 400 random normal numbers (mean 0 and standard deviation 1).
+> heatmap(dataMatrix)
+# We can see that even with the clustering that heatmap provides, permuting the rows (observations) and columns (variables) independently, the data still looks random.
+
+# Let's add a pattern to the data.
+set.seed(678910)
+for(i in 1:40){
+  # flip a coin
+  coinFlip <- rbinom(1,size=1,prob=0.5)
+  # if coin is heads add a common pattern to that row
+  if(coinFlip){
+    dataMatrix[i,] <- dataMatrix[i,] + rep(c(0,3),each=5)
+  }
+}
+
+# whether or not a row gets modified by a pattern is determined by a coin flip.
+# So in rows affected by the coin flip, the 5 left columns will still have a mean of 0 but the right 5 columns will have a mean closer to 3.
+# Here's the image of the altered dataMatrix after the pattern has been added. The pattern is clearly visible in the columns of the matrix. The right half is yellower or hotter, indicating higher values in the matrix.
+
+> heatmap(dataMatrix)
+# Again we see the pattern in the columns of the matrix. As shown in the dendrogram at the top of the display, these split into 2 clusters, the lower numbered columns (1 through 5) and the higher numbered ones (6 through 10). Recall from the code that for rows selected by the coinflip the last 5 columns had 3 added to them. The rows still look random.
+# Now consider this picture(screenshot/Exploratory-Data-Analysis/image-1.png). On the left is an image similar to the heatmap of dataMatix you just plotted. It is an image plot of the output of hclust(), a hierarchical clustering function applied to dataMatrix. Yellow indicates "hotter" or higher values than red. This is consistent with the pattern we applied to the data (increasing the values for some of the rightmost columns).
+# The middle display shows the mean of each of the 40 rows (along the x-axis). The rows are shown in the same order as the rows of the heat matrix on the left. The rightmost display shows the mean of each of the 10 columns. Here the column numbers are along the x-axis and their means along the y.
+# We see immediately the connection between the yellow (hotter) portion of the cluster image and the higher row means, both in the upper right portion of the displays. Similarly, the higher valued column means are in the right half of that display and lower colummn means are in the left half.
+# Now we'll talk a little theory. Suppose you have 1000's of multivariate variables X_1, ... ,X_n. By multivariate we mean that each X_i contains many components, i.e., X_i = (X_{i1}, ... , X_{im}. However, these variables (observations) and their components might be correlated to one another.
+# As data scientists, we'd like to find a smaller set of multivariate variables that are uncorrelated AND explain as much variance (or variability) of the data as possible. This is a statistical approach.
+# In other words, we'd like to find the best matrix created with fewer variables (that is, a lower rank matrix) that explains the original data. This is related to data compression.
+# Two related solutions to these problems are PCA which stands for Principal Component Analysis and SVD, Singular Value Decomposition. This latter simply means that we express a matrix X of observations (rows) and variables (columns) as the product of 3 other matrices, i.e., X=UDV^t. This last term (V^t) represents the transpose of the matrix V.
+# Here U and V each have orthogonal (uncorrelated) columns. U's columns are the left singular vectors of X and V's columns are the right singular vectors of X.  D is a diagonal matrix, by which we mean that all of its entries not on the diagonal are 0. The diagonal entries of D are the singular values of X.
+
+> mat
+# [,1] [,2] [,3]
+# [1,]    1    2    3
+# [2,]    2    5    7
+
+# R provides a function to perform singular value decomposition. It's called: svd.
+> svd(mat)
+# $d
+# [1] 9.5899624 0.1806108
+# 
+# $u
+# [,1]       [,2]
+# [1,] -0.3897782 -0.9209087
+# [2,] -0.9209087  0.3897782
+# 
+# $v
+# [,1]       [,2]
+# [1,] -0.2327012 -0.7826345
+# [2,] -0.5614308  0.5928424
+# [3,] -0.7941320 -0.1897921
+
+diag <- svd(mat)$d
+matu <- svd(mat)$u
+matv <- svd(mat)$v
+
+a <- matu %*% diag %*% t(matv)
+> all.equal(a,mat)
+# [1] TRUE
+# So we did in fact get mat back. That's a relief! Note that this type of decomposition is NOT unique.
+
+# Now we'll talk a little about PCA, Principal Component Analysis, "a simple, non-parametric method for extracting relevant information from confusing data sets." We're quoting here from a very nice concise paper on this subject which can be found at http://arxiv.org/pdf/1404.1100.pdf. The paper by Jonathon Shlens of Google Research is called, A Tutorial on Principal Component Analysis.
+# Basically, PCA is a method to reduce a high-dimensional data set to its essential elements (not lose information) and explain the variability in the data. We won't go into the mathematical details here, (R has a function to perform PCA), but you should know that SVD and PCA are closely related.
+# We'll demonstrate this now. First we have to scale mat, our simple example data matrix.  This means that we subtract the column mean from every element and divide the result by the column standard deviation.
+> svd(scale(mat))
+# $d
+# [1] 1.732051 0.000000
+# 
+# $u
+# [,1]      [,2]
+# [1,] -0.7071068 0.7071068
+# [2,]  0.7071068 0.7071068
+# 
+# $v
+# [,1]       [,2]
+# [1,] 0.5773503 -0.5773503
+# [2,] 0.5773503  0.7886751
+# [3,] 0.5773503 -0.2113249
+
+# Now run the R program prcomp on scale(mat). This will give you the principal components of mat.
+> prcomp(scale(mat))
+# Standard deviations (1, .., p=2):
+#   [1] 1.732051 0.000000
+# 
+# Rotation (n x k) = (3 x 2):
+#   PC1        PC2
+# [1,] 0.5773503 -0.5773503
+# [2,] 0.5773503  0.7886751
+# [3,] 0.5773503 -0.2113249
+
+# Notice that the principal components of the scaled matrix, shown in the Rotation component of the prcomp output, ARE the columns of V, the right singular values. Thus, PCA of a scaled matrix yields the V matrix (right singular vectors) of the same scaled matrix.
+
+
+# Now that we covered the theory let's return to our bigger matrix of random data into which we had added a fixed pattern for some rows selected by coinflips. The pattern effectively shifted the means of the rows and columns.
+# Here's a picture(screenshot/Exploratory-Data-Analysis/image-2.png) showing the relationship between PCA and SVD for that bigger matrix.  We've plotted 10 points (5 are squished together in the bottom left corner). The x-coordinates are the elements of the first principal component (output from prcomp), and the y-coordinates are the elements of the first column of V, the first right singular vector (gotten from running svd). We see that the points all lie on the 45 degree line represented by the equation y=x.  So the first column of V IS the first principal component of our bigger data matrix.
+
+# To prove we're not making this up:
+> svd1 <- svd(dataMatrix)
+# look at the first column of V(from svd1) now
+> svd1$v[,1]
+# [1] -0.01269600  0.11959541  0.03336723  0.09405542 -0.12201820 -0.43175437 -0.44120227 -0.43732624 -0.44207248 -0.43924243
+
+# Here(screenshot/Exploratory-Data-Analysis/image-3.png) we again show the clustered data matrix on the left. Next to it we've plotted the first column of the U matrix associated with the scaled data matrix. This is the first LEFT singular vector and it's associated with the ROW means of the clustered data. You can see the clear separation between the top 24 (around -0.2) row means and the bottom 16 (around 0.2). We don't show them but note that the other columns of U don't show this pattern so clearly.
+# The rightmost display shows the first column of the V matrix associated with the scaled and clustered data matrix. This is the first RIGHT singular vector and it's associated with the COLUMN means of the clustered data. You can see the clear separation between the left 5 column means (between -0.1 and 0.1) and the right 5 column means (all below -0.4). As with the left singular vectors, the other columns of V don't show this pattern as clearly as this first one does.
+# So the singular value decomposition automatically picked up these patterns, the differences in the row and column means.
+# Why were the first columns of both the U and V matrices so special?  Well as it happens, the D matrix of the SVD explains this phenomenon. It is an aspect of SVD called variance explained. Recall that D is the diagonal matrix sandwiched in between U and V^t in the SVD representation of the data matrix. The diagonal entries of D are like weights for the U and V columns accounting for the variation in the data. They're given in decreasing order from highest to lowest. Look at these diagonal entries now. Recall that they're stored in svd1$d.
+> svd1$d
+# [1] 12.458121  7.779798  6.732595  6.301878  5.860013  4.501826  3.921267  2.973909   2.401470  2.152848
+# Here's a display of these values (on the left). The first one (12.46) is significantly bigger than the others. Since we don't have any units specified, to the right we've plotted(screenshot/Exploratory-Data-Analysis/image-4.png) the proportion of the variance each entry represents. We see that the first entry accounts for about 40% of the variance in the data. This explains why the first columns of the U and V matrices respectively showed the distinctive patterns in the row and column means so clearly.
+
+
+# Now we'll show you another simple example of how SVD explains variance. We've created a 40 by 10 matrix, constantMatrix.
+> head(constantMatrix)
+# [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+# [1,]    0    0    0    0    0    1    1    1    1     1
+# [2,]    0    0    0    0    0    1    1    1    1     1
+# [3,]    0    0    0    0    0    1    1    1    1     1
+# [4,]    0    0    0    0    0    1    1    1    1     1
+# [5,]    0    0    0    0    0    1    1    1    1     1
+# [6,]    0    0    0    0    0    1    1    1    1     1
+
+# The rest of the rows look just like these. You can see that the left 5 columns are all 0's and the right 5 columns are all 1's
+> svd2 <- svd(constantMatrix)
+> svd2$d
+# [1] 1.414214e+01 1.293147e-15 2.515225e-16 8.585184e-31 9.549693e-32 3.330034e-32 2.022600e-46 4.362170e-47 1.531252e-61 0.000000e+00
+# here the first entry by far dominates the others. Here the picture(screenshot/Exploratory-Data-Analysis/image-5.png) on the left shows the heat map of constantMatrix. You can see how the left columns differ from the right ones. The middle plot shows the values of the singular values of the matrix, i.e., the diagonal elements which are the entries of svd2$d. Nine of these are 0 and the first is a little above 14. The third plot shows the proportion of the total each diagonal element represents.
+
+# Q: According to the plot, what percentage of the total variation does the first diagonal element account for?
+# 100%
+# So what does this mean? Basically that the data is one-dimensional. Only 1 piece of information, namely which column an entry is in, determines its value.
+
+
+# Now let's return to our random 40 by 10 dataMatrix and consider a slightly more complicated example in which we add 2 patterns to it. Again we'll choose which rows to tweak using coinflips. Specifically, for each of the 40 rows we'll flip 2 coins. If the first coinflip is heads, we'll add 5 to each entry in the right 5 columns of that row, and if the second coinflip is heads, we'll add 5 to just the even columns of that row.
+# So here's the image(screenshot/Exploratory-Data-Analysis/image-6.png) of the scaled data matrix on the left. We can see both patterns, the clear difference between the left 5 and right 5 columns, but also, slightly less visible, the alternating pattern of the columns. The other plots show the true patterns that were added into the affected rows. The middle plot shows the true difference between the left and right columns, while the rightmost plot shows the true difference between the odd numbered and even-numbered columns.
+# The question is, "Can our analysis detect these patterns just from the data?" Let's see what SVD shows. Since we're interested in patterns on columns we'll look at the first two right singular vectors (columns of V) to see if they show any evidence of the patterns.
+# Here we see the 2 right singular vectors plotted next to the image(screenshot/Exploratory-Data-Analysis/image-7.png) of the data matrix. The middle plot shows the first column of V and the rightmost plot the second. The middle plot does show that the last 5 columns have higher entries than the first 5. This picks up, or at least alludes to, the first pattern we added in which affected the last 5 columns of the matrix. The rightmost plot, showing the second column of V, looks more random. However, closer inspection shows that the entries alternate or bounce up and down as you move from left to right. This hints at the second pattern we added in which affected only even columns of selected rows.
+# To see this more closely, look at the first 2 columns of the v component.
+> svd2$v[,1:2]
+# [,1]         [,2]
+# [1,] -0.05530503  0.191200260
+# [2,] -0.31131137  0.418130076
+# [3,] -0.07115422  0.313155976
+# [4,] -0.31715870  0.467088925
+# [5,] -0.12000173 -0.374075558
+# [6,] -0.42667068  0.008249501
+# [7,] -0.35660145 -0.401967217
+# [8,] -0.42731921  0.052087413
+# [9,] -0.32368498 -0.408137473
+# [10,] -0.42823762 -0.038774409
+
+# Seeing the 2 columns side by side, we see that the values in both columns alternately increase and decrease. However, we knew to look for this pattern, so chances are, you might not have noticed this pattern if you hadn't known if was there. This example is meant to show you that it's hard to see patterns, even straightforward ones.
+
+# Now look at the entries of the diagonal matrix d resulting from the svd.
+> svd2$d
+# [1] 14.189667  7.888446  6.479498  6.047231  5.557970  2.394670  2.218749  1.862250  1.223675  1.165844
+# We see that the first element, 14.55, dominates the others. Here's the plot(screenshot/Exploratory-Data-Analysis/image-8.png) of these diagonal elements of d. The left shows the numerical entries and the right show the percentage of variance each entry explains.
+
+# Q: According to the plot, how much of the variance does the second element account for?
+# 18%
+
+# So the first element which showed the difference between the left and right halves of the matrix accounts for roughly 50% of the variation in the matrix, and the second element which picked up the alternating pattern accounts for 18% of the variance. The remaining elements account for smaller percentages of the variation. This indicates that the first pattern is much stronger than the second. Also the two patterns confound each other so they're harder to separate and see clearly. This is what often happens with real data.
+# Now you're probably convinced that SVD and PCA are pretty cool and useful as tools for analysis, but one problem with them that you should be aware of, is that they cannot deal with MISSING data. Neither of them will work if any data in the matrix is missing. (You'll get error messages from R in red if you try.) Missing data is not unusual, so luckily we have ways to work around this problem. One we'll just mention is called imputing the data.
+# This uses the k nearest neighbors to calculate a values to use in place of the missing data. You may want to specify an integer k which indicates how many neighbors you want to average to create this replacement value. The bioconductor package (http://bioconductor.org) has an impute package which you can use to fill in missing data. One specific function in it is impute.knn.
+
+# We'll move on now to a final example of the power of singular value decomposition and principal component analysis and how they work as a data compression technique.
+# Consider this low resolution image(screenshot/Exploratory-Data-Analysis/image-9.png) file showing a face. We'll use SVD and see how the first several components contain most of the information in the file so that storing a huge matrix might not be necessary.
+# The image data is stored in the matrix faceData.
+> dim(faceData)
+# [1] 32 32
+
+# So it's not that big of a file but we want to show you how to use what you learned in this lesson. We've done the SVD and stored it in the object svd1 for you. Here's the plot(screenshot/Exploratory-Data-Analysis/image-10.png) of the variance explained.
+> svd1 <- svd(faceData)
+# Q: According to the plot what percentage of the variance is explained by the first singular value?
+# 40%
+
+# So 40% of the variation in the data matrix is explained by the first component, 22% by the second, and so forth. It looks like most of the variation is contained in the first 10 components. How can we check this out? Can we try to create an approximate image using only a few components?
+# Recall that the data matrix X is the product of 3 matrices, that is X=UDV^t. These are precisely what you get when you run svd on the matrix X.
+# Suppose we create the product of pieces of these, say the first columns of U and V and the first element of D. The first column of U can be interpreted as a 32 by 1 matrix (recall that faceData was a 32 by 32 matrix), so we can multiply it by the first element of D, a 1 by 1 matrix, and get a 32 by 1 matrix result. We can multiply that by the transpose of the first column of V, which is the first principal component. (We have to use the transpose of V's column to make it a 1 by 32 matrix in order to do the matrix multiplication properly.)
+# Alas, that is how we do it in theory, but in R using only one element of d means it's a constant. So we have to do the matrix multiplication with the %*% operator and the multiplication by the constant (svd1$d[1]) with the regular multiplication operator *.
+a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
+# Now to look at it as an image. We wrote a function for you called myImage which takes a single argument, a matrix of data to display using the R function image. Run it now with a1 as its argument.
+> myImage
+# function(iname){
+#   par(mfrow=c(1,1))
+#   par(mar=c(4,5,4,5))
+#   image(t(iname)[,nrow(iname):1])
+# }
+> myImage(a1)
+# see screenshot/Exploratory-Data-Analysis/image-11.png
+
+# It might not look like much but it's a good start. Now we'll try the same experiment but this time we'll use 2 elements from each of the 3 SVD terms.
+# Create the matrix a2 as the product of the first 2 columns of svd1$u, a diagonal matrix using the first 2 elements of svd1$d, and the transpose of the first 2 columns of svd1$v. Since all of your multiplicands are matrices you have to use only the operator %*% AND you DON'T need parentheses. Also, you must use the R function diag with svd1$d[1:2] as its sole argument to create the proper diagonal matrix. Remember, matrix multiplication is NOT commutative so you have to put the multiplicands in the correct order. Please use the 1:2 notation and not the c(m:n), i.e., the concatenate function, when specifying the columns.
+> a2 <- svd1$u[,1:2] %*% diag(svd1$d[1:2]) %*% t(svd1$v[,1:2])
+> myImage(a2)
+# see screenshot/Exploratory-Data-Analysis/image-12.png
+
+# We're starting to see slightly more detail, and maybe if you squint you see a grimacing mouth. Now let's see what image results using 5 components. From our plot of the variance explained 5 components covered a sizeable percentage of the variation.
+> myImage(svd1$u[,1:5] %*% diag(svd1$d[1:5]) %*% t(svd1$v[,1:5]))
+
+# Certainly much better. Clearly a face is appearing with eyes, nose, ears, and mouth recognizable. Again, use the up arrow to recall the last command (calling myImage with a matrix product argument) and change the 5's to 10's. We'll see how this image looks.
+> myImage(svd1$u[,1:10] %*% diag(svd1$d[1:10]) %*% t(svd1$v[,1:10]))
+
+# Now that's pretty close to the original which was low resolution to begin with, but you can see that 10 components really do capture the essence of the image. Singular value decomposition is a good way to approximate data without having to store a lot.
+# We'll close now with a few comments. First, when reducing dimensions you have to pay attention to the scales on which different variables are measured and make sure that all your data is in consistent units. In other words, scales of your data matter. Second, principal components and singular values may mix real patterns, as we saw in our simple 2-pattern example, so finding and separating out the real patterns require some detective work. Let's do a quick review now.
+
+# Q: A matrix X has the singular value decomposition UDV^t. The principal components of X are ?
+# the columns of V
+
+# Q: A matrix X has the singular value decomposition UDV^t. The singular values of X are found where?
+# the diagonal elements of D
+
+# Q: True or False? PCA and SVD are totally unrelated.
+# FALSE
+
+# Q: True or False? D gives the singular values of a matrix in decreasing order of weight.
+# TRUE
+
+
+
+##########################################################################
+# 14: Clustering Example                                                 #
+##########################################################################
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/clusteringExample
+# In this lesson we'll apply some of the analytic techniques we learned in this course to data from the University of California, Irvine. Specifically, the data we'll use is from UCI's Center for Machine Learning and Intelligent Systems. You can find out more about the data at http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones. As this address indicates, the data involves smartphones and recognizing human activity. Cool, right?
+# Our goal is to show you how to use exploratory data analysis to point you in fruitful directions of research, that is, towards answerable questions. Exploratory data analysis is a "rough cut" or filter which helps you to find the most beneficial areas of questioning so you can set your priorities accordingly.
+> dim(ssd)
+[1] 7352 563
+
+# The study creating this database involved 30 volunteers "performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors. ... Each person performed six activities ... wearing a smartphone (Samsung Galaxy S II) on the waist. ... The experiments have been video-recorded to label the data manually.  The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data."
+> names(ssd[562:563])
+# [1] "subject"  "activity"
+
+# These last 2 columns contain subject and activity information. We saw above that the gathered data had "been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data."
+> table(ssd$subject)
+# 1   3   5   6   7   8  11  14  15  16  17  19  21  22  23  25  26  27  28  29  30
+# 347 341 302 325 308 281 316 323 328 366 368 360 408 321 372 409 392 376 382 344 383
+# So ssd contains only training data.
+# So we're looking at training data from a machine learning repository. We can infer that this data is supposed to train machines to recognize activity collected from the accelerometers and gyroscopes built into the smartphones that the subjects had strapped to their waists.
+> table(ssd$activity)
+# laying  sitting standing     walk walkdown   walkup 
+# 1407     1286     1374     1226      986     1073 
+
+# Because it's training data, each row is labeled with the correct activity (from the 6 possible) and associated with the column measurements (from the accelerometer and gyroscope). We're interested in questions such as, "Is the correlation between the measurements and activities good enough to train a machine?" so that "Given a set of 561 measurements, would a trained machine be able to determine which of the 6 activities the person was doing?"
+# First, let's massage the data a little so it's easier to work with. We've already run the R command transform on the data so that activities are factors. This will let us color code them when we generate plots.
+> sub1 <- subset(ssd, subject == 1)
+> dim(sub1)
+# [1] 347 563
+
+# So sub1 has fewer than 400 rows now, but still a lot of columns which contain measurements. Use names on the first 12 columns of sub1 to see what kind of data we have.
+> names(sub1[,1:12])
+# [1] "tBodyAcc.mean...X" "tBodyAcc.mean...Y" "tBodyAcc.mean...Z"
+# [4] "tBodyAcc.std...X"  "tBodyAcc.std...Y"  "tBodyAcc.std...Z" 
+# [7] "tBodyAcc.mad...X"  "tBodyAcc.mad...Y"  "tBodyAcc.mad...Z" 
+# [10] "tBodyAcc.max...X"  "tBodyAcc.max...Y"  "tBodyAcc.max...Z" 
+
+# We see X, Y, and Z (3 dimensions) of different aspects of body acceleration measurements, such as mean and standard deviation. Let's do some comparisons of activities now by looking at plots of mean body acceleration in the X and Y directions.
+
+# the code generating the plots:
+# par(mfrow=c(1, 2), mar = c(5, 4, 1, 1))
+# plot(sub1[, 1], col = sub1$activity, ylab = names(sub1)[1])
+# plot(sub1[, 2], col = sub1$activity, ylab = names(sub1)[2])
+# legend("bottomright",legend=unique(sub1$activity),col=unique(sub1$activity), pch = 1)
+# par(mfrow=c(1,1))
+
+
+# The plots(screenshot/Exploratory-Data-Analysis/image-13.png) are a little squished, but we see that the active activities related to walking (shown in the two blues and magenta) show more variability than the passive activities (shown in black, red, and green), particularly in the X dimension.
+# The colors are a little hard to distinguish. Just for fun, call the function showMe (we used it in the Working_with_Colors lesson) which displays color vectors. Use the vector 1:6 as its argument, and hopefully this will clarify the colors you see in the XY comparison plot.
+> showMe(1:6)
+# see screenshot/Exploratory-Data-Analysis/image-14.png
+
+# Nice! We just wanted to show you the beauty and difference in colors. The colors at the bottom, black, red and green, mark the passive activities, while the true blues and magenta near the top show the walking activities. Let's try clustering to see if we can distinguish the activities more.
+# We'll still focus on the 3 dimensions of mean acceleration. (The plot we just saw looked at the first 2 dimensions.) Create a distance matrix, mdist, of the first 3 columns of sub1, by using the R command dist. Use the x[,1:3] notation to specify the columns.
+> mdist <- dist(sub1[,1:3])
+
+# Now create the hirarical clustring of mdist. Note: <hclust> use the Euclidean distance as its default metric.
+> hclustering <- hclust(mdist)
+
+> myplclust <- function( hclust, lab=hclust$labels, lab.col=rep(1,length(hclust$labels)), hang=0.1,...){
+  ## modifiction of plclust for plotting hclust objects *in colour*!
+  ## Copyright Eva KF Chan 2009
+  ## Arguments:
+  ##    hclust:    hclust object
+  ##    lab:        a character vector of labels of the leaves of the tree
+  ##    lab.col:    colour for the labels; NA=default device foreground colour
+  ##    hang:     as in hclust & plclust
+  ## Side effect:
+  ##    A display of hierarchical cluster with coloured leaf labels.
+  y <- rep(hclust$height,2)
+  x <- as.numeric(hclust$merge)
+  y <- y[which(x<0)]
+  x <- x[which(x<0)]
+  x <- abs(x)
+  y <- y[order(x)]
+  x <- x[order(x)]
+  plot( hclust, labels=FALSE, hang=hang, ... )
+  text( x=x, y=y[hclust$order]-(max(hclust$height)*hang), labels=lab[hclust$order], col=lab.col[hclust$order], srt=90, adj=c(1,0.5), xpd=NA, ... )}
+
+> myplclust(hclustering, lab.col = unclass(sub1$activity))
+# see screenshot/Exploratory-Data-Analysis/image-15.png
+
+# Well that dendrogram doesn't look too helpful, does it? There's no clear grouping of colors, except that active colors (blues and magenta) are near each other as are the passive (black, red, and green). So average acceleration doesn't tell us much. How about maximum acceleration? Let's look at that for the first subject (in our array sub1) for the X and Y dimensions. These are in column 10 and 11.
+# Here (screenshot/Exploratory-Data-Analysis/image-16.png) they are plotted side by side, X dimension on the left and Y on the right. The x-axis of each show the 300+ observations and the y-axis indicates the maximum acceleration.
+
+# Q: From the 2 plots, what separation, if any, do you see?
+# passive activities mostly fall below the walking activities
+
+# Finally we're seeing something vaguely interesting! Let's focus then on the 3 dimensions of maximum acceleration, stored in columns 10 through 12 of sub1.
+> mdist <- dist(sub1[,10:12])
+> hclustering <- hclust(mdist)
+> myplclust(hclustering, lab.col = unclass(sub1$activity))
+# see screenshot/Exploratory-Data-Analysis/image-17.png
+# Now we see clearly that the data splits into 2 clusters, active and passive activities. Moreover, the light blue (walking down) is clearly distinct from the other walking activities. The dark blue (walking level) also seems to be somewhat clustered. The passive activities, however, seem all jumbled together with no clear pattern visible.
+svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain activity and subject information which we won't need.
+
+# Q: To see LEFT singular vectors of sub1, which component of svd1 would we examine?
+# u
+
+> dim(svd1$u)
+# [1] 347 347
+# We see that the u matrix is a 347 by 347 matrix. Each row in u corresponds to a row in the matrix sub1. Recall that in sub1 each row has an associated activity.
+
+# Here(screenshot/Exploratory-Data-Analysis/image-18.png) we're looking at the 2 left singular vectors of svd1 (the first 2 columns of svd1$u). Each entry of the columns belongs to a particular row with one of the 6 activities assigned to it. We see the activities distinguished by color. Moving from left to right, the first section of rows are green (standing), the second red (sitting), the third black (laying), etc.  The first column of u shows separation of the nonmoving (black, red, and green) from the walking activities. The second column is harder to interpret. However, the magenta cluster, which represents walking up, seems separate from the others.
+# We'll try to figure out why that is. To do that we'll have to find which of the 500+ measurements (represented by the columns of sub1) contributes to the variation of that component. Since we're interested in sub1 columns, we'll look at the RIGHT singular vectors (the columns of svd1$v), and in particular, the second one since the separation of the magenta cluster stood out in the second column of svd1$u.
+# Here's(screenshot/Exploratory-Data-Analysis/image-19.png) a plot of the second column of svd1$v. We used transparency in our plotting but nothing clearly stands out here. Let's use clustering to find the feature (out of the 500+) which contributes the most to the variation of this second column of svd1$v.
+> maxCon <- which.max(svd1$v[,2])
+> mdist <- dist(sub1[,c(10:12,maxCon)])
+> hclustering <- hclust(mdist)
+> myplclust(hclustering, lab.col = unclass(sub1$activity))
+# see screenshot/Exploratory-Data-Analysis/image-20.png
+
+# Now we see some real separation. Magenta (walking up) is on the far left, and the two other walking activities, the two blues, are on the far right, but in separate clusters from one another. The nonmoving activities still are jumbled together.
+# see what measurement is associated with this maximum contributor.
+> names(sub1[maxCon])
+# [1] "fBodyAcc.meanFreq...Z"
+
+# So the mean body acceleration in the frequency domain in the Z direction is the main contributor to this clustering phenomenon we're seeing. Let's move on to k-means clustering to see if this technique can distinguish between the activities.
+> kClust <- kmeans(sub1[,-c(562, 563)], centers = 6) # (Recall last 2 columns don't have pertinent information for clustering analysis.), # The second argument to kmeans is centers set equal to 6, the number of activities we know we have.
+
+# Recall that without specifying coordinates for the cluster centroids (as we did), kmeans will generate starting points randomly. Here we did only 1 random start (the default).
+> table(kClust$cluster, sub1$activity)
+
+laying sitting standing walk walkdown walkup
+# 1      0       0        0    0       49      0
+# 2      0       0        0   95        0      0
+# 3     29       0        0    0        0      0
+# 4      0      37       51    0        0      0
+# 5     18      10        2    0        0      0
+# 6      3       0        0    0        0     53
+
+# Your exact output will depend on the state of your random number generator. We notice that when we just run with 1 random start, the clusters tend to group the nonmoving activities together in one cluster. The walking activities seem to cluster individually by themselves. You could run the call to kmeans with one random start again and you'll probably get a slightly different result, but instead call kmeans with 3 arguments, the last of which will tell it to try more random starts and return the best one.
+> kClust <- kmeans(sub1[,-c(562, 563)], centers = 6, nstart = 100)
+> table(kClust$cluster, sub1$activity)
+# We see that even with 100 random starts, the passive activities tend to cluster together. One of the clusters contains only laying, but in another cluster, standing and sitting group together.
+
+> dim(kClust$centers)
+[1]6  561
+
+# So the centers are a 6 by 561 array. Sometimes it's a good idea to look at the features (columns) of these centers to see if any dominate.
+> laying <- which(kClust$size == 29)
+> plot(kClust$centers[laying, 1:12], pch = 19, ylab = "Laying Cluster")
+# We see the first 3 columns dominate this cluster center.
+
+> names(sub1[,1:3])
+# [1] "tBodyAcc.mean...X" "tBodyAcc.mean...Y" "tBodyAcc.mean...Z"
+# So the 3 directions of mean body acceleration seem to have the biggest effect on laying.
+
+> walkdown <- which(kClust$size == 49)
+> plot(kClust$centers[walkdown, 1:12], pch = 19, ylab = "Walkdown Cluster")
+# see screenshot/Exploratory-Data-Analysis/image-22.png
+# We see an interesting pattern here. From left to right, looking at the 12 acceleration measurements in groups of 3, the points decrease in value. The X direction dominates, followed by Y then Z. This might tell us something more about the walking down activity.
+# We'll wrap up here and hope this example convinced you that real world analysis can be frustrating sometimes and not always obvious. You might have to try several techniques of exploratory data analysis before you hit one that pays off and leads you to the questioms that will be the most promising to explore.
+# We saw here that the sensor measurements were pretty good at discriminating between the 3 walking activities, but the passive activities were harder to distinguish from one another. These might require more analysis or an entirely different set of sensory measurements.
+
+
+######################################################################
+# 15: CaseStudy                                                      #
+######################################################################
+
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 04_ExploratoryAnalysis/CaseStudy
+# In this lesson we'll apply some of the techniques we learned in this course to study air pollution data, specifically particulate matter (we'll call it pm25 sometimes), collected by the U.S. Environmental Protection Agency. This website https://www.health.ny.gov/environmental/indoors/air/pmq_a.htm from New York State offers some basic information on this topic if you're interested.
+# Particulate matter (less than 2.5 microns in diameter) is a fancy name for dust, and breathing in dust might pose health hazards to the population. We'll study data from two years, 1999 (when monitoring of particulate matter started) and 2012. Our goal is to see if there's been a noticeable decline in this type of air pollution between these two years.
+# We've read in 2 large zipped files for you using the R command read.table (which is smart enough to unzip the files).  We stored the 1999 data in the array pm0 for you.
+> dim(pm0)
+# [1] 117421      5
+
+> head(pm0)
+# V1 V2 V3       V4     V5
+# 1  1 27  1 19990103     NA
+# 2  1 27  1 19990106     NA
+# 3  1 27  1 19990109     NA
+# 4  1 27  1 19990112  8.841
+# 5  1 27  1 19990115 14.920
+# 6  1 27  1 19990118  3.878
+
+# We created the variable cnames containing the 28 column names of the original file.
+> cnames
+# [1] "# RD|Action Code|State Code|County Code|Site ID|Parameter|POC|Sample Duration|Unit|Method|Date|Start Time|Sample Value|Null Data Code|Sampling Frequency|Monitor Protocol (MP) ID|Qualifier - 1|Qualifier - 2|Qualifier - 3|Qualifier - 4|Qualifier - 5|Qualifier - 6|Qualifier - 7|Qualifier - 8|Qualifier - 9|Qualifier - 10|Alternate Method Detectable Limit|Uncertainty"
+cnames <- strsplit(cnames, "|", fixed = TRUE)
+> cnames
+# [[1]]
+# [1] "# RD"                              "Action Code"                      
+# [3] "State Code"                        "County Code"                      
+# [5] "Site ID"                           "Parameter"                        
+# [7] "POC"                               "Sample Duration"                  
+# [9] "Unit"                              "Method"                           
+# [11] "Date"                              "Start Time"                       
+# [13] "Sample Value"                      "Null Data Code"                   
+# [15] "Sampling Frequency"                "Monitor Protocol (MP) ID"         
+# [17] "Qualifier - 1"                     "Qualifier - 2"                    
+# [19] "Qualifier - 3"                     "Qualifier - 4"                    
+# [21] "Qualifier - 5"                     "Qualifier - 6"                    
+# [23] "Qualifier - 7"                     "Qualifier - 8"                    
+# [25] "Qualifier - 9"                     "Qualifier - 10"                   
+# [27] "Alternate Method Detectable Limit" "Uncertainty"  
+
+# Nice, but we don't need all these. Assign to names(pm0) the output of a call to the function make.names with cnames[[1]][wcol] as the argument. The variable wcol holds the indices of the 5 columns we selected (from the 28) to use in this lesson, so those are the column names we'll need. As the name suggests, the function "makes syntactically valid names".
+names(pm0) <- make.names(cnames[[1]][wcol])
+> head(pm0)
+# State.Code County.Code Site.ID     Date Sample.Value
+# 1          1          27       1 19990103           NA
+# 2          1          27       1 19990106           NA
+# 3          1          27       1 19990109           NA
+# 4          1          27       1 19990112        8.841
+# 5          1          27       1 19990115       14.920
+# 6          1          27       1 19990118        3.878
+# The measurements of particulate matter (pm25) are in the column named Sample.Value.
+
+> x0 <- pm0$Sample.Value
+> str(x0)
+# num [1:117421] NA NA NA 8.84 14.92 ...
+
+> mean(is.na(x0))
+[1] 0.1125608
+
+# Now let's start processing the 2012 data which we stored for you in the array pm1.
+> names(pm1) <- make.names(cnames[[1]][wcol])
+> dim(pm1)
+# [1] 1304287       5
+
+# Wow! Over 1.3 million entries. Particulate matter was first collected in 1999 so perhaps there weren't as many sensors collecting data then as in 2012 when the program was more mature. If you ran head on pm1 you'd see that it looks just like pm0.
+> x1 <- pm1$Sample.Value
+> mean(is.na(x1))
+# [1] 0.05607125
+
+> summary(x0)
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#    0.00    7.20   11.50   13.74   17.90  157.10   13217 
+
+> summary(x1)
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#  -10.00    4.00    7.63    9.14   12.00  908.97   73133 
+
+# We see that both the median and the mean of measured particulate matter have declined from 1999 to 2012. In fact, all of the measurements, except for the maximum and missing values (Max and NA's), have decreased. Even the Min has gone down from 0 to -10.00! We'll address what a negative measurment might mean a little later. Note that the Max has increased from 157 in 1999 to 909 in 2012. This is quite high and might reflect an error in the table or malfunctions in some monitors.
+> boxplot(x0, x1)
+# see image-23.png
+
+# Huh? Did somebody step on the boxes? It's hard to see what's going on here. There are so many values outside the boxes and the range of x1 is so big that the boxes are flattened. It might be more informative to call boxplot on the logs (base 10) of x0 and x1.
+> boxplot(log10(x0), log10(x1))
+# see image-24.png
+
+# A bonus! Not only do we get a better looking boxplot we also get some warnings from R in Red. These let us know that some values in x0 and x1 were "unloggable", no doubt the 0 (Min) we saw in the summary of x0 and the negative values we saw in the Min of the summary of x1.
+
+# Let's return to the question of the negative values in x1. Let's count how many negative values there are.
+> negative <- x1 < 0
+> sum(negative, na.rm = TRUE)
+# [1] 26474
+
+> mean(negative, na.rm = TRUE)
+# [1] 0.0215034
+
+# We see that just 2% of the x1 values are negative. Perhaps that's a small enough percentage that we can ignore them. Before we ignore them, though, let's see if they occur during certain times of the year.
+> dates <- pm1$Date
+> str(dates)
+# int [1:1304287] 20120101 20120104 20120107 20120110 20120113 20120116 20120119 20120122 20120125 20120128 ...
+
+# We see dates is a very long vector of integers. However, the format of the entries is hard to read.
+> dates <- as.Date(as.character(dates), "%Y%m%d")
+> head(dates)
+# [1] "2012-01-01" "2012-01-04" "2012-01-07" "2012-01-10" "2012-01-13"
+# [6] "2012-01-16"
+
