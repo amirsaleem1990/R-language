@@ -744,3 +744,18 @@ a <- matu %*% diag %*% t(matv)
 # Now we'll talk a little about PCA, Principal Component Analysis, "a simple, non-parametric method for extracting relevant information from confusing data sets." We're quoting here from a very nice concise paper on this subject which can be found at http://arxiv.org/pdf/1404.1100.pdf. The paper by Jonathon Shlens of Google Research is called, A Tutorial on Principal Component Analysis.
 # Basically, PCA is a method to reduce a high-dimensional data set to its essential elements (not lose information) and explain the variability in the data. We won't go into the mathematical details here, (R has a function to perform PCA), but you should know that SVD and PCA are closely related.
 # We'll demonstrate this now. First we have to scale mat, our simple example data matrix.  This means that we subtract the column mean from every element and divide the result by the column standard deviation.
+> svd(scale(mat))
+# $d
+# [1] 1.732051 0.000000
+# 
+# $u
+# [,1]      [,2]
+# [1,] -0.7071068 0.7071068
+# [2,]  0.7071068 0.7071068
+# 
+# $v
+# [,1]       [,2]
+# [1,] 0.5773503 -0.5773503
+# [2,] 0.5773503  0.7886751
+# [3,] 0.5773503 -0.2113249
+
