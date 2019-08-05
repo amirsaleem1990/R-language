@@ -1048,3 +1048,5 @@ laying sitting standing walk walkdown walkup
 # [1] "tBodyAcc.mean...X" "tBodyAcc.mean...Y" "tBodyAcc.mean...Z"
 # So the 3 directions of mean body acceleration seem to have the biggest effect on laying.
 
+> walkdown <- which(kClust$size == 49)
+> plot(kClust$centers[walkdown, 1:12], pch = 19, ylab = "Walkdown Cluster")
