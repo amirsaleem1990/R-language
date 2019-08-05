@@ -928,3 +928,10 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 > dim(sub1)
 # [1] 347 563
 
+# So sub1 has fewer than 400 rows now, but still a lot of columns which contain measurements. Use names on the first 12 columns of sub1 to see what kind of data we have.
+> names(sub1[,1:12])
+# [1] "tBodyAcc.mean...X" "tBodyAcc.mean...Y" "tBodyAcc.mean...Z"
+# [4] "tBodyAcc.std...X"  "tBodyAcc.std...Y"  "tBodyAcc.std...Z" 
+# [7] "tBodyAcc.mad...X"  "tBodyAcc.mad...Y"  "tBodyAcc.mad...Z" 
+# [10] "tBodyAcc.max...X"  "tBodyAcc.max...Y"  "tBodyAcc.max...Z" 
+
