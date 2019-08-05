@@ -809,4 +809,5 @@ a <- matu %*% diag %*% t(matv)
 
 # Q: According to the plot, what percentage of the total variation does the first diagonal element account for?
 # 100%
+# So what does this mean? Basically that the data is one-dimensional. Only 1 piece of information, namely which column an entry is in, determines its value.
 
