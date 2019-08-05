@@ -1019,3 +1019,13 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 > kClust <- kmeans(sub1[,-c(562, 563)], centers = 6) # (Recall last 2 columns don't have pertinent information for clustering analysis.), # The second argument to kmeans is centers set equal to 6, the number of activities we know we have.
 
 # Recall that without specifying coordinates for the cluster centroids (as we did), kmeans will generate starting points randomly. Here we did only 1 random start (the default).
+> table(kClust$cluster, sub1$activity)
+
+laying sitting standing walk walkdown walkup
+# 1      0       0        0    0       49      0
+# 2      0       0        0   95        0      0
+# 3     29       0        0    0        0      0
+# 4      0      37       51    0        0      0
+# 5     18      10        2    0        0      0
+# 6      3       0        0    0        0     53
+
