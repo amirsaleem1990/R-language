@@ -1005,3 +1005,4 @@ svd1 <- svd(scale(sub1[, -c(562, 563)]))# Recall that the last 2 columns contain
 # We'll try to figure out why that is. To do that we'll have to find which of the 500+ measurements (represented by the columns of sub1) contributes to the variation of that component. Since we're interested in sub1 columns, we'll look at the RIGHT singular vectors (the columns of svd1$v), and in particular, the second one since the separation of the magenta cluster stood out in the second column of svd1$u.
 # Here's(image-19.png) a plot of the second column of svd1$v. We used transparency in our plotting but nothing clearly stands out here. Let's use clustering to find the feature (out of the 500+) which contributes the most to the variation of this second column of svd1$v.
 > maxCon <- which.max(svd1$v[,2])
+> mdist <- dist(sub1[,c(10:12,maxCon)])
