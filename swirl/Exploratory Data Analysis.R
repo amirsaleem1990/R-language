@@ -846,3 +846,9 @@ a <- matu %*% diag %*% t(matv)
 
 # We'll move on now to a final example of the power of singular value decomposition and principal component analysis and how they work as a data compression technique.
 # Consider this low resolution image(image-9.png) file showing a face. We'll use SVD and see how the first several components contain most of the information in the file so that storing a huge matrix might not be necessary.
+# The image data is stored in the matrix faceData.
+> dim(faceData)
+# [1] 32 32
+
+# So it's not that big of a file but we want to show you how to use what you learned in this lesson. We've done the SVD and stored it in the object svd1 for you. Here's the plot(image-10.png) of the variance explained.
+> svd1 <- svd(faceData)
