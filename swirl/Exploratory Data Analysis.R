@@ -1033,3 +1033,8 @@ laying sitting standing walk walkdown walkup
 > kClust <- kmeans(sub1[,-c(562, 563)], centers = 6, nstart = 100)
 > table(kClust$cluster, sub1$activity)
 # We see that even with 100 random starts, the passive activities tend to cluster together. One of the clusters contains only laying, but in another cluster, standing and sitting group together.
+
+> dim(kClust$centers)
+[1]6  561
+
+# So the centers are a 6 by 561 array. Sometimes it's a good idea to look at the features (columns) of these centers to see if any dominate.
