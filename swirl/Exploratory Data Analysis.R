@@ -909,3 +909,4 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 [1] 7352 563
 
 # The study creating this database involved 30 volunteers "performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors. ... Each person performed six activities ... wearing a smartphone (Samsung Galaxy S II) on the waist. ... The experiments have been video-recorded to label the data manually.  The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data."
+> names(ssd[562:563])
