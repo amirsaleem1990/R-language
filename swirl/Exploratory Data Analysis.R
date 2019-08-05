@@ -951,3 +951,4 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # see image-14.png
 
 # Nice! We just wanted to show you the beauty and difference in colors. The colors at the bottom, black, red and green, mark the passive activities, while the true blues and magenta near the top show the walking activities. Let's try clustering to see if we can distinguish the activities more.
+> mdist <- dist(sub1[,1:3])
