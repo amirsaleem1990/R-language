@@ -786,3 +786,7 @@ a <- matu %*% diag %*% t(matv)
 # The rightmost display shows the first column of the V matrix associated with the scaled and clustered data matrix. This is the first RIGHT singular vector and it's associated with the COLUMN means of the clustered data. You can see the clear separation between the left 5 column means (between -0.1 and 0.1) and the right 5 column means (all below -0.4). As with the left singular vectors, the other columns of V don't show this pattern as clearly as this first one does.
 # So the singular value decomposition automatically picked up these patterns, the differences in the row and column means.
 # Why were the first columns of both the U and V matrices so special?  Well as it happens, the D matrix of the SVD explains this phenomenon. It is an aspect of SVD called variance explained. Recall that D is the diagonal matrix sandwiched in between U and V^t in the SVD representation of the data matrix. The diagonal entries of D are like weights for the U and V columns accounting for the variation in the data. They're given in decreasing order from highest to lowest. Look at these diagonal entries now. Recall that they're stored in svd1$d.
+> svd1$d
+# [1] 12.458121  7.779798  6.732595  6.301878  5.860013  4.501826  3.921267  2.973909   2.401470  2.152848
+
+
