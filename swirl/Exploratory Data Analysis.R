@@ -1032,3 +1032,4 @@ laying sitting standing walk walkdown walkup
 # Your exact output will depend on the state of your random number generator. We notice that when we just run with 1 random start, the clusters tend to group the nonmoving activities together in one cluster. The walking activities seem to cluster individually by themselves. You could run the call to kmeans with one random start again and you'll probably get a slightly different result, but instead call kmeans with 3 arguments, the last of which will tell it to try more random starts and return the best one.
 > kClust <- kmeans(sub1[,-c(562, 563)], centers = 6, nstart = 100)
 > table(kClust$cluster, sub1$activity)
+# We see that even with 100 random starts, the passive activities tend to cluster together. One of the clusters contains only laying, but in another cluster, standing and sitting group together.
