@@ -802,3 +802,6 @@ a <- matu %*% diag %*% t(matv)
 # [6,]    0    0    0    0    0    1    1    1    1     1
 
 # The rest of the rows look just like these. You can see that the left 5 columns are all 0's and the right 5 columns are all 1's
+> svd2 <- svd(constantMatrix)
+> svd2$d
+# [1] 1.414214e+01 1.293147e-15 2.515225e-16 8.585184e-31 9.549693e-32 3.330034e-32 2.022600e-46 4.362170e-47 1.531252e-61 0.000000e+00
