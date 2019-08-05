@@ -989,3 +989,4 @@ a1 <- (svd1$u[,1] * svd1$d[1]) %*% t(svd1$v[,1])
 # Finally we're seeing something vaguely interesting! Let's focus then on the 3 dimensions of maximum acceleration, stored in columns 10 through 12 of sub1.
 > mdist <- dist(sub1[,10:12])
 > hclustering <- hclust(mdist)
+> myplclust(hclustering, lab.col = unclass(sub1$activity))
