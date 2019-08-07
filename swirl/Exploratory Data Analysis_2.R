@@ -1433,5 +1433,150 @@ names(pm0) <- make.names(cnames[[1]][wcol])
 > dates <- as.Date(as.character(dates), "%Y%m%d")
 > head(dates)
 # [1] "2012-01-01" "2012-01-04" "2012-01-07" "2012-01-10" "2012-01-13"
-# [6] "2012-01-16"
+# [6] "2012-01-16
+
+# Let's plot a histogram of the months when the particulate matter measurements are negative.
+> hist(dates[negative], "month")
+# see image-25.png
+
+# We see the bulk of the negative measurements were taken in the winter months, with a spike in May. Not many of these negative measurements occurred in summer months. We can take a guess that because particulate measures tend to be low in winter and high in summer, coupled with the fact that higher densities are easier to measure, that measurement errors occurred when the values were low. For now we'll attribute these negative measurements to errors. Also, since they account for only 2% of the 2012 data, we'll ignore them.
+# Now we'll change focus a bit and instead of looking at all the monitors throughout the country and the data they recorded, we'll try to find one monitor that was taking measurements in both 1999 and 2012. This will allow us to control for different geographical and environmental variables that might have affected air quality in different areas. We'll narrow our search and look just at monitors in New York State.
+
+# We subsetted off the New York State monitor identification data for 1999 and 2012 into 2 vectors, site0 and site1.
+> str(site0)
+# chr [1:33] "1.5" "1.12" "5.73" "5.80" "5.83" "5.110" "13.11" "27.1004" "29.2" "29.5" ...
+
+# We see that site0 (the IDs of monitors in New York State in 1999) is a vector of 33 strings, each of which has the form "x.y". We've created these from the county codes (the x portion of the string) and the monitor IDs (the y portion). If you ran str on site1 you'd see 18 similar values.
+> both <- intersect(site0, site1)
+> both
+# [1] "1.5"     "1.12"    "5.80"    "13.11"   "29.5"    "31.3"    "63.2008" "67.1015"  "85.55"   "101.3"  
+# We see that 10 monitors in New York State were active in both 1999 and 2012.
+
+# To save you some time and typing, we modified the data frames pm0 and pm1 slightly by adding to each of them a new component, county.site. This is just a concatenation of two original components County.Code and Site.ID. We did this to facilitate the next step which is to find out how many measurements were taken by the 10 New York monitors working in both of the years of interest.
+> head(pm0)
+> head(pm0)
+# State.Code County.Code Site.ID     Date Sample.Value county.site
+# 1          1          27       1 19990103           NA        27.1
+# 2          1          27       1 19990106           NA        27.1
+# 3          1          27       1 19990109           NA        27.1
+# 4          1          27       1 19990112        8.841        27.1
+# 5          1          27       1 19990115       14.920        27.1
+# 6          1          27       1 19990118        3.878        27.1
+# Now pm0 and pm1 have 6 columns instead of 5, and the last column is a concatenation of two other columns, County and Site.
+
+# Now let's see how many measurements each of the 10 New York monitors that were active in both 1999 and 2012 took in those years. We'll create 2 subsets (one for each year), one of pm0 and the other of pm1.
+# The subsets will filter for 2 characteristics. The first is State.Code equal to 36 (the code for New York), and the second is that the county.site (the component we added) is in the vector both.
+> cnt0 <- subset(pm0, State.Code == 36 & county.site %in% both)
+> cnt1 <- subset(pm1, State.Code == 36 & county.site %in% both)
+
+# split cnt0 into several data frames according to county.site (that is, monitor IDs) and tell us how many measurements each monitor recorded.
+> sapply(split(cnt0, cnt0$county.site), nrow)
+# 1.12     1.5   101.3   13.11    29.5    31.3    5.80 63.2008 67.1015   85.55 
+# 61     122     152      61      61     183      61     122     122       7 
+
+> sapply(split(cnt1, cnt1$county.site), nrow)
+# 1.12     1.5   101.3   13.11    29.5    31.3    5.80 63.2008 67.1015   85.55 
+# 31      64      31      31      33      15      31      30      31      31 
+
+# We want to examine a monitor with a reasonable number of measurements so let's look at the monitor with ID 63.2008. Create a variable pm0sub which is the subset of cnt0 (this contains just New York data) which has County.Code equal to 63 and Site.ID 2008.
+> pm0sub <- subset(cnt0, County.Code == 63 & Site.ID == 2008)
+> pm1sub <- subset(cnt1, County.Code == 63 & Site.ID == 2008)
+
+#  Now we'd like to compare the pm25 measurements of this particular monitor (63.2008) for the 2 years. First, create the vector x0sub by assigning to it the Sample.Value component of pm0sub.
+> x0sub <- pm0sub$Sample.Value
+> x1sub <- pm1sub$Sample.Value
+
+# We'd like to make our comparison visually so we'll have to create a time series of these pm25 measurements. First, create a dates0 variable by assigning to it the output of a call to as.Date. This will take 2 arguments. The first is a call to as.character with pm0sub$Date as the argument. The second is the format string "%Y%m%d".
+> dates0 <- as.Date(as.character(pm0sub$Date), "%Y%m%d")
+> dates1 <- as.Date(as.character(pm1sub$Date), "%Y%m%d")
+
+# Now we'll plot these 2 time series in the same panel using the base plotting system.
+> par(mfrow = c(1,2), mar = c(4,4,2,1))
+> plot(dates0, x0sub, pch = 20)
+# Now we'll mark the median.
+> abline(h = median(x0sub, na.rm=TRUE), lwd = 2)
+> plot(dates1, x1sub, pch = 20)
+> abline(h = median(x1sub, na.rm=TRUE), lwd = 2)
+# see image-26.png
+
+# The 1999 plot shows a much bigger range of pm25 values on the y axis, from below 10 to 40, while the 2012 pm25 values are much more restricted, from around 1 to 14. We should really plot the points of both datasets on the same range of values on the y axis.
+> rng <- range(x0sub, x1sub, na.rm = TRUE)
+> rng
+# [1]  3.0 40.1
+# see image-27.png
+# Here a new figure we've created showing the two plots side by side with the same range of values on the y axis. We used the argument ylim set equal to rng in our 2 calls to plot. The improvement in the medians between 1999 and 2012 is now clear. Also notice that in 2012 there are no big values (above 15). This shows that not only is there a chronic improvement in air quality, but also there are fewer days with severe pollution.
+
+
+# The last avenue of this data we'll explore (and we'll do it quickly) concerns a comparison of all the states' mean pollution levels. This is important because the states are responsible for implementing the regulations set at the federal level by the EPA.
+
+# Let's first gather the mean (average measurement) for each state in 1999. Recall that the original data for this year was stored in pm0.
+> mn0 <- with(pm0, tapply(Sample.Value, State.Code, mean, na.rm = TRUE))
+> str(mn0)
+# num [1:53(1d)] 19.96 6.67 10.8 15.68 17.66 ...
+# - attr(*, "dimnames")=List of 1
+# ..$ : chr [1:53] "1" "2" "4" "5" ...
+
+# We see mn0 is a 53 long numerical vector. Why 53 if there are only 50 states? As it happens, pm25 measurements for the District of Columbia (Washington D.C), the Virgin Islands, and Puerto Rico are included in this data. They are coded as 11, 72, and 78 respectively.
+
+> mn1 <- with(pm1, tapply(Sample.Value, State.Code, mean, na.rm = TRUE))
+> str(mn1)
+# num [1:52(1d)] 10.13 4.75 8.61 10.56 9.28 ...
+# - attr(*, "dimnames")=List of 1
+# ..$ : chr [1:52] "1" "2" "4" "5" ...
+# So mn1 has only 52 entries, rather than 53. We checked. There are no entries for the Virgin Islands in 2012.
+
+> summary(mn0)
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 4.862   9.519  12.315  12.406  15.640  19.956 
+
+> summary(mn1)
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 4.006   7.355   8.729   8.759  10.613  11.992 
+
+
+# We see that in all 6 entries, the 2012 numbers are less than those in 1999. Now we'll create 2 new dataframes containing just the state names and their mean measurements for each year. 
+> d0 <- data.frame(state = names(mn0), mean = mn0)
+> d1 <- data.frame(state = names(mn1), mean = mn1)
+> mrg <- merge(d0, d1, by = "state")
+> dim(mrg)
+# [1] 52  3
+
+# We see merge has 52 rows and 3 columns. Since the Virgin Island data was missing from d1, it is excluded from mrg. 
+> head(mrg)
+# state    mean.x    mean.y
+# 1     1 19.956391 10.126190
+# 2    10 14.492895 11.236059
+# 3    11 15.786507 11.991697
+# 4    12 11.137139  8.239690
+# 5    13 19.943240 11.321364
+# 6    15  4.861821  8.749336
+# Each row of mrg has 3 entries - a state identified by number, a state mean for 1999 (mean.x), and a state mean for 2012 (mean.y).
+
+# Now we'll plot the data to see how the state means changed between the 2 years.
+
+> with(mrg, plot(rep(1,52), mrg[,2], xlim = c(.5, 2.5)))
+# plot arguments:
+# rep(1,52). This tells the plot routine that the x coordinates for all 52 points are 1
+# The second argument is the second column of mrg or mrg[,2] which holds the 1999 data.
+# The third argument is the range of x values we want,
+
+# We see a column of points at x=1 which represent the 1999 state means.
+# For the second column of points:
+# We see a column of points at x=1 which represent the 1999 state means. For the second column of points, again call with with 2 arguments. As before, the first is mrg. The second, however, is a call to the function points with 2 arguments. We need to do this since we're adding points to an already existing plot. The first argument to points is the set of x values, rep(2,52). The second argument is the set of y values, mrg[,3]. Of course, this is the third column of mrg. (We don't need to specify the range of x values again.)
+> with(mrg, points(rep(2, 52), mrg[, 3]))
+# see image-28.png
+
+# We see a shorter column of points at x=2. Now let's connect the dots. Use the R function segments with 4 arguments. The first 2 are the x and y coordinates of the 1999 points and the last 2 are the x and y coordinates of the 2012 points. As in the previous calls specify the x coordinates with calls to rep and the y coordinates with references to the appropriate columns of mrg.
+> segments(rep(1, 52), mrg[, 2], rep(2, 52), mrg[, 3])
+# see image-29.png
+# We see from the plot that the vast majority of states have indeed improved their particulate matter counts so the general trend is downward. There are a few exceptions. (The topmost point in the 1999 column is actually two points that had very close measurements.)
+
+# For fun, let's see which states had higher means in 2012 than in 1999.
+> mrg[mrg$mean.x < mrg$mean.y, ]
+# state    mean.x    mean.y
+# 6     15  4.861821  8.749336
+# 23    31  9.167770  9.207489
+# 27    35  6.511285  8.089755
+# 33    40 10.657617 10.849870
+
 
