@@ -146,3 +146,4 @@
 
 # Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 06_Statistical_Inference/03_Conditional_Probability
 # We represent the conditional probability of an event A given that B has occurred with the notation P(AB). More specifically, we define the conditional probability of event A, given that B has occurred with the following.
+# P(AB) = P(A & B)/ P(B) . P(AB) is the probability that BOTH A and B occur divided by the probability that B occurs.
