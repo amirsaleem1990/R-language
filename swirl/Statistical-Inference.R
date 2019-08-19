@@ -396,3 +396,7 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 > sd(apply(matrix(runif(10000),1000),1,mean))
 # [1] 0.09131008
 
+# Q: Pretty close again, right? Poisson(4) are distributions with variance 4; what standard error would means of random samples of n Poisson(4) have?
+# Ans: 2/sqrt(n)
+
+# We'll do another simulation to test the theory. First, assume you're taking averages of 10 Poisson(4) samples and compute the standard error of these means. Use the formula you just chose.
