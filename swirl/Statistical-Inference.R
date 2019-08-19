@@ -258,3 +258,4 @@
 # Q: Knowing that the expected value is the area under the triangle, t*f(t), what is the expected value of the random variable with this PDF?
 # Ans: 0.5
 
+# For the purposes of illustration, here's(image-4.png) another figure using a PDF from our previous probability lesson. It shows the triangular PDF f(t) on the left and the parabolic t*f(t) on the right. The area under the parabola between 0 and 2 represents the expected value of the random variable with this PDF.
