@@ -178,3 +178,4 @@
 # Q: Now put the pieces together to compute the probability that the patient has the disease given his positive test result, P(D+). Plug your last two answers into the formula P(+D) * P(D) / ( P(+D) * P(D) + P(+~D) * P(~D) ) to compute P(D+).
 # Ans: .015*.999 # (1-specificity)*(1-HIV prevalence rate)
 
+# Now put the pieces together to compute the probability that the patient has the disease given his positive test result, P(D|+). Plug your last two answers into the formula P(+|D) * P(D) / ( P(+|D) * P(D) + P(+|~D) * P(~D) ) to compute P(D|+).
