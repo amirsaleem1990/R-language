@@ -235,3 +235,10 @@
 > expect_dice
 # function(pmf){ mu <- 0; for (i in 1:6) mu <- mu + i*pmf[i]; mu}
 
+> dice_high
+# [1] 0.04761905 0.09523810 0.14285714 0.19047619 0.23809524 0.28571429
+
+> expect_dice(dice_high)
+# [1] 4.333333
+# See how the expected value of dice_high is higher than that of the fair dice.
+
