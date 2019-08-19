@@ -467,4 +467,10 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 # Ans: choose(n,x) * p^x * (1-p)^(n-x)
 
 # Suppose we were going to flip a biased coin 5 times. The probability of tossing a head is .8 and a tail .2. What is the probability that you'll toss at least 3 heads.
+> choose(5,3)*(.8)^3*(.2)^(5-3) + choose(5,4)*(.8)^4*(.2)^(5-4) + choose(5,5)*(.8)^5*(.2)^(5-5)
+# [1] 0.94208
+
+# Now you can verify your answer with the R function pbinom. The quantile is 2, the size is 5, the prob is .8 and the lower.tail is FALSE. Try it now.
+pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
+# [1] 0.94208
 
