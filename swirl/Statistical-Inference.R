@@ -216,3 +216,4 @@
 # Q: If the chance of developing a disease with a genetic or environmental component is p, is the chance of both you and your sibling developing that disease p*p?
 # No. since the events aren't independent since genetic or environmental factors likely will affect the outcome.
 
+# We'll conclude with iid. Random variables are said to be iid if they are independent and identically distributed. By independent we mean "statistically unrelated from one another". Identically distributed means that "all have been drawn from the same population distribution".
