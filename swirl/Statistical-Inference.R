@@ -345,6 +345,9 @@
 ex2_fair <- sum(dice_sqr * dice_fair)
 
 # Recall that the expected value of a fair dice roll is 3.5. Subtract the square of that from ex2_fair to compute the sample variance.
-> ex2_fair - 3.5^2
+ex2_fair - 3.5^2
 # [1] 2.916667
+
+sum(dice_high * dice_sqr)-edh^2
+# [1] 2.222222
 
