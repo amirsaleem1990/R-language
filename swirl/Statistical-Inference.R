@@ -213,3 +213,6 @@
 # Q: You're given a fair die and asked to roll it twice. What's the probability that the second roll of the die matches the first?
 # Ans: 1/6
 
+# Q: If the chance of developing a disease with a genetic or environmental component is p, is the chance of both you and your sibling developing that disease p*p?
+# No. since the events aren't independent since genetic or environmental factors likely will affect the outcome.
+
