@@ -253,3 +253,5 @@
 
 # For a continuous random variable X, the expected value is defined analogously as it was for the discrete case. Instead of summing over discrete values, however, the expectation integrates over a continuous function.
 # It follows that for continuous random variables, E(X) is the area under the function t*f(t), where f(t) is the PDF (probability density function) of X. This definition borrows from the definition of center of mass of a continuous body.
+
+# Here's(image-3.png) a figure from the slides. It shows the constant (1) PDF on the left and the graph of t*f(t) on the right.
