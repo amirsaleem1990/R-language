@@ -200,3 +200,4 @@
 # Ans: the DLR_+
 # In other words, a DLR_+ value equal to N indicates that the hypothesis of disease is N times more supported by the data than the hypothesis of no disease.
 
+# Taking the formula above and replacing the '+' signs with '-' yields a formula with the DLR_-. Specifically, P(D|-) / P(~D|-) = P(-|D) / P(-|~D) * P(D)/P(~D). As with the positive case, this relates the odds of disease post-test, P(D-) / P(~D-), to those of disease pre-test, P(D)/P(~D).
