@@ -378,3 +378,4 @@ sum(dice_high * dice_sqr)-edh^2
 
 # The standard deviation of a statistic is called its standard error, so the standard error of the sample mean is the square root of its variance.
 # We just showed that the variance of a sample mean is sigma^2 / n and we estimate it with s^2 / n. It follows that its square root, s / sqrt(n), is the standard error of the sample mean.
+# The sample standard deviation, s, tells us how variable the population is, and s/sqrt(n), the standard error, tells us how much averages of random samples of size n from the population vary. Let's see this with some simulations.
