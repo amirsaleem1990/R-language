@@ -267,3 +267,6 @@
 # 1.333333 with absolute error < 1.5e-14
 
 # As all the examples have shown, expected values of distributions are useful in characterizing them. The mean characterizes the central tendency of the distribution. However, often populations are too big to measure, so we have to sample them and then we have to use sample means. That's okay because sample expected values estimate the population versions. We'll show this first with a very simple toy and then with some simple equations.
+> spop
+# [1]  1  4  7 10 13
+
