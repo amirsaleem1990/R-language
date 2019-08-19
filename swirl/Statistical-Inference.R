@@ -231,3 +231,7 @@
 # Q: Consider the random variable X representing a roll of a fair dice. By 'fair' we mean all the sides are equally likely to appear. What is the expected value of X?
 # Ans: sum(1:6) / 6
 
+# We've defined a function for you, expect_dice, which takes a PMF as an input. For our purposes, the PMF is a 6-long array of fractions. The i-th entry in the array represents the probability of i being the outcome of a dice roll.
+> expect_dice
+# function(pmf){ mu <- 0; for (i in 1:6) mu <- mu + i*pmf[i]; mu}
+
