@@ -407,4 +407,64 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 > sd(apply(matrix(rpois(10000,4),1000),1,mean))
 # [1] 0.6193233
 
-# Like magic, right? One final test. Fair coin flips have variance 0.25; means of random samples of n coin flips have what standard error?
+# Q: Like magic, right? One final test. Fair coin flips have variance 0.25; means of random samples of n coin flips have what standard error?
+# Ans: 2/sqrt(n)
+
+# Q: You know the drill. Assume you're taking averages of 10 coin flips and compute the standard error of these means with the theoretical formula you just picked.
+# Ans: 1/(2 * sqrt(10))
+
+# Now check it as we did before.
+> sd(apply(matrix(sample(0:1,10000,TRUE),1000),1,mean))
+# [1] 0.1558295
+
+# Finally, here's something interesting. Chebyshev's inequality helps interpret variances. It states that the probability that a random variable X is at least k standard deviations from its mean is less than 1/(k^2). In other words, the probability that X is at least 2 standard deviations from the mean is less than 1/4, 3 standard deviations 1/9, 4 standard deviations 1/16, etc.
+# However this estimate is quite conservative for random variables that are normally distributed, that is, with bell-curve distributions. In these cases, the probability of being at least 2 standard deviations from the mean is about 5% (as compared to Chebyshev's upper bound of 25%) and the probability of being at least 3 standard deviations from the mean is roughly .2%.
+
+# Q: Suppose you had a measurement that was 4 standard deviations from the distribution's mean. What would be the upper bound of the probability of this happening using Chebyshev's inequality?
+# Ans: 6%. Chebyshev's inequality estimates that probability as 1/16.
+
+# Q: Now to review. The sample variance estimates what?
+# Ans: population variance
+
+# Q: The distribution of the sample variance is centered at what?
+# Ans: population variance
+
+# Q: True or False - The sample variance gets more concentrated around the population variance with larger sample sizes
+# Ans: TRUE
+
+# Q: The variance of the sample mean is the population variance divided by ?
+# Ans: n
+
+# Q: The standard error of the sample mean is the sample standard deviation s divided by ?
+# Ans: sqrt(n)
+
+
+
+##########################################################################
+# 7: CommonDistros                                                       #
+##########################################################################
+# Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 06_Statistical_Inference/06_CommonDistros
+# The first distribution we'll examine is the Bernoulli which is associated with experiments which have only 2 possible outcomes. These are also called (by people in the know) binary trials.
+# For simplicity, we usually say that Bernoulli random variables take only the values 1 and 0.
+
+# Q: If the probability of a 1 is p and the probability of a 0 is 1-p which of the following represents the PMF of a Bernoulli distribution? Recall that the PMF is the function representing the probability that X=x.
+# Ans: p^x * (1-p)^(1-x)
+
+# Recall the definition of the expectation of a random variable. Suppose we have a Bernoulli random variable and, as before, the probability it equals 1 (a success) is p and probability it equals 0 (a failure) is 1-p. What is its mean?
+# Ans: p
+
+# Q: Given the same Bernoulli random variable above, which of the following represents E(X^2)
+# Ans: p
+
+# Q: Use the answers of the last two questions to find the variance of the Bernoulli random variable. Recall Var = E(X^2)-(E(X))^2
+# Ans: p(1-p)
+
+# Binomial random variables are obtained as the sum of iid Bernoulli trials.  Specifically, let X_1, ..., X_n be iid Bernoulli(p) random variables; then X = X_1 + X_2 + ... X_n is a binomial random variable. Binomial random variables represent the number of successes, k, out of n independent Bernoulli trials. Each of the trials has probability p.
+
+# The PMF of a binomial random variable X is the function representing the probability that X=x. In other words, that there are x successes out of n independent trials. Which of the following represents the PMF of a binomial distribution? Here x, the number of successes, goes from 0 to n, the number of trials, and choose(n,x) represents the binomial coefficient 'n choose x'
+
+# Q: which is the number of ways x successes out of n trials can occur regardless of order.
+# Ans: choose(n,x) * p^x * (1-p)^(n-x)
+
+# Suppose we were going to flip a biased coin 5 times. The probability of tossing a head is .8 and a tail .2. What is the probability that you'll toss at least 3 heads.
+
