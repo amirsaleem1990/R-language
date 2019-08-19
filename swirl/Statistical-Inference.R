@@ -291,3 +291,4 @@
 > apply(allsam, 1, mean)
 # [1]  2.5  4.0  5.5  7.0  5.5  7.0  8.5  8.5 10.0 11.5
 
+# You can see from the resulting vector that the sample means vary a lot, from 2.5 to 11.5, right? Not unexpectedly, the sample mean depends on the sample. However...
