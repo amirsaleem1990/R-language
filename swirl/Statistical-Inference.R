@@ -146,7 +146,7 @@
 
 # Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 06_Statistical_Inference/03_Conditional_Probability
 # We represent the conditional probability of an event A given that B has occurred with the notation P(AB). More specifically, we define the conditional probability of event A, given that B has occurred with the following.
-# P(A|B) = P(A & B)/ P(B) . P(AB) is the probability that BOTH A and B occur divided by the probability that B occurs.
+# P(A|B) = P(A & B)/ P(B) . P(A|B) is the probability that BOTH A and B occur divided by the probability that B occurs.
 
 # Q: Which of the following expressions represents P(A&B), where A is the event of rolling a 3 and B is the event of the roll being odd?
 # Here A is a subset of B so the probability of both A AND B happening is the probability of A happening.
@@ -155,4 +155,4 @@
 # Q: Continuing with the same dice example. Which of the following expressions represents P(A&B)/P(B), where A is the event of rolling a 3 and B is the event of the roll being odd?
 # Ans: (1/6)/(1/2)
 
-# From the definition of P(AB), we can write P(A&B) = P(AB) * P(B)
+# From the definition of P(A|B), we can write P(A&B) = P(A|B) * P(B)
