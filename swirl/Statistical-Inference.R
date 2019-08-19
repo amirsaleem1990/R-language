@@ -217,3 +217,4 @@
 # No. since the events aren't independent since genetic or environmental factors likely will affect the outcome.
 
 # We'll conclude with iid. Random variables are said to be iid if they are independent and identically distributed. By independent we mean "statistically unrelated from one another". Identically distributed means that "all have been drawn from the same population distribution".
+# Random variables which are iid are the default model for random samples and many of the important theories of statistics assume that variables are iid. We'll usually assume our samples are random and variables are iid.
