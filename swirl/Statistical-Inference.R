@@ -153,3 +153,5 @@
 # Ans: 1/6
 
 # Q: Continuing with the same dice example. Which of the following expressions represents P(A&B)/P(B), where A is the event of rolling a 3 and B is the event of the roll being odd?
+# Ans: (1/6)/(1/2)
+
