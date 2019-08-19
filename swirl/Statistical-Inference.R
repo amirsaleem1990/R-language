@@ -369,3 +369,5 @@ sum(dice_high * dice_sqr)-edh^2
 # Ans: 1/n^2*Var(Sum(X_i))
 
 # Q: Recall that Var is an expected value and expected values are linear. Also recall that our samples X_1, X_2,...,X_n are independent. What does Var(Sum(X_i)) equal?
+# Ans: Sum(Var(X_i))
+
