@@ -191,3 +191,6 @@
 # Q: Since the numerator is close to 1 and the denominator is close to 0 do you expect DLR_+ to be large or small?
 # Ans: Large
 
+# Q: Now recall that DLR_- = P(-D) / P(-~D). Here the numerator is the complement of sensitivity and the denominator is specificity. From the arithmetic and what you know about accuracy tests, do you expect DLR_- to be large or small?
+# Ans: Small
+
