@@ -307,3 +307,4 @@
 
 
 # Let's recap. Expected values are properties of distributions. The average, or mean, of random variables is itself a random variable and its associated distribution itself has an expected value. The center of this distribution is the same as that of the original distribution.
+# Q: Expected values are properties of what?
