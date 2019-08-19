@@ -371,3 +371,5 @@ sum(dice_high * dice_sqr)-edh^2
 # Q: Recall that Var is an expected value and expected values are linear. Also recall that our samples X_1, X_2,...,X_n are independent. What does Var(Sum(X_i)) equal?
 # Ans: Sum(Var(X_i))
 
+# Q: Finally, each X_i comes from a population with variance sigma^2. What does Sum(Var(X_i)) equal? As before, Sum is taken over n values.
+# Ans: 
