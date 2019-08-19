@@ -382,3 +382,4 @@ sum(dice_high * dice_sqr)-edh^2
 sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 # [1] 0.3053074
 
+# This returns the standard deviation of 1000 averages, each of a sample of 10 random normal numbers with mean 0 and standard deviation 1. The theory tells us that the standard error, s/sqrt(n), of the sample means indicates how much averages of random samples of size n (in this case 10) vary. Now compute 1/sqrt(10) to see if it matches the standard deviation we just computed with our simulation.
