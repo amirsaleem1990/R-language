@@ -401,8 +401,10 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 
 # We'll do another simulation to test the theory. First, assume you're taking averages of 10 Poisson(4) samples and compute the standard error of these means. Use the formula you just chose.
 > 2/sqrt(10)
+# [1] 0.6324555
 
 # Now check it as we did before.
 > sd(apply(matrix(rpois(10000,4),1000),1,mean))
 # [1] 0.6193233
 
+# Like magic, right? One final test. Fair coin flips have variance 0.25; means of random samples of n coin flips have what standard error?
