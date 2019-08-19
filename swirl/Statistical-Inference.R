@@ -389,3 +389,7 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 # Q: Pretty close, right? Let's try a few more. Standard uniform distributions have variance 1/12. The theory tells us the standard error of means of independent samples of size n would have which standard error?
 # Ans: 1/sqrt(12*n)
 
+# Compute 1/sqrt(120). This would be the standard error of the means of uniform samples of size 10.
+1/sqrt(120)
+# [1] 0.09128709
+
