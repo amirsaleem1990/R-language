@@ -163,6 +163,8 @@
 # P(B|A) = P(A|B) * P(B) / ( P(A|B) * P(B) + P(A|~B) * P(~B) )
 
 # Bayes' Rule has applicability to medical diagnostic tests. We'll now discuss the example of the HIV test from the slides.
-# Suppose we know the accuracy rates of the test for both the positive case (positive result when the patient has HIV) and negative (negative test result when the patient doesn't have HIV). These are referred to as test sensitivity and specificity, respectively.
-P(+|D) and P(-|~D)
+# Q: Suppose we know the accuracy rates of the test for both the positive case (positive result when the patient has HIV) and negative (negative test result when the patient doesn't have HIV). These are referred to as test sensitivity and specificity, respectively.
+# Ans: P(+|D) and P(-|~D)
+
+# Suppose a person gets a positive test result and comes from a population with a HIV prevalence rate of .001. We'd like to know the probability that he really has HIV. Which of the following represents this?
 
