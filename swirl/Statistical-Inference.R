@@ -320,3 +320,7 @@
 # Q: True or False? A population mean estimates a sample mean.
 # Ans: False
 
+# Q: True or False? A sample mean is unbiased.
+# Ans: True
+
+# Q: True or False? The more data that goes into the sample mean, the more concentrated its density / mass function is around the population mean.
