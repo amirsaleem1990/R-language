@@ -242,3 +242,7 @@
 # [1] 4.333333
 # See how the expected value of dice_high is higher than that of the fair dice.
 
+> expect_dice(dice_low)
+# [1] 2.666667
+
+# You can see the effect of loading the dice on the expectations of the rolls. For high-loaded dice the expected value of a roll (on average) is 4.33 and for low-loaded dice 2.67. We've stored these off for you in two variables, edh and edl.
