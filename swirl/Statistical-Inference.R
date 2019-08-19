@@ -173,7 +173,8 @@
 # We can use the prevalence of HIV in the patient's population as the value for P(D). Note that since P(~D)=1-P(D) and P(+|~D) = 1-P(-|~D) we can calculate P(D|+). In other words, we know values for all the terms on the right side of the equation. Let's do it!
 
 # Q: Disease prevalence is .001. Test sensitivity (+ result with disease) is 99.7% and specificity (- result without disease) is 98.5%. First compute the numerator, P(+|D)*P(D). (This is also part of the denominator.)
-# Ans: 0.997*0.001
+# Ans: 0.997*0.001 #(sensitivity * HIV prevalence rate)
 
 # Q: Now put the pieces together to compute the probability that the patient has the disease given his positive test result, P(D+). Plug your last two answers into the formula P(+D) * P(D) / ( P(+D) * P(D) + P(+~D) * P(~D) ) to compute P(D+).
-# Ans: .015*.999
+# Ans: .015*.999 # (1-specificity)*(1-HIV prevalence rate)
+
