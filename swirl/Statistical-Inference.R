@@ -365,3 +365,6 @@ sum(dice_high * dice_sqr)-edh^2
 # Q: Which of the following does Var(X') equal? Here X' represents the sample mean and 'Sum(X_i)' represents the sum of the n samples X_1,...X_n. Assume these samples are independent.
 # Ans: Var(1/n * Sum(X_i))
 
+# Q: Which of the following does Var(1/n * Sum(X_i)) equal?
+# Ans: 1/n^2*Var(Sum(X_i))
+
