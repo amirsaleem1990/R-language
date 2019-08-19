@@ -164,3 +164,5 @@
 
 # Bayes' Rule has applicability to medical diagnostic tests. We'll now discuss the example of the HIV test from the slides.
 # Suppose we know the accuracy rates of the test for both the positive case (positive result when the patient has HIV) and negative (negative test result when the patient doesn't have HIV). These are referred to as test sensitivity and specificity, respectively.
+P(+|D) and P(-|~D)
+
