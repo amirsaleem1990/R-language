@@ -311,3 +311,12 @@
 # Q: Expected values are properties of what?
 # Ans: distributions
 
+# Q: A population mean is a center of mass of what?
+# Ans: a population
+
+# Q: A sample mean is a center of mass of what?
+# Ans: observed data
+
+# Q: True or False? A population mean estimates a sample mean.
+# Ans: False
+
