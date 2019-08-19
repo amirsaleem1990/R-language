@@ -149,3 +149,6 @@
 # P(A|B) = P(A & B)/ P(B) . P(AB) is the probability that BOTH A and B occur divided by the probability that B occurs.
 
 # Q: Which of the following expressions represents P(A&B), where A is the event of rolling a 3 and B is the event of the roll being odd?
+# Here A is a subset of B so the probability of both A AND B happening is the probability of A happening.
+# Ans: 1/6
+
