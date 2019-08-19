@@ -287,3 +287,4 @@
 # [9,]    7   13
 # [10,]   10   13
 
+# Each of these 10 samples will have a mean, right? We can use the R function apply to calculate the mean of each row of the matrix allsam. We simply call apply with the arguments allsam, 1, and mean. The second argument, 1, tells 'apply' to apply the third argument 'mean' to the rows of the matrix.
