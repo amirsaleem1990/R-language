@@ -324,3 +324,5 @@
 # Ans: True
 
 # Q: True or False? The more data that goes into the sample mean, the more concentrated its density / mass function is around the population mean.
+# Ans: True
+
