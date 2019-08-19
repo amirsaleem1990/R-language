@@ -374,3 +374,6 @@ sum(dice_high * dice_sqr)-edh^2
 # Q: Finally, each X_i comes from a population with variance sigma^2. What does Sum(Var(X_i)) equal? As before, Sum is taken over n values.
 # Ans: n*(sigma)^2
 
+# So we've shown that Var(X')=Var(1/n*Sum(X_i))=(1/n^2)*Var(Sum(X_i))=(1/n^2)*Sum(sigma^2)=sigma^2/n for infinite populations when our samples are independent.
+
+# The standard deviation of a statistic is called its standard error, so the standard error of the sample mean is the square root of its variance.
