@@ -377,3 +377,4 @@ sum(dice_high * dice_sqr)-edh^2
 # So we've shown that Var(X')=Var(1/n*Sum(X_i))=(1/n^2)*Var(Sum(X_i))=(1/n^2)*Sum(sigma^2)=sigma^2/n for infinite populations when our samples are independent.
 
 # The standard deviation of a statistic is called its standard error, so the standard error of the sample mean is the square root of its variance.
+# We just showed that the variance of a sample mean is sigma^2 / n and we estimate it with s^2 / n. It follows that its square root, s / sqrt(n), is the standard error of the sample mean.
