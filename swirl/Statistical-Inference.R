@@ -152,3 +152,4 @@
 # Here A is a subset of B so the probability of both A AND B happening is the probability of A happening.
 # Ans: 1/6
 
+# Q: Continuing with the same dice example. Which of the following expressions represents P(A&B)/P(B), where A is the event of rolling a 3 and B is the event of the roll being odd?
