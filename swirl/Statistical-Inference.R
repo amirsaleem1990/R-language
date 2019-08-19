@@ -393,3 +393,6 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 1/sqrt(120)
 # [1] 0.09128709
 
+> sd(apply(matrix(runif(10000),1000),1,mean))
+# [1] 0.09131008
+
