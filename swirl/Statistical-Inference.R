@@ -206,3 +206,10 @@
 # Ans: post-test odds are less than pre-test odds
 
 # Two events, A and B, are independent if they have no effect on each other. Formally, P(A&B) = P(A)*P(B). It's easy to see that if A and B are independent, then P(A|B)=P(A). The definition is similar for random variables X and Y.
+
+# Q: We've seen examples of independence in our previous probability lessons. Let's review a little. What's the probability of rolling a '6' twice in a row using a fair die?
+# Ans: 1/36
+
+# Q: You're given a fair die and asked to roll it twice. What's the probability that the second roll of the die matches the first?
+# Ans: 1/6
+
