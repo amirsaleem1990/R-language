@@ -363,3 +363,5 @@ sum(dice_high * dice_sqr)-edh^2
 # We can show that, if the population is infinite, the variance of the sample mean is the population variance divided by the sample size. Specifically, Var(X') = sigma^2 / n. Let's work through this in four short steps.
 
 # Q: Which of the following does Var(X') equal? Here X' represents the sample mean and 'Sum(X_i)' represents the sum of the n samples X_1,...X_n. Assume these samples are independent.
+# Ans: Var(1/n * Sum(X_i))
+
