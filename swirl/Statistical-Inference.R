@@ -169,3 +169,4 @@
 # Q: Suppose a person gets a positive test result and comes from a population with a HIV prevalence rate of .001. We'd like to know the probability that he really has HIV. Which of the following represents this?
 # Ans: P(D|+)
 
+# By Bayes' Formula, P(D+) = P(+D) * P(D) / ( P(+D) * P(D) + P(+~D) * P(~D) )
