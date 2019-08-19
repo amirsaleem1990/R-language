@@ -372,4 +372,5 @@ sum(dice_high * dice_sqr)-edh^2
 # Ans: Sum(Var(X_i))
 
 # Q: Finally, each X_i comes from a population with variance sigma^2. What does Sum(Var(X_i)) equal? As before, Sum is taken over n values.
-# Ans: 
+# Ans: n*(sigma)^2
+
