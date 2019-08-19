@@ -255,3 +255,6 @@
 # It follows that for continuous random variables, E(X) is the area under the function t*f(t), where f(t) is the PDF (probability density function) of X. This definition borrows from the definition of center of mass of a continuous body.
 
 # Here's(image-3.png) a figure from the slides. It shows the constant (1) PDF on the left and the graph of t*f(t) on the right.
+# Q: Knowing that the expected value is the area under the triangle, t*f(t), what is the expected value of the random variable with this PDF?
+# Ans: 0.5
+
