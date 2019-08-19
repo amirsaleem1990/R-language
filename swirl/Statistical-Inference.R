@@ -295,4 +295,5 @@
 > mean(smeans)
 # [1] 7
 
+# Look familiar? The result is the same as the mean of the original population spop. This is not because the example was specially cooked. It would work on any population. The expected value or mean of the sample mean is the population mean. What this means is that the sample mean is an unbiased estimator of the population mean.
 
