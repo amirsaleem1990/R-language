@@ -273,3 +273,17 @@
 > mean(spop)
 # [1] 7
 
+# Suppose spop were much bigger and we couldn't measure its mean directly and instead had to sample it with samples of size 2. There are 10 such samples, right? We've stored this for you in a 10 x 2 matrix, allsam.
+> allsam
+#       [,1] [,2]
+# [1,]    1    4
+# [2,]    1    7
+# [3,]    1   10
+# [4,]    1   13
+# [5,]    4    7
+# [6,]    4   10
+# [7,]    4   13
+# [8,]    7   10
+# [9,]    7   13
+# [10,]   10   13
+
