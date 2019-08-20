@@ -474,3 +474,8 @@ sd(apply(matrix(rnorm(10000), 1000), 1, mean))
 pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # [1] 0.94208
 
+# Another very common distribution is the normal or Gaussian. It has a complicated density function involving its mean mu and variance sigma^2. The key fact of the density formula is that when plotted, it forms a bell shaped curve, symmetric about its mean mu. The variance sigma^2 corresponds to the width of the bell, the higher the variance, the fatter the bell. We denote a normally distributed random variable X as X ~ N(mu, sigma^2).
+
+
+
+
