@@ -584,3 +584,4 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: Based on our previous lesson do you think the sample variance (and hence sample deviation) are consistent as well?
 # Ans: Yes
 
+# Now for something really important - the CENTRAL LIMIT THEOREM (CLT) - one of the most important theorems in all of statistics. It states that the distribution of averages of iid variables (properly normalized) becomes that of a standard normal as the sample size increases.
