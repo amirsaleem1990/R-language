@@ -1218,3 +1218,4 @@ mydf <- num / den
 # Q:  Would we reject H_0 if alpha were .01?
 # Ans: No
 
+# Again, a picture's worth a thousand words, right? The vertical line at the test statistic 2 is not in the region of rejection.
