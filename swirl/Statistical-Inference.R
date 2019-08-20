@@ -1048,3 +1048,9 @@ mydf <- num / den
 # Q: The Z score is 2. The quantile is 1.645, so since 2>1.645. What do we do with H_0?
 # Ans: reject it
 
+#  The general rule for rejection is if sqrt(n) * ( X' - mu) / s > Z_{1-alpha}.
+# Our test statistic is (X'-mu) / (s/sqrt(n)) which is standard normal.
+
+# Q: This means that our test statistic has what mean and standard deviation?
+# Ans: 0 and 1
+
