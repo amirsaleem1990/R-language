@@ -801,5 +801,32 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 #   g <- g + geom_line(size = 2, aes(colour = dist))
 #   print(g)
 # }
+> myplot(2)
+# see image-21.png
+# You can see that the hump of t distribution (in blue) is not as high as the normal's. Consequently, the two tails of the t distribution absorb the extra mass, so they're thicker than the normal's. Note that with 2 degrees of freedom, you only have 3 data points. Ha! Talk about small sample sizes. Now try myplot with an input of 20.
 
-# You can see(image-21.png) that the hump of t distribution (in blue) is not as high as the normal's. Consequently, the two tails of the t distribution absorb the extra mass, so they're thicker than the normal's. Note that with 2 degrees of freedom, you only have 3 data points. Ha! Talk about small sample sizes. Now try myplot with an input of 20.
+> myplot(20)
+# see image-22.png
+# The two distributions are almost right on top of each other using this higher degree of freedom.
+# Another way to look at these distributions is to plot their quantiles. From the slides, we've provided a second function for you, myplot2, which does this. It plots a lightblue reference line representing normal quantiles and a black line for the t quantiles. Both plot the quantiles starting at the 50th percentile which is 0 (since the distributions are symmetric about 0) and go to the 99th.
+
+> myplot2
+# function(df){
+#   d <- data.frame(n= qnorm(pvals),t=qt(pvals, df),
+#                   p = pvals)
+#   g <- ggplot(d, aes(x= n, y = t))
+#   g <- g + geom_abline(size = 2, col = "lightblue")
+#   g <- g + geom_line(size = 2, col = "black")
+#   g <- g + geom_vline(xintercept = qnorm(0.975))
+#   g <- g + geom_hline(yintercept = qt(0.975, df))
+#   print(g)
+# }
+
+> myplot2(2)
+# see image-23.png
+# The distance between the two thick lines represents the difference in sizes between the quantiles and hence the two sets of intervals. Note the thin horizontal and vertical lines. These represent the .975 quantiles for the t and normal distributions respectively. Anyway, you probably recognized the placement of the vertical at 1.96 from the Asymptotics lesson.
+
+# Check the placement of the horizontal now using the R function qt with the arguments .975 for the quantile and 2 for the degrees of freedom (df).
+> qt(.975, df = 2)
+# [1] 4.302653
+
