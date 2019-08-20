@@ -552,3 +552,20 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 
 # The Law of Large Numbers (LLN) says that the average (mean) approaches what it's estimating. We saw in our simulations that the larger the sample size the better the estimation.  As we flip a fair coin over and over, it eventually converges to the true probability of a head (.5).
 # The LLN forms the basis of frequency style thinking.
+
+# To see this in action, we've copied some code from the slides and created the function coinPlot. It takes an integer n which is the number of coin tosses that will be simulated. As coinPlot does these coin flips it computes the cumulative sum (assuming heads are 1 and tails 0), but after each toss it divides the cumulative sum by the number of flips performed so far. It then plots this value for each of the k=1...n tosses.
+> coinPlot
+# function(n){
+#   means <- cumsum(sample(0 : 1, n , replace = TRUE)) / (1  : n)
+#   g <- ggplot(data.frame(x = 1 : n, y = means), aes(x = x, y = y)) 
+#   g <- g + geom_hline(size=1.5 ,yintercept = 0.5,alpha=0.6,
+#                       linetype="longdash") + geom_line(size = 1)
+#   if(n<100){
+#     g <- g + geom_point(colour="red",size=3,alpha=0.8)
+#   }	 
+#   g <- g + labs(x = "Number of obs", y = "Cumulative mean")
+#   g <- g + scale_x_continuous(breaks=seq(0,n+1,ceiling(n/10)))
+#   print(g)
+#   invisible()
+# }
+
