@@ -880,3 +880,16 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > range(g2)
 # [1] -0.1  5.5
 
+# Now let's look at the pairwise difference. We can take advantage of R's componentwise subtraction of vectors and create the vector of difference by subtracting g1 from g2. Do this now and put the result in the variable difference.
+difference <- g2 - g1
+> mean(difference)
+# [1] 1.58
+# See how much smaller the mean difference in this paired data is compared to the group variations?
+
+# Now use the R function sd to find the standard deviation of difference and put the result in the variable s.
+> s <- sd(difference)
+
+# Now recall the formula for finding the t confidence interval, X' +/- t_(n-1)*s/sqrt(n). Make the appropriate substitutions to find the 95% confidence intervals for the average difference you just computed. We've stored that average difference in the variable mn for you to use here. Remember to use the R construct c(-1,1) for the +/- portion of the formula and the R function qt with .975 and n-1 degrees of freedom for the quantile portion. Our data size is 10.
+> mn + c(-1,1) * qt(.975, 9) * s / sqrt(10)
+# [1] 0.7001142 2.4598858
+
