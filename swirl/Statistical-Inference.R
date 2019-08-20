@@ -1093,3 +1093,11 @@ mydf <- num / den
 # Ans: 15
 
 # Q: Under H_0, the probability that the test statistic is larger than the 95th percentile of the t distribution is 5%. Use the R function qt with the arguments .95 and the correct number of degrees of freedom to find the quantile.
+> qt(.95, 15)
+# [1] 1.75305
+
+# So the test statistic (.8) is less than 1.75, the 95th percentile of the t distribution with 15 df. This means that our sample mean (32) does not fall within the region of rejection since H_a was that mu>30.
+
+# Q: This means what?
+# Ans: we fail to reject H_0
+
