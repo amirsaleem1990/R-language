@@ -1101,3 +1101,26 @@ mydf <- num / den
 # Q: This means what?
 # Ans: we fail to reject H_0
 
+# Now let's consider a two-sided test. Suppose that we would reject the null hypothesis if in fact the sample mean was too large or too small. That is, we want to test the alternative H_a that mu is not equal to 30. We will reject if the test statistic, 0.8, is either too large or too small.
+# As we discussed before, we want the probability of rejecting under the null to be 5%, split equally as 2.5% in the upper tail and 2.5% in the lower tail. Thus we reject if our test statistic is larger than qt(.975, 15) or smaller than qt(.025, 15).
+
+# Q: Do you expect qt(.975,15) to be bigger or smaller than qt(.95,15)?
+# Ans: bigger
+
+# Q: Since the test statistic was smaller than qt(.95,15) will it be bigger or smaller than qt(.975,15)?
+# Ans: smaller
+
+# Q: Now for the left tail, qt(.025,15). What can we say about it?
+# Ans: it is less than 0
+
+# Bottom line here is if you fail to reject the one sided test, you know that you will fail to reject the two sided.
+
+# Q: So the test statistic .8 failed both sides of the test. That means we ?
+# Ans: fail to reject H_0
+
+#  Now we usually don't have to do all this computation ourselves because R provides the function t.test which happily does all the work! To prove this, we've provided a csv file with the father_son height data from John Verzani's UsingR website (http://wiener.math.csi.cuny.edu/UsingR/) and read it into a data structure fs for you. We'll do a t test on this paired data to see if fathers and sons have similar heights (our null hypothesis).
+
+# Look at the dimensions of fs now using the R function dim.
+> dim(fs)
+# [1] 1078    2
+
