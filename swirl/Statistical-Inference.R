@@ -710,3 +710,10 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 
 # Let's move on to Poisson distributions and confidence intervals. Recall that Poisson distributions apply to counts or rates. For the latter, we write X~Poisson(lambda*t) where lambda is the expected count per unit of time and t is the total monitoring time.
 # Here's another example from the slides. Suppose a nuclear pump failed 5 times out of 94.32 days and we want a 95% confidence interval for the failure rate per day. The number of failures X is Poisson distributed with parameter (lambda*t). We don't observe the failure rate, but we estimate it as x/t. Call our estimate lambda_hat, so lambda_hat=x/t. According to theory, the variance of our estimated failure rate is lambda/t. Again, we don't observe lambda, so we use our estimate of it instead. We thus approximate the variance of lambda_hat as lambda_hat/t.
+
+# Q: In this example what would you use as the estimated mean x/t?
+# Ans: 5/94.32
+
+# Set a variable lamb now with this value.
+> lamb <- 5/94.32
+
