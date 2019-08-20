@@ -627,3 +627,8 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # hint: The sample size is n, and in this case n=100. What is 1/sqrt(100)?
 # Ans: 1/10
 
+# Q: The bounds of the interval then are what?
+# hint: (We know p'- 1/sqrt(n) is the lower bound and p'+ 1/sqrt(n) is the upper bound, so use the answers from the two previous answers to fill in values for these variables.)
+# Ans: .5 and .7
+
+# Q: How do you feel about the election?
