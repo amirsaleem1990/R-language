@@ -616,3 +616,6 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Ans: the approximate 97.5% normal quantile
 
 # A critical point here is that we don't know the true value of p; that's what we're trying to estimate. How can we compute a confidence interval if we don't know p(1-p)? We could be conservative and try to maximize it so we get the largest possible confidence interval. Calculus tells us that p(1-p) is maximized when p=1/2, so we get the biggest 95% confidence interval when we set p=1/2 in the formula p'+/- 2*sqrt(p(1-p)/n).
+# Q: Using 1/2 for the value of p in the formula above yields what expression for the 95% confidence interval for p?
+# Ans: p'+/- 1/sqrt(n)
+
