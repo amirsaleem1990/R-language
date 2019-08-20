@@ -496,3 +496,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > qnorm(mean = 3, sd = 2, p = 0.975)
 # [1] 6.919928
 
+# Let's check it using the formula above, X = mu + sigma*Z. Here we'll use the 97.5th percentile for the standard normal as the value Z in the formula. Recall that we previously calculated this to be 1.96. Let's multiply this by the standard deviation of the given normal distribution (2) and add in its mean (3) to see if we get a result close to the one qnorm gave us.
+> 1.96*2+3
+# [1] 6.92
+
