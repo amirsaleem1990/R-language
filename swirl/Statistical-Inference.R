@@ -578,3 +578,5 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > coinPlot(10000)
 # see image-12.png
 
+# See the difference? Asymptotics in Action! The line approaches its asymptote of .5. This is the probability you expect since what we're plotting, the cumulative sum/number of flips, represents the probability of the coin landing on heads. As we know, this is .5 .
+# We say that an estimator is CONSISTENT if it converges to what it's trying to estimate. The LLN says that the sample mean of iid samples is consistent for the population mean. This is good, right?
