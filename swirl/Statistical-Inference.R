@@ -765,3 +765,6 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: If you had larger sample size would your confidence interval get bigger or smaller?
 # Ans: smaller
 
+# Q:  A quick fix for small sample size binomial calculations is what?
+# Ans: add 2 successes and 2 failures
+
