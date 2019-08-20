@@ -600,3 +600,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Here's another plot(image-15.png) from the slides of the same experiment, this time using a biassed coin. We set the probability of a head to .9, so E(X)=.9 and the standard error is sqrt(.09/n) Again, the larger the sample size the more closely the distribution looks normal, although with this biassed coin the normal approximation isn't as good as it was with the fair coin.
 
 # Now let's talk about confidence intervals.
+# The 95% says that if one were to repeatedly get samples of size n, about 95% of the intervals obtained would contain mu, the quantity we're trying to estimate.
+
+# Note that for a 95% confidence interval we divide (100-95) by 2 (since we have both left and right tails) and add the result to 95 to compute the quantile we need. The 97.5 quantile is actually 1.96, but for simplicity it's often just rounded up to 2.
+# Q: If you wanted to find a 90% confidence interval what quantile would you want?
+# hint: Divide (100-90) by 2 and add this result to 90.
+# Ans: 95
