@@ -569,3 +569,4 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 #   invisible()
 # }
 
+> coinPlot(10)
