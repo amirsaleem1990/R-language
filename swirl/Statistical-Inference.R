@@ -484,6 +484,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: Which of the following would you expect to be the 1st percentile?
 # Ans: -2.33
 
+# Q: can you say what the 50th percentile is?
+# Ans: 0
+
 
 
 
