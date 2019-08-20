@@ -965,3 +965,23 @@ sp <- sqrt((9*var(g1)+9*var(g2))/18)
 # attr(,"conf.level")
 # [1] 0.95
 
+# Just as we saw when we ran t.test on our vector, difference! See how the interval excludes 0? This means the groups when paired have much different averages.
+# Now let's talk about calculating confidence intervals for two groups which have unequal variances. We won't be pooling them as we did before.
+# In this case the formula for the interval is similar to what we saw before, Y'-X' +/- t_df * SE, where as before Y'-X' represents the difference of the sample means. However, the standard error SE and the quantile t_df are calculated differently from previous methods. Here SE is the square root of the sum of the squared standard errors of the two means, (s_1)^2/n_1 + (s_2)^2/n_2 .
+# When the underlying X and Y data are iid normal and the variances are different, the normalized statistic we started this lesson with, (X'-mu)/(s/sqrt(n)), doesn't follow a t distribution. However, it can be approximated by a t distribution if we set the degrees of freedom appropriately.
+# The formula for the degrees of freedom is a complicated fraction that no one remembers.  The numerator is the SQUARE of the sum of the squared standard errors of the two sample means. Each has the form s^2/n. The denominator is the sum of two terms, one for each group. Each term has the same form. It is the standard error of the mean raised to the fourth power divided by the sample size-1. More precisely, each term looks like (s^4/n^2)/(n-1). We use this df to find the t quantile.
+# Here's the formula. You might have to stretch the plot window to get it displayed more clearly.
+# Let's plug in the numbers from the blood pressure study to see how this works. Recall we have two groups, the first with size 8 and X'_{oc}=132.86 and s_{oc}=15.34 and the second with size 21 and X'_{c}=127.44 and s_{c}=18.23.
+# Let's compute the degrees of freedom first. Start with the numerator. It's the square of the sum of two terms. Each term is of the form s^2/n. Do this now and put the result in num. Our numbers were 15.34 with size 8 and 18.23 with size 21.
+num <- (15.34^2/8 + 18.23^2/21)^2
+
+# Now the denominator. This is the sum of two terms. Each term has the form s^4/n^2/(n-1). These look a little different than the form displayed but they're equivalent. Put the result in the variable den. Our numbers were 15.34 with size 8 and 18.23 with size 21.
+den <- 15.34^4/8^2/7 + 18.23^4/21^2/20
+
+# Now divide num by den and put the result in mydf.
+mydf <- num / den
+
+# Now with the R function qt(.975,mydf) compute the 95% t interval. Recall the formula. X'_{oc}-X'_{c} +/- t_df * SE. Recall that SE is the square root of the sum of the squared standard errors of the two means, (s_1)^2/n_1 + (s_2)^2/n_2 . Again our numbers are the following. X'_{oc}=132.86 s_{oc}=15.34 and n_{oc}=8 . X'_{c}=127.44 s_{c}=18.23 and n_{c}=21.
+132.86-127.44 +c(-1,1)*qt(.975,mydf)*sqrt(15.34^2/8 + 18.23^2/21)
+# [1] -8.913327 19.753327
+
