@@ -784,3 +784,22 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # In the formula for the t statistic t=(X'-mu)/(s/sqrt(n)) what expression represents the sample standard deviation?
 # Ans: s
 
+# These t confidence intervals are very handy, and if you have a choice between these and normal, pick these. We'll see that as datasets get larger, t-intervals look normal. We'll cover the one- and two-group versions which depend on the data you have.
+# The t distribution, invented by William Gosset in 1908, has thicker tails than the normal. Also, instead of having two parameters, mean and variance, as the normal does, the t distribution has only one - the number of degrees of freedom (df).
+# As df increases, the t distribution gets more like a standard normal, so it's centered around 0. Also, the t assumes that the underlying data are iid Gaussian so the statistic (X' - mu)/(s/sqrt(n)) has n-1 degrees of freedom.
+
+# Q: Quick check. In the formula t=(X' - mu)/(s/sqrt(n)), if we replaced s by sigma the statistic t would be what asymptotically?.
+# Ans: the standard normal
+
+# To see what we mean, we've taken code from the slides, the function myplot, which takes the integer df as its input and plots the t distribution with df degrees of freedom. It also plots a standard normal distribution so you can see how they relate to one another.
+> myplot
+# function(df){
+#   d <- data.frame(y = c(dnorm(xvals), dt(xvals, df)),
+#                   x = xvals,
+#                   dist = factor(rep(c("Normal", "T"), c(k,k))))
+#   g <- ggplot(d, aes(x = x, y = y)) 
+#   g <- g + geom_line(size = 2, aes(colour = dist))
+#   print(g)
+# }
+
+# You can see(image-21.png) that the hump of t distribution (in blue) is not as high as the normal's. Consequently, the two tails of the t distribution absorb the extra mass, so they're thicker than the normal's. Note that with 2 degrees of freedom, you only have 3 data points. Ha! Talk about small sample sizes. Now try myplot with an input of 20.
