@@ -1069,3 +1069,10 @@ mydf <- num / den
 # Finally, let's consider the alternative hypothesis H_a that mu is simply not equal to mu_0, the mean hypothesized by the null hypothesis H_0.  We would reject H_0 (and accept H_a) when our sample mean is significantly different than mu_0, that is, either less than OR greater than mu_0.
 # Since we want to stick with a 5% rejection rate, we divide it in half and consider values at both tails, at the .025 and the .975 percentiles.  This means that our test statistic (X'-mu) / (s/sqrt(n)) is less than .025, Z_(alpha/2), or greater than .975, Z_(1-alpha/2).
 # Here's the plot(image-28.png). As before, the shaded portion represents the 5% of the area composing the region of rejection. This time, though, it's composed of two equal pieces, each containing 2.5% of the area under the curve. The X values in the shaded portions are values which are at least 1.96 standard deviations away from the hypothesized mean.
+# Notice that if we reject H_0, either it was FALSE (and hence our model is wrong and we are correct to reject it) OR H_0 is TRUE and we have made an error (Type I). The probability of this is 5%.
+# Since our tests were based on alpha, the probability of a Type I error, we say that we "fail to reject H_0" rather than we "accept H_0". If we fail to reject H_0, then H_0 could be true OR we just might not have enough data to reject it.
+# We have not fixed the probability of a type II error (accepting H_0 when it is false), which we call beta. The term POWER refers to the quantity 1-beta and it represents the probability of rejecting H_0 when it's false. This is used to determine appropriate sample sizes in experiments.
+
+# Q: What do you think we call the region of values for which we reject H_0?
+# Ans: the rejection region
+
