@@ -519,3 +519,4 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q:  How about qnorm(pnorm(.53))?
 # Ans: 0.53
 
+# Now let's talk about our last common distribution, the Poisson. This is, as Wikipedia tells us, "a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time and/or space if these events occur with a known average rate and independently of the time since the last event."
