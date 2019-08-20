@@ -1081,3 +1081,11 @@ mydf <- num / den
 # Q: Remember the CLT. For a distribution to be approximated by a normal what does the sample size have to be?
 # Ans: large
 
+# No need to worry. If we don't have a large sample size, we can use the t distribution which conveniently uses the same test statistic (X'-mu) / (s/sqrt(n)) we used above.  That means that all the examples we just went through would work exactly the same EXCEPT instead of using NORMAL quantiles, we would use t quantiles and n-1 degrees of freedom.
+# We said t distributions were very handy, didn't we?
+# Let's go back to our sleep disorder example and suppose our sample size=16 (instead of 100). As before, (sample mean) X'=32, (standard deviation) s=10.  H_0 says the true mean mu=30, and H_a is that mu>30. With this smaller sample size we use the t test, but our test statistic is computed the same way, namely (X'-mu)/(s/sqrt(n))
+
+# Q: What is the value of the test statistic (X'-mu)/(s/sqrt(n)) with sample size 16?
+> (32-30)/(10/4)
+# [1] 0.8
+
