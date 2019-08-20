@@ -640,3 +640,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > 0.6 + c(-1,1) * qnorm(0.975) * sqrt(0.6 * (1 - 0.6)/100)
 # [1] 0.5039818 0.6960182
 
+# As an alternative to this Wald interval, we can also use the R function binom.test with the parameters 60 and 100 and let all the others default. This function "performs an exact test of a simple null hypothesis about the probability of success in a Bernoulli experiment." (This means it guarantees the coverages, uses a lot of computation and doesn't rely on the CLT.) This function returns a lot of information but all we want now are the values of the confidence interval that it returns. Use the R construct x$conf.int to find these now.
+> binom.test(60, 100)$conf.int
+# [1] 0.4972092 0.6967052
+# attr(,"conf.level")
+# [1] 0.95
+
