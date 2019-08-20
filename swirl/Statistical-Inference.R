@@ -900,3 +900,31 @@ difference <- g2 - g1
 # attr(,"conf.level")
 # [1] 0.95
 
+# Here's code from the slides which shows four different ways of using t.test (including the two we just went through) to find the confidence interval of this data. The code also shows how to display the intervals nicely in a 4 x 2 array.
+#show 4 different calls to t.test
+#display as 4 long array
+# rbind(
+#   mn + c(-1, 1) * qt(.975, n-1) * s / sqrt(n),
+#   as.vector(t.test(difference)$conf.int),
+#   as.vector(t.test(g2, g1, paired = TRUE)$conf.int),
+#   as.vector(t.test(extra ~ I(relevel(group, 2)), paired = TRUE, data = sleep)$conf.int)
+# )
+
+# Here's code from the slides which shows four different ways of using t.test (including the two we just went through) to find the confidence interval of this data. The code also shows how to display the intervals nicely in a 4 x 2 array.
+# Suppose that we want to compare the mean blood pressure between two groups in a randomized trial. We'll compare those who received the treatment to those who received a placebo. Unlike the sleep study, we cannot use the paired t test because the groups are independent and may have different sample sizes.
+# So our goal is to find a 95% confidence interval of the difference between two population means. Let's represent this difference as mu_y - mu_x. How do we do this? Recall our formula X' +/- t_(n-1)*s/sqrt(n).
+# First we need a sample mean, but we have two, X' and Y', one from each group. It makes sense that we'd have to take their difference (Y'-X') as well, since we're looking for a confidence interval that contains the difference mu_y-mu_x. Now we need to specify a t quantile. Suppose the groups have different sizes n_x and n_y.
+
+# Q: For one group we used the quantile t_(.975,n-1). What do you think we'll use for the quantile of this problem?
+# Ans: t_(.975,n_x+n_y-2)
+
+# The only term remaining is the standard error which for the single group is s/sqrt(n). Let's deal with the numerator first. Our interval will assume (for now) a common variance s^2 across the two groups. We'll actually pool variance information from the two groups using a weighted sum. (We'll deal with the more complicated situation later.)
+# We call the variance estimator we use the pooled variance. The formula for it requires two variance estimators (in the form of the standard deviation), S_x and S_y, one for each group. We multiply each by its respective degrees of freedom and divide the sum by the total number of degrees of freedom. This weights the respective variances; those coming from bigger samples get more weight.
+
+# Q:  Which of the following represents the numerator of this expression?
+# Ans: (n_x-1)(S_x)^2+(n_y-1)(S_y)^2
+
+# Q:  Which of the following represents the total number of degrees of freedom?
+# Ans: (n_x-1)+(n_y-1)
+
+
