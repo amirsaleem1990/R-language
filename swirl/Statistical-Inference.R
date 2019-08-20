@@ -1174,4 +1174,28 @@ mydf <- num / den
 # 11: P Values                                                           #
 ##########################################################################
 # Slides for this and other Data Science courses may be found at github https://github.com/DataScienceSpecialization/courses/. If you care to use them, they must be downloaded as a zip file and viewed locally. This lesson corresponds to 06_Statistical_Inference/10_pValues.
+# In this lesson, as the name suggests, we'll discuss p-values which have nothing to do with urological testing. Instead they are the most common measure of statistical significance.
+# However, because they're popular they're used a lot, and often they're misused or misinterpreted. In this lecture we'll focus on how to generate them and interpret them correctly.
+# The question motivating p-values is this. Given that we have some null hypothesis concerning our data (for example, its mean), how unusual or extreme is the sample value we get from our data? Is our test statistic consistent with our hypothesis? So there are, implicitly, three steps we have to take to answer these types of questions.
+
+# Q:  What do you think the first step is?
+# Ans: Create a null hypothesis
+
+# So we have to begin with a null hypothesis which is a reasoned guess at some distribution of a data summary (a statistic). Recall from the last lesson that the null hypothesis H_0 is a baseline against which we'll measure an alternative hypothesis using the actual observed data.
+
+# Q: So you propose a null hypothesis. What's the next step?
+# Ans: Calculate a test statistic from the given data
+
+# Q: Now you have a proposed statistic (from your reasoned hypothesis) and a test statistic computed from your gathered data. What's the final step?
+# Ans: Compare the test statistic to the hypothetical distribution
+
+# Your comparison tells you how "extreme" the test value is toward the alternative hypothesis. The p-value is the probability under the null hypothesis of obtaining evidence as or more extreme than your test statistic (obtained from your observed data) in the direction of the alternative hypothesis.
+# So if the p-value (probability of seeing your test statistic) is small, then one of two things happens. EITHER H_0 is true and you have observed a rare event (in this unusual test statistic) OR H_0 is false. Let's go through an example.
+# Suppose that you get a t statistic of 2.5 with 15 df testing H_0, (that mu = mu_0) versus an alternative H_a (that mu > mu_0). We want to find the probability of getting a t statistic as large as 2.5.
+
+# R can help us! We can use the R function pt, the distribution function of the t distribution. This function returns one of two probabilities, EITHER the probability of X > q (if lower.tail is FALSE) OR X <= q (if lower.tail is TRUE), where q is a quantile argument. Here we'll set q=2.5, df=15, lower.tail=FALSE since H_a says that mu>mu_0. We have to gauge the extremity in the direction of H_a. Run this now.
+> pt(q = 2.5, df = 15, lower.tail = FALSE)
+# [1] 0.0122529
+
+
 
