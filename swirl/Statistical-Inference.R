@@ -550,3 +550,5 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: The mean of the sample mean estimates what?
 # Ans: population mean
 
+# The Law of Large Numbers (LLN) says that the average (mean) approaches what it's estimating. We saw in our simulations that the larger the sample size the better the estimation.  As we flip a fair coin over and over, it eventually converges to the true probability of a head (.5).
+# The LLN forms the basis of frequency style thinking.
