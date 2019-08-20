@@ -681,3 +681,4 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # [1] 0.8666667
 
 
+# Now that you understand the underlying principle, suppose instead of 30 trials, we used 1000 trials. Also suppose we did this experiment for a series of probabilities, say from .1 to .9 taking steps of size .05. More specifically, we'll call our function using 17 different probabilities, namely .1, .15, .2, .25, ... .9 . We can then plot the percentages of coverage for each of the probabilities.
