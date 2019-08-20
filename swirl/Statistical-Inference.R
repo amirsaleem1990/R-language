@@ -572,4 +572,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > coinPlot(10)
 # see image-11.png
 
-# Your output depends on R's random number generator, but your plot probably jumps around a bit and, by the 10th flip, your cumulative sum/10 is probably different from mine. If you did this several times, your plots would vary quite a bit. Now call coinPlot again, this time with 10000 as the argument.
+# Your output depends on R's random number generator, but your plot probably jumps around a bit and, by the 10th flip, your cumulative sum/10 is probably different from mine. If you did this several times, your plots would vary quite a bit. 
+
+# Now call coinPlot again, this time with 10000 as the argument.
+> coinPlot(10000)
+# see image-12.png
+
