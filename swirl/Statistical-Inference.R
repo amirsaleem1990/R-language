@@ -606,3 +606,8 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: If you wanted to find a 90% confidence interval what quantile would you want?
 # hint: Divide (100-90) by 2 and add this result to 90.
 # Ans: 95
+
+# Use the R function qnorm to find the 95th quantile for a standard normal distribution. Remember that qnorm takes a probability as an input. You can use default values for all the other arguments.
+> qnorm(p = 0.95)
+# [1] 1.644854
+
