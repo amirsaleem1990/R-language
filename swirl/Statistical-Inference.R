@@ -985,3 +985,8 @@ mydf <- num / den
 132.86-127.44 +c(-1,1)*qt(.975,mydf)*sqrt(15.34^2/8 + 18.23^2/21)
 # [1] -8.913327 19.753327
 
+# Don't worry about these nasty calculations. R makes things a lot easier. If you call t.test with var.equal set to FALSE, then R calculates the degrees of freedom for you. You don't have to memorize the formula.
+
+#############################################################################
+# 10: Hypothesis Testing                                                    #
+#############################################################################
