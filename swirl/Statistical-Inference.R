@@ -1045,3 +1045,6 @@ mydf <- num / den
 > 32-30/1
 # [1] 2
 
+# Q: The Z score is 2. The quantile is 1.645, so since 2>1.645. What do we do with H_0?
+# Ans: reject it
+
