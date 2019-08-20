@@ -751,3 +751,11 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Ans: False
 
 # Q: To calculate a confidence interval for a mean you take the sample mean and add and subtract the relevant normal quantile times the what?
+# Ans: standard error
+
+# Q: For a 95% confidence interval approximately how many standard errors would you add and subtract from the sample mean?
+# Ans: 2
+
+# Q:  If you wanted increased coverage what would you do to your confidence interval?
+# Ans: increase it
+
