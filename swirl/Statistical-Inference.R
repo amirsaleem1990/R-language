@@ -1212,3 +1212,9 @@ mydf <- num / den
 # We rejected H_0 because our data (the test statistic actually) favored H_a. The test statistic 2 (shown(image-29.png) by the vertical blue line) falls in the shaded portion of this figure because it exceeds the quantile. As you know, the shaded portion represents 5% of the area under the curve.
 
 # Now try the 99th percentile to see if we would still reject H_0.
+> qnorm(.99)
+# [1] 2.326348
+
+# Q:  Would we reject H_0 if alpha were .01?
+# Ans: No
+
