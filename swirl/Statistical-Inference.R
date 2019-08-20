@@ -500,3 +500,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > 1.96*2+3
 # [1] 6.92
 
+# Suppose you have a normal distribution with mean 1020 and standard deviation of 50 and you want to compute the probability that the associated random variable X > 1200. The easiest way to do this is to use R's pnorm function in which you specify the quantile (1200), the mean (1020) and standard deviation (50). You also must specify that the lower.tail is FALSE since we're asking for a probability that the random variable is greater than our quantile. Do this now.
+> pnorm(q = 1200, mean = 1020, sd = 50, lower.tail = FALSE)
+# [1] 0.0001591086
+
