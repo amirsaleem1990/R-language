@@ -611,3 +611,8 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > qnorm(p = 0.95)
 # [1] 1.644854
 
+# As we've seen before, in a binomial distribution in which p represents the probability or proportion of success, the variance sigma^2 is p(1-p), so the standard error of the sample mean p' is sqrt(p(1-p)/n) where n is the sample size. The 95% confidence interval of p is then p' +/- 2*sqrt(p(1-p)/n).
+# Q: The 2 in this formula represents what?
+# Ans: the approximate 97.5% normal quantile
+
+# A critical point here is that we don't know the true value of p; that's what we're trying to estimate. How can we compute a confidence interval if we don't know p(1-p)? We could be conservative and try to maximize it so we get the largest possible confidence interval. Calculus tells us that p(1-p) is maximized when p=1/2, so we get the biggest 95% confidence interval when we set p=1/2 in the formula p'+/- 2*sqrt(p(1-p)/n).
