@@ -478,6 +478,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # When mu = 0 and sigma = 1 the resulting distribution is called the standard normal distribution and it is often labeled Z.
 
 # The R function qnorm(prob) returns the value of x (quantile) for which the area under the standard normal distribution to the left of x equals the parameter prob. (Recall that the entire area under the curve is 1.) Use qnorm now to find the 10th percentile of the standard normal. Remember the argument prob must be between 0 and 1. You don't have to specify any of the other parameters since the default is the standard normal.
+> qnorm(0.1)
+# [1] -1.281552
+
 
 
 
