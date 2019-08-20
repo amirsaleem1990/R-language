@@ -487,6 +487,8 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: can you say what the 50th percentile is?
 # Ans: 0
 
+# Q: We can use the symmetry of the bell curve to determine other quantiles. Given that 2.5% of the area under the curve falls to the left of x=-1.96, what is the 97.5 percentile for the standard normal?
+# Ans: 1.96
 
 
 
