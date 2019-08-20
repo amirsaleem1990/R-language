@@ -945,3 +945,17 @@ sp <- sqrt(sp / ns)
 
 # Notice that 0 is contained in this 95% interval. That means that you can't rule out that the means of the two groups are equal since a difference of 0 is in the interval.
 # Getting tired? Let's revisit the sleep problem and instead of looking at the data as paired over 10 subjects we'll look at it as two independent sets each of size 10. Recall the data is stored in the two vectors g1 and g2; we've also stored the difference between their means in the variable md.
+
+# Let's compute the sample pooled variance and store it in the variable sp. Recall that this is the sqrt(weighted sums of sample variances/deg of freedom). The weight of each is the sample size-1. Use the R function var to compute the variances of g1 and g2. The degrees of freedom is 10+10-2 = 18.
+sp <- sqrt((9*var(g1)+9*var(g2))/18)
+
+# Now the last term of the formula, the standard error of the mean difference, is simply sp times the square root of the sum 1/10 + 1/10. Find the 95% t confidence interval of the mean difference of the two groups g1 and g2. Substitute md and sp into the formula you used above.
+> md + c(-1,1)*qt(.975,18)*sp*sqrt(1/5)
+# [1] -0.203874  3.363874
+
+# We can check this manual calculation against the R function t.test. Since we subtracted g1 from g2, be sure to place g2 as your first argument and g1 as your second. Also make sure the argument paired is FALSE and var.equal is TRUE. We only need the confidence interval so use the construct x$conf.  Do this now.
+> t.test(g2, g1, paired = FALSE, var.equal = TRUE)$conf
+# [1] -0.203874  3.363874
+# attr(,"conf.level")
+# [1] 0.95
+
