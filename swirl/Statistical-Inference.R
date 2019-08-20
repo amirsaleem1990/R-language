@@ -690,3 +690,21 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 
 # To show this simply, we wrote a function ACCompar, which takes an integer input n. For each k from 1 to n it computes two fractions, k/n and (k+2)/(n+4). It then prints out the boolean vector of whether the new (k+2)/(n+4) fraction is less than the old k/n. It also prints out the total number of k's for which the condition is TRUE.
 # For all k less than n/2, you see FALSE indicating that the new fraction is greater than or equal to k/n. For all k greater than n/2 you see TRUE indicating that the new fraction is less than the old. If k=n/2 the old and new fractions are equal.
+> ACCompar
+# function(n){
+#   num <- 1:n 
+#   den <- n
+#   nn <- num+2
+#   nd <- den+4
+#   nf <- nn/nd
+#   of <- num/den
+#   scor <- nf<of
+#   print(scor)
+#   sum(scor)
+# }
+
+> ACCompar(20)
+# [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+# [14]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+# [1] 10
+
