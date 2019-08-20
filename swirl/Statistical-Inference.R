@@ -730,3 +730,20 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Pretty close, right? Now to check the coverage of our estimate we'll run the same simulation experiment we ran before with binomial distributions. We'll vary our lambda values from .005 to .1 with steps of .01 (so we have 10 of them), and for each one we'll generate 1000 Poisson samples with mean lambda*t. We'll calculate sample means and use them to compute 95% confidence intervals. We'll then count how often out of the 1000 simulations the true mean (our lambda) was contained in the computed interval.
 # Here's a plot(image-19.png) of the results. We see that the coverage improves as lambda gets larger, and it's quite off for small lambda values.
 # Now it's interesting to see how the coverage improves when we increase the unit of time. In the previous plot(image-19.png) we used t=100 (rounding the 94.32 up). Here's a plot(image-20.png) of the same experiment setting t=1000. We see that the coverage is much better for almost all the values of lambda, except for the smallest ones.
+
+# Now for a quick review!
+# Q: What tells us that averages of iid samples converge to the population means that they are estimating?
+# Ans: the law of large numbers
+
+# Q: What tells us that averages are approximately normal for large enough sample sizes
+# Ans: the CLT
+
+# Q: The Central Limit Theorem (CLT) tells us that averages have what kind of distributions?
+# Ans: normal
+
+# Q: The Central Limit Theorem (CLT) tells us that averages have normal distributions centered at what?
+# Ans: the population mean
+
+# Q: The Central Limit Theorem (CLT) tells us that averages have normal distributions with standard deviations equal to what?
+# Ans: the standard error
+
