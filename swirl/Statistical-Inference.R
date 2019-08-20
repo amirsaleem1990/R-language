@@ -515,3 +515,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Note that R functions pnorm and qnorm are inverses. 
 # Q: What would you expect pnorm(qnorm(.53)) to return?
 # Ans: 0.53
+
+# Q:  How about qnorm(pnorm(.53))?
+# Ans: 0.53
+
