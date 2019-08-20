@@ -893,3 +893,10 @@ difference <- g2 - g1
 > mn + c(-1,1) * qt(.975, 9) * s / sqrt(10)
 # [1] 0.7001142 2.4598858
 
+# This says that with probability .95 the average difference of effects (between the two drugs) for an individual patient is between .7 and 2.46 additional hours of sleep.
+# We could also just have used the R function t.test with the argument difference to get this result. (You can use the default values for all the other arguments.) As with the other R test functions, this returns a lot of information. Since all we're interested in at the moment is the confidence interval we can pick this off with the construct x$conf.int. Try this now.
+> t.test(difference)$conf.int
+# [1] 0.7001142 2.4598858
+# attr(,"conf.level")
+# [1] 0.95
+
