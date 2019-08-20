@@ -635,3 +635,8 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Ans: confident
 
 # Another technique for calculating confidence intervals for binomial distributions is to replace p with p'. This is called the Wald confidence interval. We can also use the R function qnorm to get a more precise quantile value (closer to 1.96) instead of our ballpark estimate of 2.
+
+# Q: With the formula p'+/- qnorm(.975)*sqrt(p'(1-p')/100), use the p' and n values from above and the R construct p'+c(-1,1)... to handle the plus/minus portion of the formula. You should see bounds similar to the ones you just estimated.
+> 0.6 + c(-1,1) * qnorm(0.975) * sqrt(0.6 * (1 - 0.6)/100)
+# [1] 0.5039818 0.6960182
+
