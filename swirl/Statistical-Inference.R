@@ -570,3 +570,5 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # }
 
 > coinPlot(10)
+# see image-11.png
+
