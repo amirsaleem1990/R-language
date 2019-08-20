@@ -529,3 +529,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # [1] 0.01033605
 
 # Finally, the Poisson distribution approximates the binomial distribution in certain cases. Recall that the binomial distribution is the discrete distribution of the number of successes, k, out of n independent binary trials, each with probability p. If n is large and p is small then the Poisson distribution with lambda equal to n*p is a good approximation to the binomial distribution.
+# To see this, use the R function pbinom to estimate the probability that you'll see at most 5 successes out of 1000 trials each of which has probability .01. As before, you can use the default parameter values (lower.tail=TRUE and log.p=FALSE) and just specify the quantile, size, and probability.
+> pbinom(q = 5, size = 1000, prob = 0.01)
+# [1] 0.06613951
+
