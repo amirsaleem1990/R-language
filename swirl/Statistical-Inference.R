@@ -619,3 +619,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: Using 1/2 for the value of p in the formula above yields what expression for the 95% confidence interval for p?
 # Ans: p'+/- 1/sqrt(n)
 
+# Here's another example of applying this formula from the slides. Suppose you were running for office and your pollster polled 100 people. Of these 60 claimed they were going to vote for you. You'd like to estimate the true proportion of people who will vote for you and you want to be 95% confident of your estimate. We need to find the limits that will contain the true proportion of your supporters with 95% confidence, so we'll use the formula p' +/- 1/sqrt(n) to answer this question.
+# Q: First, what value would you use for p', the sampled estimate?
+# Ans: 0.60
+
