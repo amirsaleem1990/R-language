@@ -1136,3 +1136,15 @@ mydf <- num / den
 #   mean of the differences 
 # 0.9969728 
 
+# Q: The test statistic is what?
+# Ans: 11.7885
+
+# So the test statistic is 11.79 which is quite large so we REJECT the null hypothesis that the true mean of the difference was 0 (if you ran the test on the difference sheight-fheight) or that the true difference in means was 0 (if you ran the test on the two separate but paired columns).
+
+# Q: The test statistic tell us what?
+# Ans: the number of estimated std errors between the sample and hypothesized means
+
+# We can test this by multiplying the t statistic (11.7885) by the standard deviation of the data divided by the square root of the sample size. Specifically run 11.7885 * sd(fs$sheight-fs$fheight)/sqrt(1078).
+> 11.7885 * sd(fs$sheight-fs$fheight)/sqrt(1078)
+# [1] 0.9969686
+
