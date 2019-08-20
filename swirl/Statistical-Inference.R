@@ -759,3 +759,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q:  If you wanted increased coverage what would you do to your confidence interval?
 # Ans: increase it
 
+# Q: If you had less variability in your data would your confidence interval get bigger or smaller?
+# Ans: smaller
+
+# Q: If you had larger sample size would your confidence interval get bigger or smaller?
+# Ans: smaller
+
