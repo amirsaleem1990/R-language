@@ -646,3 +646,38 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # attr(,"conf.level")
 # [1] 0.95
 
+# Close to what we've seen before, right? Now we're going to see that the Wald interval isn't very accurate when n is small. We'll use the example from the slides.
+# Suppose we flip a coin a small number of times, say 20. Also suppose we have a function mywald which takes a probability p, and generates 30 sets of 20 coin flips using that probability p. It uses the sampled proportion of success, p', for those 20 coin flips to compute the upper and lower bounds of the 95% Wald interval, that is, it computes the two numbers p'+/- qnorm(.975) * sqrt(p' * (1-p') / n) for each of the 30 trials. For the given true probability p, we count the number of times out of those 30 trials that the true probability p was in the Wald confidence interval. We'll call this the coverage.
+# To make sure you understand what's going on, try running mywald now with the probability .2. It will print out 30 p' values (which you don't really need to see), followed by 30 lower bounds, 30 upper bounds and lastly the percentage of times that the input .2 was between the two bounds. See if you agree with the percentage you get. Usually it suffices to just count the number of times (out of the 30) that .2 is less than the upper bound.
+> mywald
+# function(p){
+#   phats <- rbinom(nosim, prob = p, size = n) / n
+#   ll <- phats - qnorm(.975) * sqrt(phats * (1 - phats) / n)
+#   ul <- phats + qnorm(.975) * sqrt(phats * (1 - phats) / n)
+#   print("Here are the p\' values")
+#   print(phats)
+#   print("Here are the lower")
+#   print(ll)
+#   print("Here are the upper")
+#   print(ul)
+#   mean(ll < p & ul > p)
+# }
+
+> mywald(.2)
+# [1] "Here are the p' values"
+# [1] 0.25 0.25 0.15 0.15 0.15 0.05 0.05 0.15 0.00 0.10 0.25 0.10 0.15 0.10 0.10 0.35
+# [17] 0.35 0.15 0.20 0.20 0.10 0.25 0.15 0.10 0.20 0.10 0.05 0.25 0.20 0.10
+# [1] "Here are the lower"
+# [1]  0.060227303  0.060227303 -0.006490575 -0.006490575 -0.006490575 -0.045516829
+# [7] -0.045516829 -0.006490575  0.000000000 -0.031478381  0.060227303 -0.031478381
+# [13] -0.006490575 -0.031478381 -0.031478381  0.140962697  0.140962697 -0.006490575
+# [19]  0.024695492  0.024695492 -0.031478381  0.060227303 -0.006490575 -0.031478381
+# [25]  0.024695492 -0.031478381 -0.045516829  0.060227303  0.024695492 -0.031478381
+# [1] "Here are the upper"
+# [1] 0.4397727 0.4397727 0.3064906 0.3064906 0.3064906 0.1455168 0.1455168 0.3064906
+# [9] 0.0000000 0.2314784 0.4397727 0.2314784 0.3064906 0.2314784 0.2314784 0.5590373
+# [17] 0.5590373 0.3064906 0.3753045 0.3753045 0.2314784 0.4397727 0.3064906 0.2314784
+# [25] 0.3753045 0.2314784 0.1455168 0.4397727 0.3753045 0.2314784
+# [1] 0.8666667
+
+
