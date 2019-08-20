@@ -537,3 +537,8 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > ppois(q = 5, lambda = 1000*0.01)
 # [1] 0.06708596
 # See how they're close? Pretty cool, right? This worked because n was large (1000) and p was small (.01).
+
+
+###########################################################################
+# 8: Asymptotics                                                          #
+###########################################################################
