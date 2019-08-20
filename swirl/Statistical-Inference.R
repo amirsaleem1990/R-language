@@ -1089,3 +1089,7 @@ mydf <- num / den
 > (32-30)/(10/4)
 # [1] 0.8
 
+# Q:  How many degrees of freedom do we have with a sample size of 16?
+# Ans: 15
+
+# Q: Under H_0, the probability that the test statistic is larger than the 95th percentile of the t distribution is 5%. Use the R function qt with the arguments .95 and the correct number of degrees of freedom to find the quantile.
