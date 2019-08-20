@@ -717,3 +717,13 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Set a variable lamb now with this value.
 > lamb <- 5/94.32
 
+# So lamb is our estimated mean and lamb/t is our estimated variance. The formula we've used to calculate a 95% confidence interval is est mean + c(-1,1)*qnorm(.975)*sqrt(est var). Use this formula now making the appropriate substitutions.
+> lamb +c(-1,1) * qnorm(.975) * sqrt(lamb/94.32)
+# [1] 0.006545667 0.099476386
+
+# As a check we can use R's function poisson.test with the arguments 5 and 94.32 to check this result. This is an exact test so it guarantees coverage. As with the binomial exact test, we only need to look at the conf portion of the result using the x$conf construct. Do this now.
+> poisson.test(5, 94.32)$conf
+# [1] 0.01721254 0.12371005
+# attr(,"conf.level")
+# [1] 0.95
+
