@@ -936,7 +936,12 @@ difference <- g2 - g1
 # Now how many degrees of freedom are there? Put your answer in the variable ns.
 ns <- 8 + 21 - 2
 
-# Now how many degrees of freedom are there? Put your answer in the variable ns.
+# Now divide sp by ns, take the square root and put the result back in sp.
 sp <- sqrt(sp / ns)
 
+# Now to find the 95% confidence interval. Recall our basic formula X' +/- t_(n-1)*s/sqrt(n) and all the changes we need to make for working with two independent samples. We'll plug in the difference of the sample means for X' and our variable ns for the degrees of freedom when finding the t quantile. For the standard error, we multiply sp by the square root of the sum 1/n_{oc} + 1/n_{c}. The values for this problem are X'_{oc}=132.86 and X'_{c}=127.44, n_{oc}=8 and n_{c}=21. Be sure to use the R construct c(-1,1) for the +/- portion and the R function qt with the correct percentile and degrees of freedom.
+> 132.86 - 127.44 + c(-1,1) * qt(.975, ns) * sp * sqrt(1/8+1/21)
+# [1] -9.521097 20.361097
 
+# Notice that 0 is contained in this 95% interval. That means that you can't rule out that the means of the two groups are equal since a difference of 0 is in the interval.
+# Getting tired? Let's revisit the sleep problem and instead of looking at the data as paired over 10 subjects we'll look at it as two independent sets each of size 10. Recall the data is stored in the two vectors g1 and g2; we've also stored the difference between their means in the variable md.
