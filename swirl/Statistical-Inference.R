@@ -481,6 +481,9 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > qnorm(0.1)
 # [1] -1.281552
 
+# Q: Which of the following would you expect to be the 1st percentile?
+# Ans: -2.33
+
 
 
 
