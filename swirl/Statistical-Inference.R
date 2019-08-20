@@ -504,3 +504,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > pnorm(q = 1200, mean = 1020, sd = 50, lower.tail = FALSE)
 # [1] 0.0001591086
 
+# Alternatively, we could use the formula above to transform the given distribution to a standard normal. We compute the number of standard deviations the specified number (1200) is from the mean with Z = (X -mu)/sigma. This is our new quantile. We can then use the standard normal distribution and the default values of pnorm. Remember to specify that lower.tail is FALSE.  Do this now.
+> pnorm((1200 - 1020) / 50, lower.tail = FALSE)
+# [1] 0.0001591086
+
