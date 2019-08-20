@@ -1002,3 +1002,10 @@ mydf <- num / den
 # Q:  Which of the following outcomes would be an error?
 # Ans: H_0 is TRUE and we reject it
 
+#  So it's correct to accept a true hypothesis or reject a false one. Pretty clear, right?
+# The errors are also clear - rejecting a true hypothesis or accepting a false one.
+# We distinguish between these two errors. A Type I error REJECTS a TRUE null hypothesis H_0 and a Type II error ACCEPTS a FALSE null hypothesis H_0.
+
+# Q: Can we ever be sure that we're absolutely right?
+# Ans: No
+
