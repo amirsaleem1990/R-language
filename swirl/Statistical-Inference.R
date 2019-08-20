@@ -747,3 +747,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: The Central Limit Theorem (CLT) tells us that averages have normal distributions with standard deviations equal to what?
 # Ans: the standard error
 
+# Q: True or False - The Central Limit Theorem (CLT) tells us that averages always have normal distributions no matter how big the sample size
+# Ans: False
+
+# Q: To calculate a confidence interval for a mean you take the sample mean and add and subtract the relevant normal quantile times the what?
