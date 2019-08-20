@@ -623,3 +623,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q: First, what value would you use for p', the sampled estimate?
 # Ans: 0.60
 
+# Q: What would you use for 1/sqrt(n)?
+# hint: The sample size is n, and in this case n=100. What is 1/sqrt(100)?
+# Ans: 1/10
+
