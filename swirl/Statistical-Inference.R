@@ -533,3 +533,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > pbinom(q = 5, size = 1000, prob = 0.01)
 # [1] 0.06613951
 
+# Now use the function ppois with quantile equal to 5 and lambda equal to n*p to see if you get a similar result.
+> ppois(q = 5, lambda = 1000*0.01)
+# [1] 0.06708596
+# See how they're close? Pretty cool, right? This worked because n was large (1000) and p was small (.01).
