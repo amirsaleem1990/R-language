@@ -1197,5 +1197,18 @@ mydf <- num / den
 > pt(q = 2.5, df = 15, lower.tail = FALSE)
 # [1] 0.0122529
 
+# This result tells us that, if H_0 were true, we would see this large a test statistic with probability 1% which is rather a small probability.
 
+# Q: What should we do?
+# Ans: Reject H_0
 
+# Another way to think about a p-value is as an attained significance level. This is a fancy way of saying that the p-value is the smallest value of alpha at which you will reject the null hypothesis.
+# Recall the example from our last lesson in which we computed a test statistic of 2. Our H_0 said that mu_0 = 30 and the alternative H_a that mu > 30. Assume we used a Z test (normal distribution). We rejected the one sided test when alpha was set to 0.05.
+
+# Q: Why did we reject? Find the quantile associated with this test, that's the place to start. Use qnorm at the 95th percentile.
+> qnorm(.95)
+# [1] 1.644854
+
+# We rejected H_0 because our data (the test statistic actually) favored H_a. The test statistic 2 (shown(image-29.png) by the vertical blue line) falls in the shaded portion of this figure because it exceeds the quantile. As you know, the shaded portion represents 5% of the area under the curve.
+
+# Now try the 99th percentile to see if we would still reject H_0.
