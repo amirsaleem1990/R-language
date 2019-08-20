@@ -959,3 +959,9 @@ sp <- sqrt((9*var(g1)+9*var(g2))/18)
 # attr(,"conf.level")
 # [1] 0.95
 
+# Pretty cool that it matches, right? Note that 0 is again in this 95% interval so you can't reject the claim that the two groups are the same. (Recall that this is the opposite of what we saw with paired data.) Let's run t.test again, this time with paired=TRUE and see how different the result is. Don't specify var.equal and look only at the confidence interval.
+> t.test(g2, g1, paired = TRUE)$conf
+# [1] 0.7001142 2.4598858
+# attr(,"conf.level")
+# [1] 0.95
+
