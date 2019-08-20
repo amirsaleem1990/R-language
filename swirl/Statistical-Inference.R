@@ -1025,3 +1025,5 @@ mydf <- num / den
 > 10 / sqrt(100)
 # [1] 1
 
+# Under H_0, X' is normally distributed with mean mu=30 and variance 1. (We're estimating the variance as the square of the standard error which in this case is 1.) We want to choose the constant C so that the probability that X is greater than C given H_0 is 5%. That is, P(X > C H_0) is 5%. Sound familiar?
+# Here's a plot(image-26.png) to show what we mean. The shaded portion represents 5% of the area under the curve and those X values in it are those for which the probability that X>C is 5%.
