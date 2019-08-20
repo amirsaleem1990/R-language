@@ -508,3 +508,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > pnorm((1200 - 1020) / 50, lower.tail = FALSE)
 # [1] 0.0001591086
 
+# For practice, using the same distribution, find the 75% percentile. Use qnorm and specify the probability (.75), the mean (1020) and standard deviation (50). Since we want to include the left part of the curve we can use the default lower.tail=TRUE.
+> qnorm(p = 0.75, mean = 1020, sd = 50)
+# [1] 1053.724
+
