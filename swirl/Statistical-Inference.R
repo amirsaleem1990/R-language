@@ -1057,3 +1057,10 @@ mydf <- num / den
 # Let's review and expand. Our null hypothesis is that the population mean mu equals the value mu_0 and alpha=.05. (This is the probability that we reject H_0 if it's true.) We can have several different alternative hypotheses.
 # Suppose our first alternative, H_a, is that mu < mu_0. We would reject H_0 (and accept H_a) when our observed sample mean is significantly less than mu_0. That is, our test statistic (X'-mu) / (s/sqrt(n)) is less than Z_alpha. Specifically, it is more than 1.64 standard deviations to the left of the mean mu_0.
 # Here's a plot(image-27.png) to show what we mean. The shaded portion represents 5% of the area under the curve and those X values in it are those which are at least 1.64 standard deviations less than the mean. The probability of this is 5%. This means that if our sample mean fell in this area, we would reject a true null hypothesis, mu=mu_0, with probability 5%.
+
+# Q:  We already covered the alternative hypothesis H_a that mu > mu_0 but let's review it. We would reject H_0 (and accept H_a) when our sample mean is what?
+# Ans: significantly greater than mu_0
+
+# Q:  This means that our test statistic (X'-mu) / (s/sqrt(n)) is what?
+# Ans: at least 1.64 std dev greater than mu_0
+
