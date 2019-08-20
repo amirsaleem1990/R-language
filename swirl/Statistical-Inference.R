@@ -927,4 +927,16 @@ difference <- g2 - g1
 # Q:  Which of the following represents the total number of degrees of freedom?
 # Ans: (n_x-1)+(n_y-1)
 
+# Now recall we're calculating the standard error term which for the single group case was s/sqrt(n). We've got the numerator done, by pooling the sample variances. How do we handle the 1/sqrt(n) portion? We can simply add 1/n_x and 1/n_y and take the square root of the sum. Then we MULTIPLY this by the sample variance to complete the estimate of the standard error.
+# Now we'll plug in some numbers from the slides based on an example from Rosner's book Fundamentals of Biostatistics, a very good, if heavy, reference book. We want to compare blood pressure from two independent groups.
+
+#  The first is a group of 8 oral contraceptive users and the second is a group of 21 controls. The two means are X'_{oc}=132.86 and X'_{c}=127.44, and the two sample standard deviations are s_{oc}= 15.34 and s_{c}= 18.23. Let's first compute the numerator of the pooled sample variance by weighting the sum of the two by their respective sample sizes. Recall the formula (n_x-1)(S_x)^2+(n_y-1)(S_y)^2 and fill in the values to create a variable sp.
+> sp <- (7 * 15.34^2) + (20 * 18.23^2)
+
+# Now how many degrees of freedom are there? Put your answer in the variable ns.
+ns <- 8 + 21 - 2
+
+# Now how many degrees of freedom are there? Put your answer in the variable ns.
+sp <- sqrt(sp / ns)
+
 
