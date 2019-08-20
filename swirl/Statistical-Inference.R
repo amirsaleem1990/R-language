@@ -1124,3 +1124,15 @@ mydf <- num / den
 > dim(fs)
 # [1] 1078    2
 
+# So fs has 1078 rows and 2 columns. The columns, fheight and sheight, contain the heights of a father and his son. Obviously there are 1078 such pairs. We can run t.test on this data in one of two ways. First, we can run it with just one argument, the difference between the heights, say fs$sheight-fs$fheight. OR we can run it with three arguments, the two heights plus the paired argument set to TRUE. Run t.test now using whichever way you prefer.
+> t.test(fs$sheight, fs$fheight, paired = TRUE)
+# Paired t-test
+# data:  fs$sheight and fs$fheight
+# t = 11.789, df = 1077, p-value < 2.2e-16
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   0.8310296 1.1629160
+# sample estimates:
+#   mean of the differences 
+# 0.9969728 
+
