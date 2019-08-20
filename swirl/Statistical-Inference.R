@@ -528,3 +528,4 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 > ppois(q = 3, lambda = 2.5 * 4)
 # [1] 0.01033605
 
+# Finally, the Poisson distribution approximates the binomial distribution in certain cases. Recall that the binomial distribution is the discrete distribution of the number of successes, k, out of n independent binary trials, each with probability p. If n is large and p is small then the Poisson distribution with lambda equal to n*p is a good approximation to the binomial distribution.
