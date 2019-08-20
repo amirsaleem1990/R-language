@@ -493,3 +493,6 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Here are two useful facts concerning normal distributions. If X is a normal random variable with mean mu and variance sigma^2, i.e., X ~ N(mu,sigma^2) then the random variable Z defined as Z = (X -mu)/sigma is normally distributed with mean 0 and variance 1, i.e., Z ~ N(0, 1). (Z is standard normal.)
 # The converse is also true. If Z is standard normal, i.e., Z ~ N(0,1), then the random variable X defined as X = mu + sigma*Z is normally distributed with mean mu and variance sigma^2, i.e., X ~ N(mu, sigma^2)
 # These formulae allow you to easily compute quantiles (and thus percentiles) for ANY normally distributed variable if you know its mean and variance. We'll show how to find the 97.5th percentile of a normal distribution with mean 3 and variance 4.
+> qnorm(mean = 3, sd = 2, p = 0.975)
+# [1] 6.919928
+
