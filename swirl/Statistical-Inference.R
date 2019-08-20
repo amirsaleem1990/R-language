@@ -768,3 +768,7 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Q:  A quick fix for small sample size binomial calculations is what?
 # Ans: add 2 successes and 2 failures
 
+#############################################################################
+# 9: T Confidence Intervals                                                 #
+#############################################################################
+
