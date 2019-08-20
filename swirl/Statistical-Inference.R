@@ -829,4 +829,1013 @@ pbinom(2, size = 5, prob = 0.8, lower.tail = FALSE)
 # Check the placement of the horizontal now using the R function qt with the arguments .975 for the quantile and 2 for the degrees of freedom (df).
 > qt(.975, df = 2)
 # [1] 4.302653
+# See? It matches the horizontal line of the plot.
+
+# Now run myplot2 with an argument of 20.
+> myplot2(20)
+# see image-24.png
+# The quantiles are much closer together with the higher degrees of freedom. At the 97.5 percentile, though, the t quantile is still greater than the normal. Student's Rules!
+# This means the the t interval is always wider than the normal. This is because estimating the standard deviation introduces more uncertainty so a wider interval results.
+# So the t-interval is defined as X' +/- t_(n-1)*s/sqrt(n) where t_(n-1) is the relevant quantile. The t interval assumes that the data are iid normal, though it is robust to this assumption and works well whenever the distribution of the data is roughly symmetric and mound shaped.
+
+# Q: Our plots showed us that for large degrees of freedom, t quantiles become close to what?
+# Ans: standard normal quantiles
+
+# Although it's pretty great, the t interval isn't always applicable. For skewed distributions, the spirit of the t interval assumptions (being centered around 0) are violated. There are ways of working around this problem (such as taking logs or using a different summary like the median).
+# For highly discrete data, like binary, intervals other than the t are available.
+# However, paired observations are often analyzed using the t interval by taking differences between the observations. We'll show you what we mean now.
+# We hope you're not tired because we're going to look at some sleep data. This was the data originally analyzed in Gosset's Biometrika paper, which shows the increase in hours for 10 patients on two soporific drugs.
+# We've loaded the data for you. R treats it as two groups rather than paired. To see what we mean type sleep now. This will show you how the data is stored.
+3: the standard error of p'
+4: the mean of p'
+
+Selection: 1
+
+| You are quite good my friend!
+  
+  |=============================                                             |  40%
+| A critical point here is that we don't know the true value of p; that's what
+| we're trying to estimate. How can we compute a confidence interval if we don't
+| know p(1-p)? We could be conservative and try to maximize it so we get the
+| largest possible confidence interval. Calculus tells us that p(1-p) is maximized
+| when p=1/2, so we get the biggest 95% confidence interval when we set p=1/2 in
+| the formula p'+/- 2*sqrt(p(1-p)/n).
+
+...
+
+  |==============================                                            |  41%
+| Using 1/2 for the value of p in the formula above yields what expression for the
+| 95% confidence interval for p?
+
+1: p'+/- 1/sqrt(n)
+2: p'+/- 1/(2*sqrt(n))
+3: p'+/- 2*sqrt(n)
+
+Selection: 2
+
+| Not quite, but you're learning! Try again.
+
+| p(1-p)=1/4 when p=1/2 and the sqrt(1/4n)=1/(2*sqrt(n)). What happens when you
+| multiply this by 2?
+
+1: p'+/- 1/(2*sqrt(n))
+2: p'+/- 1/sqrt(n)
+3: p'+/- 2*sqrt(n)
+
+Selection: 2
+
+| You got it!
+  
+  |===============================                                           |  42%
+| Here's another example of applying this formula from the slides. Suppose you were
+| running for office and your pollster polled 100 people. Of these 60 claimed they
+| were going to vote for you. You'd like to estimate the true proportion of people
+| who will vote for you and you want to be 95% confident of your estimate. We need
+| to find the limits that will contain the true proportion of your supporters with
+| 95% confidence, so we'll use the formula p' +/- 1/sqrt(n) to answer this
+| question. First, what value would you use for p', the sampled estimate?
+
+1: .10
+2: .56
+3: .60
+4: 1.00
+
+Selection: 3
+
+| All that hard work is paying off!
+
+  |================================                                          |  44%
+| What would you use for 1/sqrt(n)?
+
+1: 1/10
+2: 1/sqrt(56)
+3: 1/sqrt(60)
+4: 1/100
+
+Selection: 3
+
+| That's not the answer I was looking for, but try again.
+
+| The sample size is n, and in this case n=100. What is 1/sqrt(100)?
+  
+  1: 1/sqrt(56)
+2: 1/10
+3: 1/100
+4: 1/sqrt(60)
+
+Selection: 1
+
+| Not exactly. Give it another go.
+
+| The sample size is n, and in this case n=100. What is 1/sqrt(100)?
+  
+  1: 1/sqrt(60)
+2: 1/sqrt(56)
+3: 1/10
+4: 1/100
+
+Selection: 3
+
+| You got it right!
+  
+  |=================================                                         |  45%
+| The bounds of the interval then are what?
+  
+  1: I haven't a clue
+2: .5 and .7
+3: .55 and .65
+4: .46 and .66
+
+Selection: 2
+
+| That's the answer I was looking for.
+
+|==================================                                        |  47%
+| How do you feel about the election?
+  
+  1: I'll pull out
+2: Perseverance, that's the answer
+3: confident
+4: unsure
+
+Selection: 3
+
+| You are really on a roll!
+  
+  |===================================                                       |  48%
+| Another technique for calculating confidence intervals for binomial distributions
+| is to replace p with p'. This is called the Wald confidence interval. We can also
+| use the R function qnorm to get a more precise quantile value (closer to 1.96)
+| instead of our ballpark estimate of 2.
+
+...
+
+  |====================================                                      |  49%
+| With the formula p'+/- qnorm(.975)*sqrt(p'(1-p')/100), use the p' and n values
+| from above and the R construct p'+c(-1,1)... to handle the plus/minus portion of
+| the formula. You should see bounds similar to the ones you just estimated.
+
+> 0.6 + c(-1,1) * qnorm(0.975) * sqrt(0.6 * (1 - 0.6)/100)
+[1] 0.5039818 0.6960182
+
+| Keep working like that and you'll get there!
+
+  |======================================                                    |  51%
+| As an alternative to this Wald interval, we can also use the R function
+| binom.test with the parameters 60 and 100 and let all the others default. This
+| function "performs an exact test of a simple null hypothesis about the
+| probability of success in a Bernoulli experiment." (This means it guarantees the
+| coverages, uses a lot of computation and doesn't rely on the CLT.) This function
+| returns a lot of information but all we want now are the values of the confidence
+| interval that it returns. Use the R construct x$conf.int to find these now.
+
+> binom(60, 100)$conf.int
+Error in binom(60, 100) : could not find function "binom"
+> binom(60, 100)
+Error in binom(60, 100) : could not find function "binom"
+> binom.test(60, 100)$conf.int
+[1] 0.4972092 0.6967052
+attr(,"conf.level")
+[1] 0.95
+
+| You are really on a roll!
+  
+  |=======================================                                   |  52%
+| Close to what we've seen before, right? Now we're going to see that the Wald
+| interval isn't very accurate when n is small. We'll use the example from the
+| slides.
+
+...
+
+|========================================                                  |  53%
+| Suppose we flip a coin a small number of times, say 20. Also suppose we have a
+| function mywald which takes a probability p, and generates 30 sets of 20 coin
+| flips using that probability p. It uses the sampled proportion of success, p',
+| for those 20 coin flips to compute the upper and lower bounds of the 95% Wald
+| interval, that is, it computes the two numbers p'+/- qnorm(.975) * sqrt(p' *
+| (1-p') / n) for each of the 30 trials. For the given true probability p, we count
+| the number of times out of those 30 trials that the true probability p was in the
+| Wald confidence interval. We'll call this the coverage.
+
+...
+
+  |=========================================                                 |  55%
+| To make sure you understand what's going on, try running mywald now with the
+| probability .2. It will print out 30 p' values (which you don't really need to
+| see), followed by 30 lower bounds, 30 upper bounds and lastly the percentage of
+| times that the input .2 was between the two bounds. See if you agree with the
+| percentage you get. Usually it suffices to just count the number of times (out of
+                                                                             | the 30) that .2 is less than the upper bound.
+
+> mywald
+function(p){
+  phats <- rbinom(nosim, prob = p, size = n) / n
+  ll <- phats - qnorm(.975) * sqrt(phats * (1 - phats) / n)
+  ul <- phats + qnorm(.975) * sqrt(phats * (1 - phats) / n)
+  print("Here are the p\' values")
+  print(phats)
+  print("Here are the lower")
+  print(ll)
+  print("Here are the upper")
+  print(ul)
+  mean(ll < p & ul > p)
+}
+<environment: 0x55be8b6b3e30>
+  
+  | Almost! Try again. Or, type info() for more options.
+
+| Type mywald(.2) at the command prompt.
+
+> mywald(.2)
+[1] "Here are the p' values"
+[1] 0.25 0.25 0.15 0.15 0.15 0.05 0.05 0.15 0.00 0.10 0.25 0.10 0.15 0.10 0.10 0.35
+[17] 0.35 0.15 0.20 0.20 0.10 0.25 0.15 0.10 0.20 0.10 0.05 0.25 0.20 0.10
+[1] "Here are the lower"
+[1]  0.060227303  0.060227303 -0.006490575 -0.006490575 -0.006490575 -0.045516829
+[7] -0.045516829 -0.006490575  0.000000000 -0.031478381  0.060227303 -0.031478381
+[13] -0.006490575 -0.031478381 -0.031478381  0.140962697  0.140962697 -0.006490575
+[19]  0.024695492  0.024695492 -0.031478381  0.060227303 -0.006490575 -0.031478381
+[25]  0.024695492 -0.031478381 -0.045516829  0.060227303  0.024695492 -0.031478381
+[1] "Here are the upper"
+[1] 0.4397727 0.4397727 0.3064906 0.3064906 0.3064906 0.1455168 0.1455168 0.3064906
+[9] 0.0000000 0.2314784 0.4397727 0.2314784 0.3064906 0.2314784 0.2314784 0.5590373
+[17] 0.5590373 0.3064906 0.3753045 0.3753045 0.2314784 0.4397727 0.3064906 0.2314784
+[25] 0.3753045 0.2314784 0.1455168 0.4397727 0.3753045 0.2314784
+[1] 0.8666667
+
+| All that practice is paying off!
+  
+  |==========================================                                |  56%
+| Now that you understand the underlying principle, suppose instead of 30 trials,
+| we used 1000 trials. Also suppose we did this experiment for a series of
+| probabilities, say from .1 to .9 taking steps of size .05. More specifically,
+| we'll call our function using 17 different probabilities, namely .1, .15, .2,
+| .25, ... .9 . We can then plot the percentages of coverage for each of the
+| probabilities.
+
+...
+
+  |===========================================                               |  58%
+| Here's the plot of our results. Each of the 17 vertices show the percentage of
+| coverage for a particular true probability p passed to the function. Results will
+| vary, but usually the only probability that hits close to or above the 95% line
+| is the p=.5 . So this shows that when n, the number of flips, is small (20) the
+| CLT doesn't hold for many values of p, so the Wald interval doesn't work very
+| well.
+
+...
+
+|============================================                              |  59%
+| Let's try the same experiment and increase n, the number of coin flips in each of
+| our 1000 trials, from 20 to 100 to see if the plot improves. Again, results may
+| vary, but all the probabilities are much closer to the 95% line, so the CLT works
+| better with a bigger value of n.
+
+...
+
+  |=============================================                             |  60%
+| A quick fix to the problem of having a small n is to use the Agresti/Coull
+| interval. This simply means we add 2 successes and 2 failures to the counts when
+| calculating the proportion p'. Specifically, if X is the number of successes out
+| of the 20 coin flips, then instead of setting p'=X/20, let p'=(X+2)/24. We use 24
+| as the number of trials since we've added 2 successes and 2 failures to the
+| counts. Note that we still use 20 in the calculation of the upper and lower
+| bounds.
+
+...
+
+  |==============================================                            |  62%
+| Here's a plot using this Agresti/Coull interval, with 1000 trials of 20 coin
+| flips each. It looks much better than both the original Wald with 20 coin flips
+| and the improved Wald with 100 coin flips. However, this technique might make the
+| confidence interval too wide.
+
+...
+
+|===============================================                           |  63%
+| Why does this work? Adding 2 successes and 2 failures pulls p' closer to .5
+| which, as we saw, is the value which maximizes the confidence interval.
+
+...
+
+  |================================================                          |  64%
+| To show this simply, we wrote a function ACCompar, which takes an integer input
+| n. For each k from 1 to n it computes two fractions, k/n and (k+2)/(n+4). It then
+| prints out the boolean vector of whether the new (k+2)/(n+4) fraction is less
+| than the old k/n. It also prints out the total number of k's for which the
+| condition is TRUE.
+
+...
+
+|=================================================                         |  66%
+| For all k less than n/2, you see FALSE indicating that the new fraction is
+| greater than or equal to k/n. For all k greater than n/2 you see TRUE indicating
+| that the new fraction is less than the old. If k=n/2 the old and new fractions
+| are equal.
+
+...
+
+|==================================================                        |  67%
+| Try running ACCompar now with an input of 20.
+
+> ACCompar
+function(n){
+  num <- 1:n 
+  den <- n
+  nn <- num+2
+  nd <- den+4
+  nf <- nn/nd
+  of <- num/den
+  scor <- nf<of
+  print(scor)
+  sum(scor)
+}
+<environment: 0x55be90d2bc38>
+  
+  | Not quite! Try again. Or, type info() for more options.
+
+| Type ACCompar(20) at the command prompt.
+
+> ACCompar(20)
+[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+[14]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[1] 10
+
+| All that hard work is paying off!
+  
+  |===================================================                       |  68%
+| Let's move on to Poisson distributions and confidence intervals. Recall that
+| Poisson distributions apply to counts or rates. For the latter, we write
+| X~Poisson(lambda*t) where lambda is the expected count per unit of time and t is
+| the total monitoring time.
+
+...
+
+  |====================================================                      |  70%
+| Here's another example from the slides. Suppose a nuclear pump failed 5 times out
+| of 94.32 days and we want a 95% confidence interval for the failure rate per day.
+| The number of failures X is Poisson distributed with parameter (lambda*t). We
+| don't observe the failure rate, but we estimate it as x/t. Call our estimate
+| lambda_hat, so lambda_hat=x/t. According to theory, the variance of our estimated
+| failure rate is lambda/t. Again, we don't observe lambda, so we use our estimate
+| of it instead. We thus approximate the variance of lambda_hat as lambda_hat/t.
+
+...
+
+|=====================================================                     |  71%
+| In this example what would you use as the estimated mean x/t?
+  
+  1: I haven't a clue
+2: 5/94.32
+3: 94.32/5
+
+Selection: 2
+
+| You got it right!
+
+  |======================================================                    |  73%
+| Set a variable lamb now with this value.
+
+> lamb <- 5/94.32
+
+| All that hard work is paying off!
+
+  |=======================================================                   |  74%
+| So lamb is our estimated mean and lamb/t is our estimated variance. The formula
+| we've used to calculate a 95% confidence interval is est mean +
+  | c(-1,1)*qnorm(.975)*sqrt(est var). Use this formula now making the appropriate
+| substitutions.
+
+> lamb +c(-1,1) * qnorm(.975) * sqrt(lamb/94.32)
+[1] 0.006545667 0.099476386
+
+| That's correct!
+
+  |========================================================                  |  75%
+| As a check we can use R's function poisson.test with the arguments 5 and 94.32 to
+| check this result. This is an exact test so it guarantees coverage. As with the
+| binomial exact test, we only need to look at the conf portion of the result using
+| the x$conf construct. Do this now.
+
+> poisson.test(5, 94.32)$conf
+[1] 0.01721254 0.12371005
+attr(,"conf.level")
+[1] 0.95
+
+| You're the best!
+
+  |=========================================================                 |  77%
+| Pretty close, right? Now to check the coverage of our estimate we'll run the same
+| simulation experiment we ran before with binomial distributions. We'll vary our
+| lambda values from .005 to .1 with steps of .01 (so we have 10 of them), and for
+| each one we'll generate 1000 Poisson samples with mean lambda*t. We'll calculate
+| sample means and use them to compute 95% confidence intervals. We'll then count
+| how often out of the 1000 simulations the true mean (our lambda) was contained in
+| the computed interval.
+
+...
+
+|==========================================================                |  78%
+| Here's a plot of the results. We see that the coverage improves as lambda gets
+| larger, and it's quite off for small lambda values.
+
+...
+
+|===========================================================               |  79%
+| Now it's interesting to see how the coverage improves when we increase the unit
+| of time. In the previous plot we used t=100 (rounding the 94.32 up). Here's a
+| plot of the same experiment setting t=1000. We see that the coverage is much
+| better for almost all the values of lambda, except for the smallest ones.
+
+...
+
+|============================================================              |  81%
+| Now for a quick review!
+  
+  ...
+
+|=============================================================             |  82%
+| What tells us that averages of iid samples converge to the population means that
+| they are estimating?
+  
+  1: the CLT
+2: the law of large numbers
+3: the BLT
+4: the law of small numbers
+
+Selection: 2
+
+| You are amazing!
+  
+  |==============================================================            |  84%
+| What tells us that averages are approximately normal for large enough sample
+| sizes
+
+1: the BLT
+2: the law of large numbers
+3: the CLT
+4: the law of small numbers
+
+Selection: 3
+
+| All that hard work is paying off!
+  
+  |===============================================================           |  85%
+| The Central Limit Theorem (CLT) tells us that averages have what kind of
+| distributions?
+  
+  1: Poisson
+2: normal
+3: binomial
+4: abnormal
+
+Selection: 2
+
+| You're the best!
+
+  |================================================================          |  86%
+| The Central Limit Theorem (CLT) tells us that averages have normal distributions
+| centered at what?
+
+1: the population mean
+2: the population variance
+3: the standard error
+
+Selection: 1
+
+| Nice work!
+
+  |=================================================================         |  88%
+| The Central Limit Theorem (CLT) tells us that averages have normal distributions
+| with standard deviations equal to what?
+
+1: the population variance
+2: the standard error
+3: the population mean
+
+Selection: 2
+
+| You are amazing!
+
+  |==================================================================        |  89%
+| True or False - The Central Limit Theorem (CLT) tells us that averages always
+| have normal distributions no matter how big the sample size
+
+1: True
+2: False
+
+Selection: 2
+
+| You got it!
+
+  |===================================================================       |  90%
+| To calculate a confidence interval for a mean you take the sample mean and add
+| and subtract the relevant normal quantile times the what?
+
+1: variance
+2: standard error
+3: mean
+4: variance/n
+
+Selection: 2
+
+| You got it!
+
+  |====================================================================      |  92%
+| For a 95% confidence interval approximately how many standard errors would you
+| add and subtract from the sample mean?
+
+1: 6
+2: 4
+3: 2
+4: 8
+
+Selection: 3
+
+| That's a job well done!
+  
+  |=====================================================================     |  93%
+| If you wanted increased coverage what would you do to your confidence interval?
+  
+  1: decrease it
+2: increase it
+3: keep it the same
+
+Selection: 2
+
+| All that hard work is paying off!
+  
+  |======================================================================    |  95%
+| If you had less variability in your data would your confidence interval get
+| bigger or smaller?
+  
+  1: smaller
+2: bigger
+
+Selection: 1
+
+| You're the best!
+
+  |=======================================================================   |  96%
+| If you had larger sample size would your confidence interval get bigger or
+| smaller?
+
+1: smaller
+2: bigger
+
+Selection: 1
+
+| Excellent job!
+
+  |========================================================================  |  97%
+| A quick fix for small sample size binomial calculations is what?
+
+1: add 2 successes and 4 failures
+2: changing data seem dishonest
+3: add 2 successes and 2 failures
+4: add 2 successes and subtract 2 failures
+
+Selection: 3
+
+| Keep up the great work!
+
+  |========================================================================= |  99%
+| Congrats! You've concluded this lesson on asymptotics. We hope you feel confident
+| and are asymptomatic after going through it.
+
+...
+
+|==========================================================================| 100%
+| Would you like to receive credit for completing this course on Coursera.org?
+  
+  1: Yes
+2: No
+
+Selection: 1
+What is your email address? amirsaleem1990
+What is your assignment token? MlkX8E1OA2Xa0Ea9
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Error in the HTTP2 framing layer
+
+| Leaving swirl now. Type swirl() to resume.
+
+> swirl()
+
+| Welcome to swirl! Please sign in. If you've been here before, use the same name
+| as you did then. If you are new, call yourself something unique.
+
+What shall I call you? ami
+
+| Would you like to continue with one of these lessons?
+
+1: Exploratory Data Analysis CaseStudy
+2: Statistical Inference Asymptotics
+3: No. Let me start something new.
+
+Selection: 2
+
+| Attempting to load lesson dependencies...
+
+| Package ‘ggplot2’ loaded correctly!
+
+
+
+| Would you like to receive credit for completing this course on Coursera.org?
+
+1: Yes
+2: No
+
+Selection: 1
+What is your email address? amirsaleem1990@hotmail.com
+What is your assignment token? MlkX8E1OA2Xa0Ea9
+Error in curl::curl_fetch_memory(url, handle = handle) : Unexpected EOF
+
+| Leaving swirl now. Type swirl() to resume.
+
+> swirl()
+
+| Welcome to swirl! Please sign in. If you've been here before, use the same name
+| as you did then. If you are new, call yourself something unique.
+
+What shall I call you? ami
+
+| Would you like to continue with one of these lessons?
+  
+  1: Exploratory Data Analysis CaseStudy
+2: Statistical Inference Asymptotics
+3: No. Let me start something new.
+
+Selection: 2
+
+| Attempting to load lesson dependencies...
+
+| Package ‘ggplot2’ loaded correctly!
+  
+  
+  
+  | Would you like to receive credit for completing this course on Coursera.org?
+  
+  1: Yes
+2: No
+
+Selection: 1
+What is your email address? amirsaleem1990@hotmail.com
+What is your assignment token? dHIJd2R2joLR2MKj
+Grade submission succeeded!
+  
+  | Keep working like that and you'll get there!
+
+| You've reached the end of this lesson! Returning to the main menu...
+
+| Would you like to continue with one of these lessons?
+  
+  1: Exploratory Data Analysis CaseStudy
+2: No. Let me start something new.
+
+Selection: 2
+
+| Please choose a course, or type 0 to exit swirl.
+
+1: Exploratory Data Analysis
+2: Getting and Cleaning Data
+3: R Programming
+4: Statistical Inference
+5: Take me to the swirl course repository!
+  
+  Selection: 4
+
+| Please choose a lesson, or type 0 to return to course menu.
+
+1: Introduction             2: Probability1             3: Probability2          
+4: ConditionalProbability   5: Expectations             6: Variance              
+7: CommonDistros            8: Asymptotics              9: T Confidence Intervals
+10: Hypothesis Testing      11: P Values                12: Power                 
+13: Multiple Testing        14: Resampling              
+
+Selection: 9
+
+| Attempting to load lesson dependencies...
+
+| Package ‘ggplot2’ loaded correctly!
+  
+  | Package ‘jpeg’ loaded correctly!
+  
+  |                                                                          |   0%
+
+| T_Confidence_Intervals. (Slides for this and other Data Science courses may be
+                           | found at github https://github.com/DataScienceSpecialization/courses/. If you
+                           | care to use them, they must be downloaded as a zip file and viewed locally. This
+                           | lesson corresponds to 06_Statistical_Inference/08_tCIs.)
+
+...
+
+|=                                                                         |   1%
+| In this lesson, we'll discuss some statistical methods for dealing with small
+| datasets, specifically the Student's or Gosset's t distribution and t confidence
+| intervals.
+
+...
+
+  |==                                                                        |   3%
+| In the Asymptotics lesson we discussed confidence intervals using the Central
+| Limit Theorem (CLT) and normal distributions. These needed large sample sizes,
+| and the formula for computing the confidence interval was Est +/- qnorm *std
+| error(Est), where Est was some estimated value (such as a sample mean) with a
+| standard error. Here qnorm represented what?
+
+1: the population variance
+2: the population mean
+3: the standard error
+4: a specified quantile from a normal distribution
+
+Selection: 4
+
+| Excellent work!
+
+  |===                                                                       |   4%
+| In the Asymptotics lesson we also mentioned the Z statistic
+| Z=(X'-mu)/(sigma/sqrt(n)) which follows a standard normal distribution. This
+| normalized statistic Z is especially nice because we know its mean and variance.
+| They are what, respectively?
+  
+  1: 1 and 1
+2: 0 and 1
+3: 1 and 0
+4: 0 and 0
+
+Selection: 2
+
+| Nice work!
+  
+  |====                                                                      |   5%
+| So the mean and variance of the standardized normal are fixed and known. Now
+| we'll define the t statistic which looks a lot like the Z. It's defined as
+| t=(X'-mu)/(s/sqrt(n)). Like the Z statistic, the t is centered around 0. The only
+| difference between the two is that the population std deviation, sigma, in Z is
+| replaced by the sample standard deviation in the t. So the distribution of the t
+| statistic is independent of the population mean and variance. Instead it depends
+| on the sample size n.
+
+...
+
+  |=====                                                                     |   7%
+| As a result, for t distributions, the formula for computing a confidence interval
+| is similar to what we did in the last lesson. However, instead of a quantile for
+| a normal distribution we use a quantile for a t distribution. So the formula is
+| Est +/- t-quantile *std error(Est). The other distinction, which we mentioned
+| before, is that we'll use the sample standard deviation when we estimate the
+     | standard error of Est.
+     
+     ...
+     
+     |======                                                                    |   8%
+     | In the formula for the t statistic t=(X'-mu)/(s/sqrt(n)) what expression
+| represents the sample standard deviation?
+
+1: mu
+2: n
+3: s
+4: X'
+                                             
+                                             Selection: 3
+                                             
+                                             | You are quite good my friend!
+                                               
+                                               |=======                                                                   |   9%
+                                             | These t confidence intervals are very handy, and if you have a choice between
+                                             | these and normal, pick these. We'll see that as datasets get larger, t-intervals
+| look normal. We'll cover the one- and two-group versions which depend on the data
+                                             | you have.
+                                             
+                                             ...
+                                             
+                                             |========                                                                  |  11%
+                                             | The t distribution, invented by William Gosset in 1908, has thicker tails than
+                                             | the normal. Also, instead of having two parameters, mean and variance, as the
+                                             | normal does, the t distribution has only one - the number of degrees of freedom
+                                             | (df).
+                                             
+                                             ...
+                                             
+                                             |=========                                                                 |  12%
+                                             | As df increases, the t distribution gets more like a standard normal, so it's
+| centered around 0. Also, the t assumes that the underlying data are iid Gaussian
+| so the statistic (X' - mu)/(s/sqrt(n)) has n-1 degrees of freedom.
+     
+     ...
+     
+     |==========                                                                |  13%
+     | Quick check. In the formula t=(X' - mu)/(s/sqrt(n)), if we replaced s by sigma
+| the statistic t would be what asymptotically?.
+
+1: the population variance
+2: the standard abnormal
+3: Huh?
+4: the standard normal
+
+Selection: 4
+
+| That's correct!
+                                        
+                                        |===========                                                               |  14%
+                                      | To see what we mean, we've taken code from the slides, the function myplot, which
+| takes the integer df as its input and plots the t distribution with df degrees of
+| freedom. It also plots a standard normal distribution so you can see how they
+| relate to one another.
+
+...
+
+  |============                                                              |  16%
+| Try myplot now with an input of 2.
+
+> myplot
+function(df){
+  d <- data.frame(y = c(dnorm(xvals), dt(xvals, df)),
+                  x = xvals,
+                  dist = factor(rep(c("Normal", "T"), c(k,k))))
+  g <- ggplot(d, aes(x = x, y = y)) 
+  g <- g + geom_line(size = 2, aes(colour = dist))
+  print(g)
+}
+<environment: 0x55be8f4faff8>
+
+| Almost! Try again. Or, type info() for more options.
+
+| Type myplot(2) at the command prompt.
+
+> myplot(2)
+
+| You're the best!
+  
+  |=============                                                             |  17%
+  | You can see that the hump of t distribution (in blue) is not as high as the
+  | normal's. Consequently, the two tails of the t distribution absorb the extra
+| mass, so they're thicker than the normal's. Note that with 2 degrees of freedom,
+| you only have 3 data points. Ha! Talk about small sample sizes. Now try myplot
+| with an input of 20.
+
+> qt(.975, df = 2)
+[1] 4.302653
+
+| Not quite right, but keep trying. Or, type info() for more options.
+
+| Type myplot(20) at the command prompt.
+
+> myplot(20)
+
+| Keep working like that and you'll get there!
+    
+    |==============                                                            |  18%
+  | The two distributions are almost right on top of each other using this higher
+  | degree of freedom.
+  
+  ...
+  
+  |===============                                                           |  20%
+  | Another way to look at these distributions is to plot their quantiles. From the
+  | slides, we've provided a second function for you, myplot2, which does this. It
+| plots a lightblue reference line representing normal quantiles and a black line
+| for the t quantiles. Both plot the quantiles starting at the 50th percentile
+| which is 0 (since the distributions are symmetric about 0) and go to the 99th.
+
+...
+
+  |================                                                          |  21%
+| Try myplot2 now with an argument of 2.
+
+> myplot2
+function(df){
+  d <- data.frame(n= qnorm(pvals),t=qt(pvals, df),
+                  p = pvals)
+  g <- ggplot(d, aes(x= n, y = t))
+  g <- g + geom_abline(size = 2, col = "lightblue")
+  g <- g + geom_line(size = 2, col = "black")
+  g <- g + geom_vline(xintercept = qnorm(0.975))
+  g <- g + geom_hline(yintercept = qt(0.975, df))
+  print(g)
+}
+<environment: 0x55be86835cb8>
+
+| That's not the answer I was looking for, but try again. Or, type info() for more
+| options.
+
+| Type myplot2(2) at the command prompt.
+
+> myplot2(2)
+
+| You are amazing!
+  
+  |=================                                                         |  22%
+  | The distance between the two thick lines represents the difference in sizes
+  | between the quantiles and hence the two sets of intervals. Note the thin
+  | horizontal and vertical lines. These represent the .975 quantiles for the t and
+  | normal distributions respectively. Anyway, you probably recognized the placement
+  | of the vertical at 1.96 from the Asymptotics lesson.
+  
+  ...
+  
+  |==================                                                        |  24%
+  | Check the placement of the horizontal now using the R function qt with the
+  | arguments .975 for the quantile and 2 for the degrees of freedom (df).
+  
+  > qt(.975, df = 2)
+  [1] 4.302653
+  
+  | You nailed it! Good job!
+    
+    |==================                                                        |  25%
+  | See? It matches the horizontal line of the plot. Now run myplot2 with an argument
+  | of 20.
+  
+  > myplot2(20)
+  
+  | You nailed it! Good job!
+    
+    |===================                                                       |  26%
+  | The quantiles are much closer together with the higher degrees of freedom. At the
+  | 97.5 percentile, though, the t quantile is still greater than the normal.
+  | Student's Rules!
+
+...
+
+  |====================                                                      |  28%
+| This means the the t interval is always wider than the normal. This is because
+| estimating the standard deviation introduces more uncertainty so a wider interval
+| results.
+
+...
+
+  |=====================                                                     |  29%
+| So the t-interval is defined as X' +/- t_(n-1)*s/sqrt(n) where t_(n-1) is the
+  | relevant quantile. The t interval assumes that the data are iid normal, though it
+  | is robust to this assumption and works well whenever the distribution of the data
+  | is roughly symmetric and mound shaped.
+  
+  ...
+  
+  |======================                                                    |  30%
+  | Our plots showed us that for large degrees of freedom, t quantiles become close
+  | to what?
+    
+    1: very large numbers
+  2: standard abnormal quantiles
+  3: standard normal quantiles
+  4: very small numbers
+  
+  Selection: 3
+  
+  | All that practice is paying off!
+    
+    |=======================                                                   |  32%
+  | Although it's pretty great, the t interval isn't always applicable. For skewed
+  | distributions, the spirit of the t interval assumptions (being centered around 0)
+  | are violated. There are ways of working around this problem (such as taking logs
+                                                                 | or using a different summary like the median).
+  
+  ...
+  
+  |========================                                                  |  33%
+  | For highly discrete data, like binary, intervals other than the t are available.
+  
+  ...
+  
+  |=========================                                                 |  34%
+  | However, paired observations are often analyzed using the t interval by taking
+  | differences between the observations. We'll show you what we mean now.
+
+...
+
+  |==========================                                                |  36%
+| We hope you're not tired because we're going to look at some sleep data. This was
+| the data originally analyzed in Gosset's Biometrika paper, which shows the
+  | increase in hours for 10 patients on two soporific drugs.
+  
+  ...
+  
+  |===========================                                               |  37%
+  | We've loaded the data for you. R treats it as two groups rather than paired. To
+| see what we mean type sleep now. This will show you how the data is stored.
+
+> sleep
+#    extra group ID
+# 1    0.7     1  1
+# 2   -1.6     1  2
+# 3   -0.2     1  3
+# 4   -1.2     1  4
+# 5   -0.1     1  5
+# 6    3.4     1  6
+# 7    3.7     1  7
+# 8    0.8     1  8
+# 9    0.0     1  9
+# 10   2.0     1 10
+# 11   1.9     2  1
+# 12   0.8     2  2
+# 13   1.1     2  3
+# 14   0.1     2  4
+# 15  -0.1     2  5
+# 16   4.4     2  6
+# 17   5.5     2  7
+# 18   1.6     2  8
+# 19   4.6     2  9
+# 20   3.4     2 10
 
