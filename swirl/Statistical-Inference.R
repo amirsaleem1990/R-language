@@ -1076,3 +1076,8 @@ mydf <- num / den
 # Q: What do you think we call the region of values for which we reject H_0?
 # Ans: the rejection region
 
+# Note that so far we've been talking about NORMAL distributions and implicitly relying on the CENTRAL LIMIT THEOREM (CLT).
+
+# Q: Remember the CLT. For a distribution to be approximated by a normal what does the sample size have to be?
+# Ans: large
+
