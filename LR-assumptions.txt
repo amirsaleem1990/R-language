@@ -1,0 +1,4 @@
+linear regression assumptions:
+1- correlation between target and predictor(s)
+2- resuduals are normally distributed # this assumption enable us to coclude the the sampling distributions of predicted b0 and b1 are normal. hence we can construct confidence intervals for b0 and b1.
+3- resuduals are independent 
