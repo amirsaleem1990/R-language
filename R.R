@@ -10,3 +10,5 @@ c(1,3,11)%!in%1:10
 [1] FALSE FALSE  TRUE
 # https://stackoverflow.com/questions/5831794/opposite-of-in
 
+# Build a model excluding the tax variable
+model2 <- lm(medv ~. -tax, data = train.data)
