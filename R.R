@@ -18,3 +18,13 @@ model2 <- lm(medv ~. -tax, data = train.data)
 split = caTools::sample.split(df$target_var, Split.Ratio = 0.75) # test retio os 75 %
 train = subset(df, split == TRUE)
 test = subset(df, split == FALSE)
+
+
+
+# ROC curve
+library(ROCR)
+Rocr_pred <- prediction(prediction_train, df$target_var)
+Rocr_perf <- performance(Rocr_pred, "X axis label", "Y axis label")
+plot(Rocr_perf, colorize = TRUE)
+
+
