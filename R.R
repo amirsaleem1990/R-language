@@ -26,5 +26,5 @@ library(ROCR)
 Rocr_pred <- prediction(prediction_train, df$target_var)
 Rocr_perf <- performance(Rocr_pred, "X axis label", "Y axis label")
 plot(Rocr_perf, colorize = TRUE, print.cutoffs.at = seq(0,1,0.1), text.adj = c(-0.2, 1.7))
-
+	
 
