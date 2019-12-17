@@ -12,3 +12,9 @@ c(1,3,11)%!in%1:10
 
 # Build a model excluding the tax variable
 model2 <- lm(medv ~. -tax, data = train.data)
+
+
+# split data into train and test with regards of distribution of target variable
+split = caTools::sample.split(df$target_var, Split.Ratio = 0.75) # test retio os 75 %
+train = subset(df, split == TRUE)
+test = subset(df, split == FALSE)
