@@ -55,3 +55,7 @@ sign(9)  ==> 1
 sign(0)  ==> 0
 
 
+Drawbacks of Logistic Regrassion:
+	Logistic Regrassion models are generally not INTERPRETABLE
+	Logistic Regrassion models coefficients indicate importance and ralative effect of variable s, but do not give a simple explanation of how decision is made.
+	
