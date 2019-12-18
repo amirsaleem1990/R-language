@@ -48,3 +48,10 @@ df$col1 = imputed$col1
 df$col2 = imputed$col2
 
 
+
+sign : negative to -1; posetive to 1; and 0 to 0
+sign(-4) ==> -1
+sign(9)  ==> 1
+sign(0)  ==> 0
+
+
