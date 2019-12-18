@@ -39,3 +39,12 @@ Rocr_pred <- ROCR::prediction(test_predictions, df$target_var)
 as.numeric(ROCR::performance(Rocr_pred, "auc")@y.values)
 
 
+# Multiple imputation
+library(mice)
+simple = df[c("col1", "col2", "col3", "col4")] # col1 and col2 have missing values
+set.seed(144)
+imputed = complete(mice(simple))
+df$col1 = imputed$col1
+df$col2 = imputed$col2
+
+
