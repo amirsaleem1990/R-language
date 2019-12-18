@@ -33,6 +33,7 @@ table(train$target_var, test_predictions > THRESHOLD)
 
 
 # AUC value on testing set
+# AUC : height value of AUC value means: the model can differentiate low-risk from high-risk patients (eg: AUC=0.75)
 library(ROCR)
 Rocr_pred <- ROCR::prediction(test_predictions, df$target_var)
 as.numeric(ROCR::performance(Rocr_pred, "auc")@y.values)
