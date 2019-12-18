@@ -28,3 +28,9 @@ Rocr_perf <- performance(Rocr_pred, "X axis label", "Y axis label")
 plot(Rocr_perf, colorize = TRUE, print.cutoffs.at = seq(0,1,0.1), text.adj = c(-0.2, 1.7))
 	
 
+# confusion matrix:
+table(train$target_var, test_predictions > THRESHOLD)
+
+
+
+
