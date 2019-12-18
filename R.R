@@ -2,6 +2,8 @@
 form.in<-paste('y ~',paste(names(lm.dat)[-1],collapse='+'))
 
 
+# get index of particuler value
+match("Amir", df$Name) # df$Name ka wo index batao jis me Amir h
 
 # Opposite of %in% .............. D2 = subset(D1, !(V1 %in% c('B','N','T'))).......... 
 # You can also make an operator yourself:
