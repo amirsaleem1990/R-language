@@ -32,5 +32,9 @@ plot(Rocr_perf, colorize = TRUE, print.cutoffs.at = seq(0,1,0.1), text.adj = c(-
 table(train$target_var, test_predictions > THRESHOLD)
 
 
+# AUC value on testing set
+library(ROCR)
+Rocr_pred <- ROCR::prediction(test_predictions, df$target_var)
+as.numeric(ROCR::performance(Rocr_pred, "auc")@y.values)
 
 
