@@ -58,3 +58,12 @@ sign(0)  ==> 0
 
 
 
+
+# kafi dafa hamary pas value character me hoti h or itni bari hoti h k screen ko scroll right karna partha h. to <strwrap> esy long character ko muliple lines me print karta h
+# eg: 
+> email
+[1] "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+>strwrap(email)
+[1] "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"  $
+[2] "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"      $ 
+
