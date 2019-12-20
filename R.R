@@ -69,4 +69,4 @@ sign(0)  ==> 0
 
 
 # remove the variable ................. df$vairble_to_remove = NULL
-
+# remove duplicate rows ............... df <- unique(df)
