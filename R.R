@@ -67,3 +67,6 @@ sign(0)  ==> 0
 [1] "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"  $
 [2] "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"      $ 
 
+
+# remove the variable ................. df$vairble_to_remove = NULL
+
