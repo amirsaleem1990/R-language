@@ -70,3 +70,14 @@ sign(0)  ==> 0
 
 # remove the variable ................. df$vairble_to_remove = NULL
 # remove duplicate rows ............... df <- unique(df)
+
+########################################################
+# date and time from character vector
+> head(df$Date, 1)
+[1] "12/31/12 23:15"
+
+df$Date <- strptime(df$Date, format="%m/%d/%y %H:%M")
+df$Weekday <- weekdays(df$Date)
+df$Hour <- df$Date$hour
+########################################################
+
