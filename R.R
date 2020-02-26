@@ -81,3 +81,4 @@ df$Weekday <- weekdays(df$Date)
 df$Hour <- df$Date$hour
 ########################################################
 
+#find missing values in sequance .......... setdiff(1:7, df$y)
