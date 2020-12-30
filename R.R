@@ -82,3 +82,6 @@ df$Hour <- df$Date$hour
 ########################################################
 
 #find missing values in sequance .......... setdiff(1:7, df$y)
+# run R command from terminal (without entering in R console) ........... R -e 'install.packages("caret")' ,,,,,,,,,,,,, OR ........... Rscript <(echo "head(iris,2)")
+# To install to the default location: ................. R -e 'install.packages(c("package1", "package2"))' .............. To install to a location that requires root privileges: .............. R -e 'install.packages(c("package1", "package2"), lib="/usr/local/lib/R/site-library")' 
+# to make R script executable ;check where is <Rscript> by <which Rscript> ; and add that line as sheband. .............. OR .......... R < scriptName.R --no-save  ......... OR ........ Rscript <(zcat a.r) 
