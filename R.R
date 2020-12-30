@@ -85,3 +85,11 @@ df$Hour <- df$Date$hour
 # run R command from terminal (without entering in R console) ........... R -e 'install.packages("caret")' ,,,,,,,,,,,,, OR ........... Rscript <(echo "head(iris,2)")
 # To install to the default location: ................. R -e 'install.packages(c("package1", "package2"))' .............. To install to a location that requires root privileges: .............. R -e 'install.packages(c("package1", "package2"), lib="/usr/local/lib/R/site-library")' 
 # to make R script executable ;check where is <Rscript> by <which Rscript> ; and add that line as sheband. .............. OR .......... R < scriptName.R --no-save  ......... OR ........ Rscript <(zcat a.r) 
+
+
+# fit.1 <- glm(employed == "yes" ~ ., data = dat, family = binomial)
+# tempfit <- update(fit.1, .~. + factor(young.children == 0) 
+#                             + factor(school.children == 0)
+#                             + factor(young.children + 
+#                               school.children == 0))
+
