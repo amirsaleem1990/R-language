@@ -93,3 +93,5 @@ df$Hour <- df$Date$hour
 #                             + factor(young.children + 
 #                               school.children == 0))
 
+# get size of object ............... object.size(My_Data_Frame)
+# run R command from linux turminal (as we run python command (eg: python3 -c "import numpy as np; print(help(np))" ) .................. r -e 'print(dim(read.csv("github/Kaggle-compitations/sonar/sonar.csv")))'
